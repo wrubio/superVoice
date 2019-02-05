@@ -1,0 +1,111 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    margin-left: -240px;
+    background-color: #45B0E5;
+    padding-top: 48px;
+    z-index: 2;
+    transition: margin-left 0.3s ease-out;
+    -moz-transition: margin-left 0.3s ease-out;
+    -webkit-transition: margin-left 0.3s ease-out;
+    overflow: hidden;
+    background-image: url("../../../../assets/img/sidebar/background.png");
+    background-size: cover;
+    background-position: center 48px;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 15px 15px;
+    border-bottom: 1px solid #71D0FF;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.sidebar i {
+    margin-right: 10px
+}
+
+.sidebar-sm-show {
+    margin-left: 0;
+}
+
+.b-bg-container {
+    position: relative;
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .sidebar {
+        height: 100vh;
+        width: 80px;
+        margin-left: 0;
+        overflow: auto;
+    }
+    .sidebar li {
+        text-align: center;
+    }
+    .sidebar li span:nth-child(2) {
+        display: none;
+    }
+    .sidebar i {
+        font-size: 1.5rem;
+        margin-right: 0;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .sidebar {
+        height: 100vh;
+        width: 240px;
+        margin-left: 0;
+        overflow: auto;
+    }
+    .sidebar li {
+        text-align: left;
+    }
+    .sidebar li span:nth-child(2) {
+        display: inline-block;
+    }
+    .sidebar i {
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .sidebar {
+        height: 100vh;
+        width: 240px;
+        overflow: auto;
+    }
+    .sidebar li {
+        text-align: left;
+    }
+    .sidebar li span:nth-child(2) {
+        display: inline-block;
+    }
+    .sidebar i {
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+}
