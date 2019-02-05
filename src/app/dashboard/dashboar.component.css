@@ -10,7 +10,7 @@ article {
 
 @media (min-width: 768px) {
     article {
-        margin-left: 80px;
+        margin-left: 0;
     }
 }
 
@@ -19,9 +19,8 @@ article {
 
 @media (min-width: 992px) {
     article {
-        margin-left: 240px
+        margin-left: 240px;
     }
-    ;
 }
 
 
@@ -29,7 +28,6 @@ article {
 
 @media (min-width: 1200px) {
     article {
-        margin-left: 240px
+        margin-left: 240px;
     }
-    ;
 }
