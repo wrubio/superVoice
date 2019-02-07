@@ -38,7 +38,7 @@
 /* ABOUT STYLES */
 
 .wp-about {
-    background-color: #f1f1f1;
+    background-color: #f4f4f4;
     height: 35rem;
     position: relative;
     padding: 70px 25px;
@@ -53,4 +53,21 @@
 .wp-about-content {
     position: relative;
     z-index: 2;
+}
+
+.wave-separator {
+    background-image: url("../../../assets/img/wave.png");
+    background-size: 600px auto;
+    background-color: #f4f4f4;
+    height: 16rem;
+}
+
+
+/* PROMISES STYLES */
+
+.wp-promises {
+    background-color: #f4f4f4;
+    height: 35rem;
+    position: relative;
+    padding: 25px;
 }
