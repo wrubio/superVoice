@@ -19,6 +19,16 @@ body {
 }
 
 
+/* GENERAL STYLES */
+
+.wp-p-abs {
+    position: absolute;
+    top: -25px;
+    left: 25px;
+    z-index: 0;
+}
+
+
 /* Small devices (landscape phones, 576px and up) */
 
 @media (min-width: 576px) {}

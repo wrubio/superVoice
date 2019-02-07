@@ -1,0 +1,22 @@
+.pg-navbar {
+    background-color: rgba(0, 0, 0, 0.0);
+    -webkit-transition: background-color 1s ease-out;
+    -moz-transition: background-color 1s ease-out;
+    transition: background-color 0.3s ease-out;
+    position: relative;
+    z-index: 11;
+    /*background: url(../../../../assets/img/navbar/bg1.fw.png) repeat;*/
+}
+
+.pg-navbar a {
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.pg-navbar .btn-sm {
+    padding: 0 .85rem;
+}
+
+.pg-navbar-bg {
+    background-color: rgb(56, 151, 246)
+}

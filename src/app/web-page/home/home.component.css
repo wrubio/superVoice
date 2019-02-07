@@ -1,0 +1,56 @@
+.ParallaxVideo {
+    height: 680px;
+    padding-bottom: 10px;
+    padding-top: 160px;
+    background-image: linear-gradient(to left bottom, rgba(0, 0, 0, 0.86), rgba(25, 24, 23, 0.76), #2a282775, #3b3a3794, #4c4d49e0);
+    position: relative;
+}
+
+.ParallaxVideo video {
+    min-width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: -999;
+}
+
+.ParallaxVideo h1 {
+    color: #fff;
+    font-size: 76px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ParallaxVideo h2 {
+    color: #fff;
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.wp-btn-header {
+    position: absolute;
+    width: 100%;
+    bottom: 200px;
+}
+
+
+/* ABOUT STYLES */
+
+.wp-about {
+    background-color: #f1f1f1;
+    height: 35rem;
+    position: relative;
+    padding: 70px 25px;
+}
+
+.wp-about h1 {
+    color: rgba(228, 228, 228, 0.91);
+    font-size: 10rem;
+    font-weight: 700;
+}
+
+.wp-about-content {
+    position: relative;
+    z-index: 2;
+}
