@@ -39,9 +39,8 @@
 
 .wp-about {
     background-color: #f4f4f4;
-    height: 35rem;
     position: relative;
-    padding: 70px 25px;
+    padding: 90px 25px 25px 25px;
 }
 
 .wp-about h1 {
@@ -55,11 +54,30 @@
     z-index: 2;
 }
 
+
+/* WAVE SEPARATOR STYLES */
+
+.wave-container {
+    height: 25.7rem;
+    min-width: 100%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 35px 0;
+}
+
+.wave-container img {
+    position: absolute;
+    top: calc(50% - 103px);
+    left: calc(50% - 115px);
+}
+
 .wave-separator {
+    height: 100%;
     background-image: url("../../../assets/img/wave.png");
     background-size: 600px auto;
-    background-color: #f4f4f4;
-    height: 16rem;
+    background-repeat: repeat-x;
+    animation: wave-animaion 5s ease-in-out infinite;
 }
 
 
@@ -67,7 +85,23 @@
 
 .wp-promises {
     background-color: #f4f4f4;
-    height: 35rem;
     position: relative;
-    padding: 25px;
+    padding: 5.6rem 2.5rem;
 }
+
+.wp-promises h1 {
+    color: rgba(228, 228, 228, 0.91);
+    font-size: 10rem;
+    font-weight: 700;
+}
+
+.wp-promises .card {
+    background-color: #f4f4f4;
+    border: 0;
+    border-radius: .25rem;
+}
+
+
+/* VOICE DEMOS STYLES */
+
+.wp-voice-demos {}

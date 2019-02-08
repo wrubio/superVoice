@@ -26,6 +26,48 @@ body {
     top: -25px;
     left: 25px;
     z-index: 0;
+    width: calc(100% - 25px);
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+
+/* ANIMATION STYLES */
+
+@keyframes wave-animaion {
+    0% {
+        transform: scaleY(1);
+    }
+    10% {
+        transform: scaleY(0.75);
+    }
+    25% {
+        transform: scaleY(0.85);
+    }
+    35% {
+        transform: scaleY(0.65);
+    }
+    50% {
+        transform: scaleY(0.9);
+    }
+    60% {
+        transform: scaleY(0.7);
+    }
+    75% {
+        transform: scaleY(1);
+    }
+    85% {
+        transform: scaleY(0.85);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
 
 
