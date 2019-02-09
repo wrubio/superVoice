@@ -89,7 +89,8 @@
     padding: 5.6rem 2.5rem;
 }
 
-.wp-promises h1 {
+.wp-promises h1,
+.how-paticipate h1 {
     color: rgba(228, 228, 228, 0.91);
     font-size: 10rem;
     font-weight: 700;
@@ -104,4 +105,59 @@
 
 /* VOICE DEMOS STYLES */
 
-.wp-voice-demos {}
+.wp-voice-demos {
+    height: 560px;
+    position: relative;
+}
+
+.wp-demos-content {
+    position: absolute;
+    width: calc(100% - 25px);
+    top: 65px;
+    left: 25px;
+}
+
+.wp-demos-content audio {
+    width: 100%;
+}
+
+.wp-demos-content h1 {
+    color: #fff;
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.paralax-voice-demos {
+    background-image: url('../../../assets/img/wp-voice-demo-bg.png');
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.see-more {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.see-more a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+/* HOW PARTICIPATE STYLES */
+
+.how-paticipate {
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 5.6rem 2.5rem;
+}
