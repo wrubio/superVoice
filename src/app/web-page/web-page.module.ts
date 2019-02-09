@@ -6,14 +6,20 @@ import { WebPageComponent } from './web-page.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 
+// Routes
+import { WEBP_ROUTES } from './web-page.routes';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     WebPageComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    WEBP_ROUTES
   ],
   providers: [],
   bootstrap: []

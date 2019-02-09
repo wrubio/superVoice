@@ -1,7 +1,7 @@
-<header>
+<header *ngIf="!hideShared">
     <app-navbar></app-navbar>
 </header>
 <div id="main-container">
-    <app-home></app-home>
+    <router-outlet></router-outlet>
 </div>
-<footer></footer>
+<footer *ngIf="!hideShared"></footer>

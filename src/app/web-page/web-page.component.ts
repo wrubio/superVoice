@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-web-page',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebPageComponent implements OnInit {
 
-  constructor() { }
+  hideShared = false;
+
+  constructor(private route: Router) {
+    this.route.events.subscribe( (val: any) => {
+      this.route.url === '/login' ? this.hideShared = true : this.hideShared = false;
+    });
+   }
 
   ngOnInit() {
   }

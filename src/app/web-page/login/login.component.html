@@ -1,0 +1,39 @@
+<div class="login-container">
+    <div class="middle">
+        <div class="wp-login-text-container text-center">
+            <h1>SuperVoice</h1>
+            <div class="wp-login-text">
+                <h2>Login</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <form action="javascript:void(0);" method="get">
+                    <fieldset class="clearfix">
+                        <p><span class="fa fa-user"></span><input type="text" Placeholder="Username" required></p>
+                        <!-- JS because of IE support; better: placeholder="Username" -->
+                        <p><span class="fa fa-lock"></span><input type="password" Placeholder="Password" required></p>
+                        <!-- JS because of IE support; better: placeholder="Password" -->
+                        <div>
+                            <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="#">Forgot password?</a></span>
+                            <span style="width:50%; text-align:right;  display: inline-block;">
+                                <button type="submit" class="btn btn-outline-light"><i _ngcontent-c2="" class="fa fa-sign-in"></i> Ingresar</button>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="col-6">
+                <div class="logo text-center">
+                    <img src="./assets/img/logo.png" alt="Logo SuperVoice" width="106px">
+                    <span><h1>SuperVoice</h1></span>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-12 mt-5 text-center text-white">
+                <span><a href="">¿No tienes una cuenta?</a></span> | <span><a routerLink="/home">Regresar al home</a></span>
+            </div>
+        </div>
+    </div>
+</div>

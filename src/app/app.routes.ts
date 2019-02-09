@@ -6,7 +6,6 @@ import { WebPageComponent } from './web-page/web-page.component';
 
 
 const appRoutes: Routes = [
-    { path: '', component: WebPageComponent },
     { path: 'dashboard', component: DashboarComponent },
     { path: '**', component: Page404Component }
 ];
