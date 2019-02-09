@@ -5,3 +5,11 @@ header {
     width: 100%;
     z-index: 10;
 }
+
+
+/* FOOTER STYLES */
+
+footer {
+    height: 180px;
+    background-color: #41494C;
+}

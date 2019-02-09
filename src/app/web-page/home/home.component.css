@@ -39,9 +39,8 @@
 
 .wp-about {
     background-color: #f4f4f4;
-    height: 35rem;
     position: relative;
-    padding: 70px 25px;
+    padding: 90px 25px 25px 25px;
 }
 
 .wp-about h1 {
@@ -55,11 +54,30 @@
     z-index: 2;
 }
 
+
+/* WAVE SEPARATOR STYLES */
+
+.wave-container {
+    height: 25.7rem;
+    min-width: 100%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 35px 0;
+}
+
+.wave-container img {
+    position: absolute;
+    top: calc(50% - 103px);
+    left: calc(50% - 115px);
+}
+
 .wave-separator {
+    height: 100%;
     background-image: url("../../../assets/img/wave.png");
     background-size: 600px auto;
-    background-color: #f4f4f4;
-    height: 16rem;
+    background-repeat: repeat-x;
+    animation: wave-animaion 5s ease-in-out infinite;
 }
 
 
@@ -67,7 +85,79 @@
 
 .wp-promises {
     background-color: #f4f4f4;
-    height: 35rem;
     position: relative;
-    padding: 25px;
+    padding: 5.6rem 2.5rem;
+}
+
+.wp-promises h1,
+.how-paticipate h1 {
+    color: rgba(228, 228, 228, 0.91);
+    font-size: 10rem;
+    font-weight: 700;
+}
+
+.wp-promises .card {
+    background-color: #f4f4f4;
+    border: 0;
+    border-radius: .25rem;
+}
+
+
+/* VOICE DEMOS STYLES */
+
+.wp-voice-demos {
+    height: 560px;
+    position: relative;
+}
+
+.wp-demos-content {
+    position: absolute;
+    width: calc(100% - 25px);
+    top: 65px;
+    left: 25px;
+}
+
+.wp-demos-content audio {
+    width: 100%;
+}
+
+.wp-demos-content h1 {
+    color: #fff;
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.paralax-voice-demos {
+    background-image: url('../../../assets/img/wp-voice-demo-bg.png');
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.see-more {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.see-more a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+/* HOW PARTICIPATE STYLES */
+
+.how-paticipate {
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 5.6rem 2.5rem;
 }
