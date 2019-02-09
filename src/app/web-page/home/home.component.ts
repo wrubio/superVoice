@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener  } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef  } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,11 @@ import { Component, OnInit, HostListener  } from '@angular/core';
 @HostListener('window:scroll', ['$event'])
 
 export class HomeComponent implements OnInit {
-
+  @ViewChild('homeVideoHeader') homeVideoHeader: ElementRef;
   constructor() { }
 
   ngOnInit() {
+    this.homeVideoHeader.nativeElement.autoplay = true;
   }
 
   scrollEvent($event: Event) {
