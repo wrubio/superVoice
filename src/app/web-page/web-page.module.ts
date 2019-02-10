@@ -5,17 +5,19 @@ import { NgModule } from '@angular/core';
 import { WebPageComponent } from './web-page.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 // Routes
 import { WEBP_ROUTES } from './web-page.routes';
-import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     WebPageComponent,
     NavbarComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,13 @@ header {
 }
 
 
+/* MAIN CONTAINER STYLES */
+
+#main-container {
+    overflow: hidden;
+}
+
+
 /* FOOTER STYLES */
 
 footer {

@@ -12,7 +12,7 @@ export class WebPageComponent implements OnInit {
 
   constructor(private route: Router) {
     this.route.events.subscribe( (val: any) => {
-      this.route.url === '/login' ? this.hideShared = true : this.hideShared = false;
+      this.route.url === '/login' || this.route.url === '/register' ? this.hideShared = true : this.hideShared = false;
     });
    }
 
