@@ -11,12 +11,12 @@ import { ProfileComponent } from './pages/profile/profile.component';
 // Components
 
 
-const webpRoutes: Routes = [
-    { path: '',
+const dashboardRoutes: Routes = [
+    { path: 'dashboard',
         component:  DashboarComponent,
         children: [
             { path: '', component:  SummaryComponent},
-            { path: 'concursos', component: ConcursosComponent},
+            { path: 'contest', component: ConcursosComponent},
             { path: 'voices', component:  VoicesComponent},
             { path: 'profile', component:  ProfileComponent},
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
@@ -24,4 +24,4 @@ const webpRoutes: Routes = [
     }
 ];
 
-export const WEBP_ROUTES = RouterModule.forChild(webpRoutes);
+export const DASHBOARD_ROUTES = RouterModule.forChild(dashboardRoutes);

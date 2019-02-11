@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+// Components
 import { ConcursosComponent } from './concursos/concursos.component';
 import { SummaryComponent } from './summary/summary.component';
 import { VoicesComponent } from './voices/voices.component';
