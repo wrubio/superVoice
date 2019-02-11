@@ -6,13 +6,23 @@ import { ConcursosComponent } from './concursos/concursos.component';
 import { SummaryComponent } from './summary/summary.component';
 import { VoicesComponent } from './voices/voices.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NewContestComponent } from './new-contest/new-contest.component';
 
 @NgModule({
   declarations: [
-  ConcursosComponent,
-  SummaryComponent,
-  VoicesComponent,
-  ProfileComponent],
+    ConcursosComponent,
+    SummaryComponent,
+    VoicesComponent,
+    ProfileComponent,
+    NewContestComponent
+  ],
+  exports: [
+    ConcursosComponent,
+    SummaryComponent,
+    VoicesComponent,
+    ProfileComponent,
+    NewContestComponent
+  ],
   imports: [
     BrowserModule
   ],

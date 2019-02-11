@@ -4,6 +4,8 @@ article {
     margin-left: 0;
     height: 100vh;
     color: #696969;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 
