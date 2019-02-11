@@ -14,17 +14,6 @@ audio {
     position: relative;
 }
 
-.db-inf-contest-left-color {
-    position: absolute;
-    left: 0;
-    width: 10px;
-    top: -1px;
-    min-height: calc(100% + 2px);
-    background-color: #EE4D4D;
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-}
-
 .db-winning-voice span {
     text-decoration: underline;
     cursor: pointer;

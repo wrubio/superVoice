@@ -8,6 +8,7 @@ import { VoicesComponent } from './voices/voices.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewContestComponent } from './new-contest/new-contest.component';
 import { DASHBOARD_ROUTES } from '../dashboard.routes';
+import { EditContestComponent } from './edit-contest/edit-contest.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DASHBOARD_ROUTES } from '../dashboard.routes';
     SummaryComponent,
     VoicesComponent,
     ProfileComponent,
-    NewContestComponent
+    NewContestComponent,
+    EditContestComponent
   ],
   exports: [
     ConcursosComponent,

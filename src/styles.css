@@ -52,36 +52,65 @@ body {
     color: #FFFFFF;
 }
 
+.btn-db-success,
+.btn-db-success:hover,
+.btn-db-primary,
+.btn-db-primary:hover,
+.btn-db-danger,
+.btn-db-danger:hover {
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    border: 0;
+}
+
 .btn-db-primary:hover {
     background-color: #3897F6;
-    border: 1px solid #3897F6;
     color: #FFFFFF;
 }
 
 .btn-db-success {
     cursor: pointer;
     background-color: #26A95E;
-    border: 1px solid #26A95E;
     color: #FFFFFF;
 }
 
 .btn-db-success:hover {
     background-color: #26A95E;
-    border: 1px solid #26A95E;
     color: #FFFFFF;
 }
 
 .btn-db-danger {
     cursor: pointer;
     background-color: #EE4D4D;
-    border: 1px solid #EE4D4D;
     color: #FFFFFF;
 }
 
 .btn-db-danger:hover {
     background-color: #EE4D4D;
-    border: 1px solid #EE4D4D;
     color: #FFFFFF;
+}
+
+.db-inf-contest-left-color {
+    position: absolute;
+    left: 0;
+    width: 10px;
+    top: -1px;
+    min-height: calc(100% + 2px);
+    background-color: #EE4D4D;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.red-border-down-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #EE4D4D;
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
 }
 
 
