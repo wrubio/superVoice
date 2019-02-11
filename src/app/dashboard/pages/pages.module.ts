@@ -7,6 +7,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { VoicesComponent } from './voices/voices.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewContestComponent } from './new-contest/new-contest.component';
+import { DASHBOARD_ROUTES } from '../dashboard.routes';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NewContestComponent } from './new-contest/new-contest.component';
     NewContestComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DASHBOARD_ROUTES
   ],
   providers: [],
   bootstrap: []

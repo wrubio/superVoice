@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 // Components
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { DASHBOARD_ROUTES } from '../dashboard.routes';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DASHBOARD_ROUTES
   ],
   exports: [
     NavbarComponent,

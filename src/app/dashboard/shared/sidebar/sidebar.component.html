@@ -1,7 +1,8 @@
 <div class="sidebar">
     <div class="side-logo">
-        <a routerLink="['/']">
-            <h4>SuperVoices</h4>
+        <a routerLink="['/']" class="navbar-brand">
+            <img src="./assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span>SuperVoices</span>
         </a>
     </div>
     <div class="user-info">
@@ -13,26 +14,26 @@
     </div>
     <nav>
         <ul>
-            <li routerLink="" class="sidebar-li-active">
+            <li [routerLink]="['/summary']" routerLinkActive="sidebar-li-active">
                 <a>
                     <i class="fa fa-tachometer" aria-hidden="true"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li routerLink="/dashboard/contest">
+            <li [routerLink]="['/contest']" routerLinkActive="sidebar-li-active">
                 <a>
                     <i aria-hidden="true" class="fa fa-clipboard"></i>
                     <span>Concursos</span>
                 </a>
             </li>
-            <li>
-                <a routerLink="/voices">
+            <li [routerLink]="['/voices']" routerLinkActive="sidebar-li-active">
+                <a>
                     <i aria-hidden="true" class="fa fa-bullhorn"></i>
                     <span>Voices</span>
                 </a>
             </li>
-            <li>
-                <a routerLink="/profile">
+            <li [routerLink]="['/profile']" routerLinkActive="sidebar-li-active">
+                <a>
                     <span><i class="fa fa-user"></i></span>
                     <span>Profile</span>
                 </a>

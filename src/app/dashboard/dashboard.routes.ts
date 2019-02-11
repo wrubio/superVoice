@@ -13,7 +13,7 @@ import { NewContestComponent } from './pages/new-contest/new-contest.component';
 
 
 const dashboardRoutes: Routes = [
-    { path: 'dashboard',
+    { path: '',
         component:  DashboarComponent,
         children: [
             { path: 'summary', component:  SummaryComponent},
@@ -21,7 +21,7 @@ const dashboardRoutes: Routes = [
             { path: 'newContest', component: NewContestComponent},
             { path: 'voices', component:  VoicesComponent},
             { path: 'profile', component:  ProfileComponent},
-            { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+            { path: '', redirectTo: '/summary', pathMatch: 'full' }
         ]
     }
 ];

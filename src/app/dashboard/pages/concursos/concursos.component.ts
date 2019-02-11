@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-concursos',
@@ -9,7 +11,11 @@ export class ConcursosComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  showModal(e: any) {
+    const modalId = e.target.dataset.voice;
+    console.log(modalId);
+    $('#' + modalId).modal('show');
+  }
 }
