@@ -80,8 +80,17 @@ fieldset {
     margin: 0;
 }
 
+input[type="checkbox"] {
+    background-color: #fff;
+    border-radius: 0px 3px 3px 0px;
+    color: #b5b5b5;
+    height: 18px;
+    -webkit-appearance: checkbox;
+}
+
 form input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     background-color: #fff;
     border-radius: 0px 3px 3px 0px;
     color: #b5b5b5;

@@ -7,6 +7,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Routes
 import { WEBP_ROUTES } from './web-page.routes';
@@ -21,7 +22,9 @@ import { WEBP_ROUTES } from './web-page.routes';
   ],
   imports: [
     BrowserModule,
-    WEBP_ROUTES
+    WEBP_ROUTES,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: []

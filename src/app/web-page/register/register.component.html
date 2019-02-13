@@ -8,14 +8,20 @@
         </div>
         <div class="row ml-0 mr-0">
             <div class="col-xs-12 col-sm-6 col-md-6 col-xl-6">
-                <form action="javascript:void(0);" method="get">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)="userRegister()">
                     <fieldset class="clearfix">
-                        <p><span class="fa fa-user"></span><input type="text" Placeholder="Nombres" required></p>
-                        <p><span class="fa fa-user"></span><input type="text" Placeholder="Apellidos" required></p>
-                        <p><span class="fa fa-envelope"></span><input type="text" Placeholder="Correo" required></p>
-                        <p><span class="fa fa-lock"></span><input type="password" Placeholder="Password" required></p>
-                        <p><span class="fa fa-lock"></span><input type="password" Placeholder="Repetir password" required></p>
+                        <p><span class="fa fa-user"></span><input formControlName="nombres" name="nombres" type="text" Placeholder="Nombres" required></p>
+                        <p><span class="fa fa-user-plus"></span><input formControlName="apellidos" name="apellidos" type="text" Placeholder="Apellidos" required></p>
+                        <p><span class="fa fa-envelope"></span><input formControlName="correo" name="correo" type="email" Placeholder="Correo" required></p>
+                        <p><span class="fa fa-suitcase"></span><input type="text" formControlName="nombreEmpresa" name="nombreEmpresa" Placeholder="Nombre compañia" required></p>
+                        <p><span class="fa fa-lock"></span><input type="password" formControlName="contrasena" name="contrasena" Placeholder="password" required></p>
+                        <p><span class="fa fa-lock"></span><input type="password" formControlName="rContrasena" name="rContrasena" Placeholder="Repetir password" required></p>
+                        <small *ngIf="forma.errors?.areSame && !forma.pristine"><p class="text-white">Las constraseñas deben ser iguales</p></small>
                         <div class="div-form-send">
+                            <div class="form-group form-check float-left">
+                                <input formControlName="condiciones" name="condiciones" type="checkbox" class="form-check-input">
+                                <label class="form-check-label text-white">Aceptar condiciones</label>
+                            </div>
                             <button type="submit" class="btn btn-outline-light">
                                 <i class="fa fa-address-card-o" aria-hidden="true"></i> Crear cuenta
                             </button>

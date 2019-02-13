@@ -13,6 +13,9 @@ import { Page404Component } from './page404/page404.component';
 // Routes
 import { APP_ROUTES } from './app.routes';
 
+// Services
+import { ServiceModule } from './services/services.module';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { APP_ROUTES } from './app.routes';
     BrowserModule,
     WebPageModule,
     DashboardModule,
+    ServiceModule,
     APP_ROUTES
   ],
   providers: [],
