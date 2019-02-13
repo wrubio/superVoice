@@ -19,7 +19,7 @@ const sequelize = new Sequelize('test', 'sa', 'Uniandes2019.', {
 });
 
 const Administrador = administradorModel(sequelize, Sequelize);
-const Concurso = concursoModel(sequelize,Sequelize);
+const Concurso = concursoModel(sequelize, Sequelize);
 const Registro = registroModel(sequelize, Sequelize);
 
 //associations
@@ -28,21 +28,43 @@ Registro.belongsTo(Concurso);
 
 // force: true will drop the table if it already exists
 sequelize.sync({ force: true }).then(() => {
-    // Table created
-    return Administrador.create({
-        nombres: 'John',
-        apellidos: 'Doe',
-        correo: 'test@example.com',
-        contrasena: 'password',
-        estado: 'active',
-        nombreEmpresa : 'testEmpresa'
-    });
+  // Table created
+  populateDB();
 });
-/**
-Administrador.findAll().then(admins => {
-  console.log(admins)
-})
-*/
+
+function populateDB() {
+  Administrador.create({
+    nombres: 'John',
+    apellidos: 'Doe',
+    correo: 'test@example.com',
+    contrasena: 'password',
+    estado: 'active',
+    nombreEmpresa: 'testEmpresa'
+  });
+  Concurso.create({
+    nombreConcurso: "concursoTest",
+    fechaInicio: "2019-01-15T11:39:43.000Z",
+    fechaFin: "2019-02-15T11:39:43.000Z",
+    valorPagar: 88,
+    guion: "test de un guion por el concurso de test",
+    recomendaciones: "son las recomendaciones de este concurso",
+    rutaImagen: "C:/documents/Baptiste/cloud/proyecto1/images/testImage",
+    nombreURL: "UrlTest",
+    estadoPublicacion: "no publicado",
+    administradorId: "1"
+  });
+  Registro.create({
+    rutaArchivoOriginal: "C:/archivos/concurso1/voz1/original",
+    rutaArchivoConvertida: "C:/archivos/concurso1/voz1/convertida",
+    estadoRegistroVoces: "no convertida",
+    nombresLocutor: "Alphonse Pierre",
+    apellidosLocutor: "Brown Smith",
+    correoLocutor: "alphonse.brown@example.com",
+    observacionesLocutor: "disculpa estoy un poco enfermo por eso mi voz no esta fuerte",
+    concursoId: 1,  
+  });
+};
+
 /**
 sequelize
   .authenticate()
@@ -53,9 +75,9 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 */
-  module.exports = {
-      sequelize,
-      Administrador,
-      Registro,
-      Concurso,
-  }
+module.exports = {
+  sequelize,
+  Administrador,
+  Registro,
+  Concurso,
+}

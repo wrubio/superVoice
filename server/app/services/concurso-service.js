@@ -19,7 +19,7 @@ async function getAllConcursos() {
  * Get a concurso by its id.
  *
  * @param concursoId {number} Concurso id
- * @return {Promise<Administrador>} The wanted concurso.
+ * @return {Promise<Concurso>} The wanted concurso.
  */
 async function getConcursoById(concursoId) {
 
@@ -74,7 +74,7 @@ async function createConcurso(newConcurso, adminId) {
  * You can't change the adminId
  *
  * @param concursoId {number} concurso id
- * @param updatedConcurso {Concurso} Updated concurso, constructed from the request.
+ * @param updateConcurso {Concurso} Updated concurso, constructed from the request.
  * @return {Promise<Concurso>} The updated concurso
  */
 async function updateConcurso(concursoId, updateConcurso) {
