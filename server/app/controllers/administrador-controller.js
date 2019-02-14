@@ -1,5 +1,6 @@
 const administradorService = require('../services/administrador-service');
 const { Administrador } = require('../../db');
+const bcrypt = require('bcrypt');
 
 /**
  * Fetch all the administradors from the database.
@@ -44,14 +45,25 @@ async function createAdministrador(req, res) {
         nombres: data.nombres,
         apellidos: data.apellidos,
         correo: data.correo,
-        contrasena: data.contrasena,
+        contrasena: bcrypt.hashSync(data.contrasena, 10),
         estado: "active",
         nombreEmpresa: data.nombreEmpresa,
     });
 
-    newAdmin = await administradorService.createAdministrador(newAdmin);
+    administradorService.createAdministrador(newAdmin)
+        .then(createdAdmin => {
+            console.log(createdAdmin);
+            // const createdAdmin = result;
+            res.json(createdAdmin);
+        })
+        .catch(err => {
+            res.json(err);
+        })
 
-    res.json(newAdmin);
+    // newAdmin = await administradorService.createAdministrador(newAdmin);
+    // console.log(newAdmin);
+    // newAdmin.contrasena = ':)';
+    // res.json(newAdmin);
 }
 
 
@@ -69,16 +81,20 @@ async function updateAdministrador(req, res) {
         nombres: data.nombres,
         apellidos: data.apellidos,
         correo: data.correo,
-        contrasena: data.contrasena,
-        estado: data.estado,
+        //contrasena: bcrypt.hashSync(data.contrasena, 10),
+        //estado: data.estado,
         nombreEmpresa: data.nombreEmpresa
     });
 
     const adminId = req.params.id;
 
     newAdministrador = await administradorService.updateAdministrador(adminId, newAdministrador);
+    newAdministrador.contrasena = ':)';
 
-    res.json(newAdministrador);
+    res.json({
+        user: newAdministrador,
+        userToken: req.user
+    });
 }
 
 

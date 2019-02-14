@@ -1,25 +1,28 @@
 {
-  "name": "proyecto1",
-  "version": "1.0.0",
-  "description": "proyecto 1 de la clase de desarrollo de soluciones cloud",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13/issues"
-  },
-  "homepage": "https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13#readme",
-  "dependencies": {
-    "express": "^4.16.4",
-    "mysql2": "^1.6.5",
-    "sequelize": "^4.42.0",
-    "tedious": "^5.0.3"
-  }
+    "name": "proyecto1",
+    "version": "1.0.0",
+    "description": "proyecto 1 de la clase de desarrollo de soluciones cloud",
+    "main": "./server/index.js",
+    "scripts": {
+        "start": "nodemon ./server/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13/issues"
+    },
+    "homepage": "https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13#readme",
+    "dependencies": {
+        "bcrypt": "^3.0.4",
+        "express": "^4.16.4",
+        "jsonwebtoken": "^8.4.0",
+        "mysql2": "^1.6.5",
+        "sequelize": "^4.42.0",
+        "tedious": "^5.0.3"
+    }
 }

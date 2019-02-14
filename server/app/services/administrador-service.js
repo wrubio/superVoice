@@ -23,11 +23,11 @@ async function getAllAdministradors() {
  */
 async function getAdministradorById(adminId) {
 
-    console.log("Admin service: Fetching the administrador with id : "+adminId);
+    console.log("Admin service: Fetching the administrador with id : " + adminId);
 
     const admin = await Administrador.findByPk(adminId);
 
-    if (!admin || admin.estado=='unactive') throw new Error('This admin does not exist');
+    if (!admin || admin.estado == 'unactive') throw new Error('This admin does not exist');
 
     return admin;
 }
@@ -42,7 +42,13 @@ async function getAdministradorById(adminId) {
 async function createAdministrador(newAdmin) {
 
     console.log('Admin service: creating a new admin named %s %s', newAdmin.nombres, newAdmin.apellidos);
-    return newAdmin.save();
+    return newAdmin.save()
+        .then(result => {
+            return result.dataValues;
+        })
+        .catch(err => {
+            return { ok: false, errores: err };
+        })
 }
 
 
@@ -61,7 +67,7 @@ async function updateAdministrador(adminId, updateAdministrador) {
 
     const currentAdministrador = await Administrador.findByPk(adminId);
 
-    if (!currentAdministrador || currentAdministrador.estado=='unactive') throw new Error('This administrador does not exist');
+    if (!currentAdministrador || currentAdministrador.estado == 'unactive') throw new Error('This administrador does not exist');
 
     console.log('Administrador service: updating administrador named %s %s', currentAdministrador.nombres, currentAdministrador.apellidos);
 
@@ -69,8 +75,8 @@ async function updateAdministrador(adminId, updateAdministrador) {
         nombres: updateAdministrador.nombres,
         apellidos: updateAdministrador.apellidos,
         correo: updateAdministrador.correo,
-        contrasena: updateAdministrador.contrasena,
-        estado: updateAdministrador.estado,
+        // contrasena: updateAdministrador.contrasena,
+        // estado: updateAdministrador.estado,
         nombreEmpresa: updateAdministrador.nombreEmpresa
     });
 }
@@ -87,7 +93,7 @@ async function deleteAdministrador(adminId) {
 
     const currentAdministrador = await Administrador.findByPk(adminId);
 
-    if (!currentAdministrador || currentAdministrador.estado=='unactive') throw new Error('This administrador does not exist');
+    if (!currentAdministrador || currentAdministrador.estado == 'unactive') throw new Error('This administrador does not exist');
 
     console.log('Administrador service: deleting administrador named %s %s', currentAdministrador.nombres, currentAdministrador.apellidos);
 

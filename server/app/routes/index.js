@@ -7,6 +7,7 @@ router.use(bodyParser.json());
 router.use('/administrador', require('./administrador'));
 router.use('/concurso', require('./concurso'));
 router.use('/registro', require('./registro'));
+router.use('/login', require('./login'));
 
 
 // 404 Not found

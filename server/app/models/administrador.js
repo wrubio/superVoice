@@ -14,7 +14,8 @@ module.exports = (sequelize, type) => {
             type: Sequelize.STRING
         },
         correo: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            unique: true
         },
         contrasena: {
             type: Sequelize.STRING
