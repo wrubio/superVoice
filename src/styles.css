@@ -91,6 +91,30 @@ body {
     color: #FFFFFF;
 }
 
+.btn-db-outline-danger {
+    cursor: pointer;
+    border: 1px solid #EE4D4D;
+    color: #EE4D4D;
+}
+
+.btn-db-outline-danger:hover {
+    border: 1px solid #EE4D4D;
+    background-color: #EE4D4D;
+    color: #FFFFFF;
+}
+
+.btn-db-outline-white {
+    cursor: pointer;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.btn-db-outline-white:hover {
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
 .db-inf-contest-left-color {
     position: absolute;
     left: 0;

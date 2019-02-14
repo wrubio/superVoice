@@ -64,7 +64,7 @@ p {
 form span.fa {
     background-color: #fff;
     border-radius: 3px 0px 0px 3px;
-    color: #b5b5b5;
+    color: #797979;
     display: block;
     float: left;
     height: 2.3rem;
@@ -75,10 +75,11 @@ form span.fa {
 }
 
 form input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     background-color: #fff;
     border-radius: 0px 3px 3px 0px;
-    color: #b5b5b5;
+    color: #797979;
     margin-bottom: 0.5rem;
     padding: 0 16px;
     width: calc(100% - 51px);
@@ -134,6 +135,7 @@ p span {
     .middle .col-sm-6:first-child,
     .middle .col-xl-6:first-child {
         border-right: 1px solid #FFFFFF;
+        margin-bottom: 0;
     }
     .middle .col-md-6:nth-child(2),
     .middle .col-sm-6:nth-child(2),
@@ -177,6 +179,7 @@ p span {
     .middle .col-sm-6:first-child,
     .middle .col-xl-6:first-child {
         border-right: 1px solid #FFFFFF;
+        margin-bottom: 0;
     }
     .middle .col-md-6:nth-child(2),
     .middle .col-sm-6:nth-child(2),
@@ -220,6 +223,7 @@ p span {
     .middle .col-sm-6:first-child,
     .middle .col-xl-6:first-child {
         border-right: 1px solid #FFFFFF;
+        margin-bottom: 0;
     }
     .middle .col-md-6:nth-child(2),
     .middle .col-sm-6:nth-child(2),

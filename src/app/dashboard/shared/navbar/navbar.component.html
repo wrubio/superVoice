@@ -2,4 +2,11 @@
     <button class="navbar-toggler navbar-brand" type="button" (click)="showMenu($event)">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="db-navbar-nav">
+        <ul class="">
+            <li class="">
+                <button type="button" class="btn btn-sm btn-db-outline-danger" (click)="userService.userLogOut()"><i class="fa fa-sign-out"></i> LogOut</button>
+            </li>
+        </ul>
+    </div>
 </nav>

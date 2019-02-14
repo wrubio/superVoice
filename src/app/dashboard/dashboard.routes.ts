@@ -9,11 +9,13 @@ import { VoicesComponent } from './pages/voices/voices.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewContestComponent } from './pages/new-contest/new-contest.component';
 import { EditContestComponent } from './pages/edit-contest/edit-contest.component';
+import { LoginGuardGuard } from '../services/services.index';
 
 
 const dashboardRoutes: Routes = [
     { path: '',
         component:  DashboarComponent,
+        canActivate: [ LoginGuardGuard ],
         children: [
             { path: 'summary', component:  SummaryComponent},
             { path: 'contest', component: ConcursosComponent},

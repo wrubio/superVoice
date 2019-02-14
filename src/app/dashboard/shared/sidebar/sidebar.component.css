@@ -75,6 +75,14 @@
     position: relative;
 }
 
+.db-sidebar-logOut {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+}
+
 
 /* USER INFORMATION STYLES */
 
@@ -117,6 +125,9 @@
         margin-left: -240px;
         overflow: auto;
     }
+    .db-sidebar-logOut {
+        display: none;
+    }
 }
 
 
@@ -129,6 +140,9 @@
         margin-left: 0;
         overflow: auto;
     }
+    .db-sidebar-logOut {
+        display: none;
+    }
 }
 
 
@@ -139,5 +153,8 @@
         height: 100vh;
         width: 240px;
         overflow: auto;
+    }
+    .db-sidebar-logOut {
+        display: none;
     }
 }

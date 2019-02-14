@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +10,12 @@ export class NavbarComponent implements OnInit {
 
   smShowMenu = false;
 
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
 
   showMenu(e) {
-    console.log('click');
     const sidebar = document.querySelector('.sidebar');
     const navbar = document.querySelector('.navbar');
     this.smShowMenu === false ? sidebar.classList.add('sidebar-sm-show') : sidebar.classList.remove('sidebar-sm-show');

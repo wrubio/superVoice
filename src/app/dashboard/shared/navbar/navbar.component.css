@@ -16,9 +16,35 @@
     left: 220px;
 }
 
+.db-navbar-nav {
+    width: 100%;
+    text-align: right;
+    display: none;
+}
+
+.db-navbar-nav ul {
+    list-style-type: none;
+    margin-bottom: 0;
+}
+
+.navbar-toggler {
+    display: block;
+    margin-top: -5px;
+}
+
 @media (min-width: 768px) {
+    .navbar-move-left {
+        left: 240px;
+    }
     .navbar-toggler {
         display: block;
+        margin-top: 0;
+    }
+    .db-navbar-nav {
+        width: 100%;
+        text-align: right;
+        display: block;
+        padding: 15px 15px;
     }
 }
 
@@ -27,7 +53,8 @@
 
 @media (min-width: 992px) {
     .navbar {
-        left: 220px;
+        left: 240px;
+        width: calc(100% - 240px);
     }
     .navbar-toggler {
         display: none;
@@ -39,7 +66,8 @@
 
 @media (min-width: 1200px) {
     .navbar {
-        left: 220px;
+        left: 240px;
+        width: calc(100% - 240px);
     }
     .navbar-toggler {
         display: none;
