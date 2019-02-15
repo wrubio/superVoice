@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewContestComponent } from './new-contest/new-contest.component';
 import { DASHBOARD_ROUTES } from '../dashboard.routes';
 import { EditContestComponent } from './edit-contest/edit-contest.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { EditContestComponent } from './edit-contest/edit-contest.component';
   ],
   imports: [
     BrowserModule,
-    DASHBOARD_ROUTES
+    DASHBOARD_ROUTES,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: []

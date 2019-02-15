@@ -1,13 +1,13 @@
-<h2 class="sv-text-red"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear Concursos</h2>
+<h2 class="sv-text-blue"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear Concursos</h2>
 <hr>
 
-<form action="">
+<form ngNativeValidate #f="ngForm" (ngSubmit)="newContest(f)">
 
     <div class="card card-container mb-3">
         <div class="card-body">
             <div class="form-group">
                 <label><b>Nombre del concurso:</b></label>
-                <input type="text" class="form-control form-control-sm" placeholder="">
+                <input ngModel name="nameContest" type="text" class="form-control form-control-sm" placeholder="">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="red-border-down-card"></div>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Example file input</label>
-                        <input type="file" class="form-control-file">
+                        <input ngModel name="fileContest" type="file" class="form-control-file">
                     </div>
                 </div>
                 <div class="red-border-down-card"></div>
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label><b>Url Del concurso:</b></label>
-                        <input type="text" class="form-control form-control-sm" placeholder="">
+                        <input ngModel name="urlContest" type="text" class="form-control form-control-sm" placeholder="">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label><b>Premio del concuros:</b></label>
-                        <input type="text" class="form-control form-control-sm" placeholder="">
+                        <input ngModel name="awardContest" type="text" class="form-control form-control-sm" placeholder="">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm"><b>Empieza:</b></span>
                             </div>
-                            <input type="date" datetime="MM-dd-yyyy" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            <input ngModel name="startDateContest" type="date" datetime="MM-dd-yyyy" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><b>Termina:</b></span>
                         </div>
-                        <input type="date" datetime="MM-dd-yyyy" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <input ngModel name="endDateContest" type="date" datetime="MM-dd-yyyy" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
                 </div>
                 <div class="red-border-down-card"></div>
@@ -86,8 +86,8 @@
             <div class="card card-container mb-3">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1"><b>Guión del concuros</b></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label><b>Guión del concuros</b></label>
+                        <textarea ngModel name="guionContest" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="red-border-down-card"></div>
@@ -95,8 +95,8 @@
             <div class="card card-container mb-3">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1"><b>Recomendaciones</b></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label><b>Recomendaciones</b></label>
+                        <textarea ngModel name="recomendContest" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="red-border-down-card"></div>
@@ -106,6 +106,6 @@
 
     <div class="text-right mt-4">
         <button class="btn btn-db-danger btn-sm mr-4" [routerLink]="['/contest']"><i class="fa fa-times" aria-hidden="true"></i> Canelar</button>
-        <button class="btn btn-db-primary btn-sm" [routerLink]="['/contest']"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear Concuros</button>
+        <button class="btn btn-db-primary btn-sm" type="submit"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear Concuros</button>
     </div>
 </form>
