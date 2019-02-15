@@ -24,9 +24,9 @@ async function getAdministradorByCorreo(adminCorreo, adminContrasena) {
             const token = jwt.sign({ user: adminInfo }, SEED, { expiresIn: 14400 }); // 4 horas
             return { user: adminInfo, token: token };
         }
-        return err = { err: 'Credenciales invalidas contrasena' };
+        return err = { ok: false, err: 'Credenciales invalidas' };
     }).catch((err) => {
-        return err = { err: 'Credenciales invalidas otro' };
+        return err = { ok: false, err: 'Credenciales invalidas' };
     });
 
     return admin;

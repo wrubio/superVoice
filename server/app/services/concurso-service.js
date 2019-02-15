@@ -23,11 +23,11 @@ async function getAllConcursos() {
  */
 async function getConcursoById(concursoId) {
 
-    console.log("Concurso service: Fetching the concurso with id : "+concursoId);
+    console.log("Concurso service: Fetching the concurso with id : " + concursoId);
 
     const concurso = await Concurso.findByPk(concursoId);
 
-    if (!concurso) throw createUserError('Unknown Concurso','This concurso does not exist');
+    if (!concurso) throw createUserError('Unknown Concurso', 'This concurso does not exist');
 
     return concurso;
 }
@@ -42,22 +42,29 @@ async function getConcursoById(concursoId) {
 async function createConcurso(newConcurso, adminId) {
 
     console.log('Concurso service: creating a new concurso named %s', newConcurso.nombreConcurso);
-    
+
     const transaction = await sequelize.sequelize.transaction();
-    try{
+    try {
         await newConcurso.save({ transaction });
         await newConcurso.setAdministrador(adminId, { transaction });
-    }catch(err){
-        if (err.userError) throw err;
+    } catch (err) {
+        if (err.userError) {
+            console.log(err);
+            // throw err;
+            return { ok: false, errors: err };
+        }
 
         await transaction.rollback();
         console.log('Concurso service: Error while creating concurso %o', err);
 
         if (err.Errors === sequelize.SequelizeUniqueConstraintError) {
-            throw createUserError('BadURL', 'an URL must be unique');
+            // throw createUserError('BadURL', 'an URL must be unique');
+            console.log('BadURL', 'an URL must be unique');
+            return { ok: false, errors: err };
         }
 
-        throw createServerError('ServerError', 'Error while creating a concurso');
+        return { ok: false, errors: 'No se pudo crear el concurso' }
+        // throw createServerError('ServerError', 'Error while creating a concurso');
     }
 
     await transaction.commit();
@@ -81,7 +88,7 @@ async function updateConcurso(concursoId, updateConcurso) {
 
     const currentConcurso = await Concurso.findByPk(concursoId);
 
-    if (!currentConcurso) throw createUserError('Unknown Concurso','This concurso does not exist');
+    if (!currentConcurso) throw createUserError('Unknown Concurso', 'This concurso does not exist');
 
     console.log('Concurso service: updating concurso named %s', currentConcurso.nombreConcurso);
 
@@ -110,7 +117,7 @@ async function deleteConcurso(concursoId) {
 
     const currentConcurso = await Concurso.findByPk(concursoId);
 
-    if (!currentConcurso) throw createUserError('Unknown Concurso','This concurso does not exist');
+    if (!currentConcurso) throw createUserError('Unknown Concurso', 'This concurso does not exist');
 
     console.log('Concurso service: deleting concurso named%s', currentConcurso.nombreConcurso);
 
