@@ -53,7 +53,9 @@
                         <button class="btn btn-db-primary btn-sm mr-2"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
                         <button class="btn btn-db-primary btn-sm mr-2"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
                         <button class="btn btn-db-success btn-sm mr-2" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
-                        <button class="btn btn-db-danger btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar concurso</button>
+                        <button class="btn btn-db-danger btn-sm" [attr.data-id-contest]="contest.id" (click)="deleteEvent($event)">
+                            <i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar concurso
+                        </button>
                     </div>
                 </div>
             </div>

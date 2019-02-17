@@ -3,6 +3,7 @@
     -moz-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
     box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
     border: 0;
+    border-top: 1px solid rgba(214, 214, 214, 0.63);
 }
 
 audio {

@@ -64,11 +64,11 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
       'publicado',
       this.contest.administradorId
     );
-    this.contestService.updateCotest(contest, this.uploadImg, this.idContest).then( (res: any) => {
+    this.contestService.updateCotest(contest, this.uploadImg, this.idContest, this.contest.nombreConcurso).then( (res: any) => {
       swal('Importante!', `El concurso "${this.forma.value.nameContest}" se actualizó correctamente`, 'success');
       this.router.navigate(['/contest']);
     }).catch((err: any) => {
-      swal('Ups!', `El concurso "${this.forma.value.nameContest}" no se pudo actualizar`, 'danger');
+      swal('Ups!', `El concurso "${this.forma.value.nameContest}" no se pudo actualizar`, 'warning');
     });
   }
   /**
