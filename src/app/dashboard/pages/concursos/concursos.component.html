@@ -1,16 +1,16 @@
-<h2 class="sv-text-red"><i class="fa fa-clipboard" aria-hidden="true"></i> Concursos</h2>
+<h2 class="sv-text-blue"><i class="fa fa-clipboard" aria-hidden="true"></i> Concursos</h2>
 <hr>
 <div class="text-right">
     <button class="btn btn-db-primary btn-sm mr-2" [routerLink]="['/newContest']"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear concurso</button>
 </div>
-<div class=" contest-list-container mt-3">
+<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse()">
     <div class="card card-container">
         <div class="row ml-0 mr-0">
             <div class="col-12">
                 <div class="db-inf-contest-left-color"></div>
                 <div class="row">
                     <div class="col-8">
-                        <h4>Nombre del concurso</h4>
+                        <h4>{{contest.nombreConcurso}}</h4>
                     </div>
                     <div class="col-4 text-right">
                         Total-voces: <span class="db-voices-total">120</span>
@@ -20,22 +20,22 @@
                         <div class="row">
                             <div class="col-4">
                                 <small>
-                                    <span class="db-cnts-start"><b>Empieza:</b> 01-02-2019 </span>
-                                    <span> | </span>
-                                    <span class="db-cnts-end"><b>Termina:</b> 15-02-2019</span>
+                                    <span class="db-cnts-start"><b>Empieza:</b> {{contest.fechaInicio | date: 'MM/dd/yyyy'}} </span>
+                                    <br>
+                                    <span class="db-cnts-end"><b>Termina:</b> {{contest.fechaFin | date: 'MM/dd/yyyy'}}</span>
                                 </small>
                             </div>
                             <div class="col-4">
                                 <small>
-                                    <div class="db-winning-voice" (click)="showModal($event)">
-                                        <span data-voice="banner-winning-voice"><b>Voz ganadora: </b> Nombre Locutor</span>
+                                    <div class="db-winning-voice font-weight-bold" (click)="showModal($event)" data-voice="banner-winning-voice">
+                                        Voz ganadora: Nombre Locutor
                                     </div>
                                 </small>
                             </div>
                             <div class="col-4">
                                 <small>
-                                    <div class="db-inf-contest-banner" (click)="showModal($event)">
-                                        <span data-voice="banner-modal"><b>Banner del concurso: </b> nombre de la imagen</span>
+                                    <div class="db-inf-contest-banner font-weight-bold" (click)="showModal($event)"  data-voice="banner-modal" [attr.data-id-contest]="contest.id">
+                                        Ver banner del concurso
                                     </div>
                                 </small>
                             </div>
@@ -45,16 +45,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <b><i class="fa fa-file-text" aria-hidden="true"></i> Guión: </b>
-                                <span> With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. Fusce
-                                    metus risus, malesuada sed venenatis sed, placerat ac mi. 
-                                </span>
+                                <span>{{contest.guion}}</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 mt-3 text-right">
                         <button class="btn btn-db-primary btn-sm mr-2"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
                         <button class="btn btn-db-primary btn-sm mr-2"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
-                        <button class="btn btn-db-success btn-sm mr-2" [routerLink]="['/editContest', 12345]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
+                        <button class="btn btn-db-success btn-sm mr-2" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
                         <button class="btn btn-db-danger btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar concurso</button>
                     </div>
                 </div>
@@ -97,14 +95,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title sv-text-red" id="exampleModalCenterTitle">Banner del concurso: </h5>
+                <h5 class="modal-title sv-text-blue">Banner del concurso: </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                  </button>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="card">
-                    <div class="card db-cnts-banner-img"></div>
+                <div class="">
+                    <div class="db-cnts-banner-img">
+                        <img [src]="imgContest" alt="Imagen del concurso">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

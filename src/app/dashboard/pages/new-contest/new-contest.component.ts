@@ -12,7 +12,8 @@ import { ContestService } from 'src/app/services/services.index';
 export class NewContestComponent implements OnInit {
 
   userId: string;
-
+  uploadImg: File;
+  img64;
   constructor(public contestService: ContestService, public router: Router) {
     const user = JSON.parse(localStorage.getItem('user'));
     this.userId = user.id;
@@ -20,8 +21,16 @@ export class NewContestComponent implements OnInit {
 
   ngOnInit() {
   }
+  /**
+   * Crear nuevo concurso
+   * @param form datos del form<NgForm>
+   */
   newContest(form: NgForm) {
     if (form.invalid) { return; }
+    if (form.value.urlContest.indexOf(' ') >= 0) {
+      swal('Importante!', `El nombre de la url no debe tener espacios o caracteres especiales`, 'warning');
+      return;
+    }
     const contest = new Contest(
       form.value.nameContest,
       form.value.startDateContest,
@@ -29,14 +38,28 @@ export class NewContestComponent implements OnInit {
       form.value.awardContest,
       form.value.guionContest,
       form.value.recomendContest,
-      form.value.fileContest,
+      null,
       form.value.urlContest,
       'publicado',
       this.userId
     );
-    console.log(contest);
-    this.contestService.createContest(contest).subscribe( (res: any) => {
+    this.contestService.createContest(contest, this.uploadImg).then( (res: any) => {
       console.log(res);
+      swal('Importante!', `El concurso "${form.value.nameContest}" se creo correctamente`, 'success');
+      this.router.navigate(['/contest']);
+    }).catch((err: any) => {
+      console.log(err);
     });
+  }
+  /**
+   * Captura el archivo a subir
+   * @param fileToUpload <File> Archivo a subir
+   */
+  imgSelected(fileToUpload: File) {
+    if (!fileToUpload) {
+      this.uploadImg = null;
+      return;
+    }
+    this.uploadImg = fileToUpload;
   }
 }

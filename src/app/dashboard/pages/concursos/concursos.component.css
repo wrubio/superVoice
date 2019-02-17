@@ -14,7 +14,7 @@ audio {
     position: relative;
 }
 
-.db-winning-voice span {
+.db-winning-voice {
     text-decoration: underline;
     cursor: pointer;
 }
