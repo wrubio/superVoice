@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {
     UserService,
     LoginGuardGuard,
-    ContestService
+    ContestService,
+    VoicesServices
 } from './services.index';
 
 @NgModule({
@@ -16,7 +17,8 @@ import {
     providers: [
         UserService,
         LoginGuardGuard,
-        ContestService
+        ContestService,
+        VoicesServices
     ],
     declarations: []
 })

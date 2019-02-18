@@ -1,0 +1,341 @@
+.ParallaxVideo {
+    height: 440px;
+    padding-bottom: 10px;
+    padding-top: 160px;
+    background-image: linear-gradient(to left bottom, rgba(0, 0, 0, 0.86), rgba(25, 24, 23, 0.76), #2a282775, #3b3a3794, #4c4d49e0);
+    position: relative;
+}
+
+.ParallaxVideo img {
+    position: fixed;
+    min-width: 100%;
+    top: 0;
+    z-index: -999;
+}
+
+.ParallaxVideo h1 {
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ParallaxVideo h2 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+/* ABOUT STYLES */
+
+.wp-about {
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 40px 25px 25px 25px;
+}
+
+.wp-about h1 {
+    color: rgba(228, 228, 228, 0.91);
+    font-size: 4.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.wp-about-content {
+    position: relative;
+    z-index: 2;
+}
+
+.wp-about-content h2 {
+    text-align: center;
+}
+
+
+/* WAVE SEPARATOR STYLES */
+
+.wave-container {
+    height: 19.7rem;
+    min-width: 100%;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    position: relative;
+    padding: 35px 0;
+}
+
+.wave-container img {
+    position: absolute;
+    top: calc(50% - 70px);
+    left: calc(50% - 80px);
+}
+
+.wave-separator {
+    height: 100%;
+    background-image: url("../../../assets/img/wave.png");
+    background-size: 600px auto;
+    background-repeat: repeat-x;
+    animation: wave-animaion 5s ease-in-out infinite;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.dont-wait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.lets-listening {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* PROMISES STYLES */
+
+.wp-promises {
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 2.8rem 0;
+}
+
+.wp-promises h1,
+.how-paticipate h1 {
+    color: rgba(228, 228, 228, 0.91);
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.wp-promises .card {
+    background-color: #f4f4f4;
+    border: 0;
+    border-radius: .25rem;
+}
+
+
+/* VOICE DEMOS STYLES */
+
+.wp-voice-demos {
+    height: 950px;
+    position: relative;
+}
+
+.wp-demos-content {
+    position: absolute;
+    width: 100%;
+    top: 65px;
+    padding: 0 25px;
+}
+
+.wp-demos-content audio {
+    width: 100%;
+}
+
+.wp-demos-content h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.paralax-voice-demos {
+    background-image: url('../../../assets/img/wp-voice-demo-bg.png');
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.see-more {
+    text-align: center;
+    margin-top: 45px;
+}
+
+.see-more a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+/* HOW PARTICIPATE STYLES */
+
+.how-paticipate {
+    background-color: #f4f4f4;
+    position: relative;
+    padding: 2.8rem 25px;
+}
+
+
+/* RESPONSIVE STYLES */
+
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .ParallaxVideo {
+        height: 500px;
+        padding-top: 175px;
+    }
+    .ParallaxVideo h1 {
+        font-size: 76px;
+    }
+    .ParallaxVideo h2 {
+        font-size: 34px;
+    }
+    .wp-btn-header {
+        position: absolute;
+        width: 100%;
+        bottom: 166px;
+    }
+    .wp-about {
+        padding: 90px 25px 25px 25px;
+    }
+    .wp-about h1 {
+        font-size: 7rem;
+        text-align: center;
+    }
+    .wp-about-content {
+        position: relative;
+        z-index: 2;
+    }
+    .wp-promises {
+        padding: 5.6rem 2.5rem;
+    }
+    .wp-promises h1,
+    .how-paticipate h1 {
+        font-size: 7rem;
+    }
+    .wp-voice-demos {
+        height: 980px;
+    }
+    .wp-demos-content h1 {
+        font-size: 4rem;
+    }
+    .how-paticipate {
+        background-color: #f4f4f4;
+        position: relative;
+        padding: 5.6rem 2.5rem;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .ParallaxVideo {
+        height: 540px;
+        padding-top: 116px;
+    }
+    .ParallaxVideo h1 {
+        font-size: 76px;
+    }
+    .wp-btn-header {
+        position: absolute;
+        width: 100%;
+        bottom: 117px;
+    }
+    .ParallaxVideo h2 {
+        font-size: 46px;
+    }
+    .wp-about {
+        padding: 54px 25px 25px 25px;
+    }
+    .wp-about h1 {
+        font-size: 7rem;
+        text-align: left;
+    }
+    .wp-about-content h2 {
+        text-align: left;
+    }
+    .wp-promises {
+        padding: 3.5rem 2.5rem;
+    }
+    .wp-promises h1 {
+        font-size: 7rem;
+        text-align: center;
+    }
+    .wp-promises h2 {
+        text-align: center;
+    }
+    .how-paticipate h1 {
+        font-size: 7rem;
+        text-align: left;
+    }
+    .wp-voice-demos {
+        height: 690px;
+    }
+    .wp-demos-content h1 {
+        font-size: 4rem;
+    }
+    .how-paticipate {
+        background-color: #f4f4f4;
+        position: relative;
+        padding: 3.5rem 2.5rem;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .ParallaxVideo {
+        height: 680px;
+        padding-top: 176px;
+    }
+    .ParallaxVideo h1 {
+        font-size: 76px;
+    }
+    .ParallaxVideo h2 {
+        font-size: 46px;
+    }
+    .wp-btn-header {
+        position: absolute;
+        width: 100%;
+        bottom: 200px;
+    }
+    .wp-about {
+        padding: 64px 25px 25px 25px;
+    }
+    .wp-promises {
+        padding: 3.8rem 2.5rem;
+    }
+    .wp-promises h1 {
+        font-size: 7rem;
+        text-align: center;
+    }
+    .wp-promises h2 {
+        text-align: center;
+    }
+    .wp-voice-demos {
+        height: 590px;
+    }
+    .wp-demos-content h1 {
+        font-size: 4rem;
+    }
+    .how-paticipate {
+        background-color: #f4f4f4;
+        position: relative;
+        padding: 3.8rem 2.5rem;
+    }
+}

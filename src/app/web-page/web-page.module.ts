@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxLoadingModule } from 'ngx-loading';
 
 // Web Page components
 import { WebPageComponent } from './web-page.component';
@@ -7,6 +8,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { WpContestComponent } from './wp-contest/wp-contest.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Routes
@@ -18,13 +20,15 @@ import { WEBP_ROUTES } from './web-page.routes';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    WpContestComponent
   ],
   imports: [
     BrowserModule,
     WEBP_ROUTES,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxLoadingModule
   ],
   providers: [],
   bootstrap: []

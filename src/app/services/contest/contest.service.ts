@@ -90,6 +90,10 @@ export class ContestService {
       return resContest;
     }
   }
+  /**
+   * Delete de concursos con sus contenidos
+   * @param imageData <string> Nombre de imagen a borrar
+   */
   async deleteContest(imageData: any) {
     const urlDeleteImage = `${URL_STORAGE}/imageUpload?id=${imageData.id}&name=${imageData.nameConstest}&userId=${imageData.userId}`;
     await this.http.delete(urlDeleteImage).toPromise();
