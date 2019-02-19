@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ContestService } from '../../../services/contest/contest.service';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { InvitationService } from 'src/app/services/services.index';
 declare var jquery: any;
 declare var $: any;
 
@@ -15,15 +17,21 @@ export class ConcursosComponent implements OnInit, OnDestroy {
   contests = [];
   imgContest: string;
   services: any;
+  mailService: any;
+  ctrMail = 0;
 
-  constructor(public contestService: ContestService, public router: Router) {
+  constructor(public contestService: ContestService, public router: Router, public invService: InvitationService ) {
     this.services = this.contestService.getAllContents().subscribe((res: any) => {
       this.contests = res;
+      console.log(this.contests);
     });
    }
 
   ngOnInit() {}
-
+  /**
+   * Borrar concurso
+   * @param e <$event>
+   */
   deleteEvent(e: any) {
     const idContest = parseInt(e.target.dataset.idContest, 10);
     let nameContest: string;
@@ -64,7 +72,10 @@ export class ConcursosComponent implements OnInit, OnDestroy {
       }
     });
   }
-
+  /**
+   * Muestra la modal del banner del concurso o de la voz ganadora
+   * @param e <$event> HTML target element
+   */
   showModal(e: any) {
     const modalId = e.target.dataset.voice;
     const idContest = parseInt(e.target.dataset.idContest, 10);
@@ -75,6 +86,51 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     });
     $('#' + modalId).modal('show');
   }
+  /**
+   * Invita a locutores a ver la pagina del concurso (emails)
+   * @param forma <string>
+   */
+  sendInivtations(forma: NgForm) {
+    if (forma.invalid) { return; }
+    let getMails = forma.value.mails;
+    const myRe = /^[a-zA-Z0-9.\ \@\,\_\-]*$/g;
+    const myArray = myRe.exec(getMails);
+    if (myArray !== null) {
+      if (getMails.indexOf(' ') >= 0) {
+        getMails = getMails.replace(/\s/g, '');
+      }
+    }
+    const splitGetEmail = getMails.split(',');
+    const lnSplitGetEmail = splitGetEmail.length;
+    const emails: any = [];
+    let i = 0;
+    for (i; i < lnSplitGetEmail; i++) {
+      emails.push(splitGetEmail[i]);
+    }
+    this.mailService = this.invService.sendInvitations(emails).subscribe((res: any) => {
+      console.log(res);
+      if (res.ok === true ) {
+        $('#mail-modal').modal('hide');
+        this.ctrMail = 1;
+      }
+    });
+  }
+  /**
+   * Modal para agregar los correos a enviar
+   * @param e <string>
+   */
+  sendMail(e: any) {
+    const urlContest = `${window.location.href}/${e}`;
+    $('#mail-modal').modal('show');
+  }
+  /**
+   * Captura url del concurso para crear link
+   * @param e <string>
+   */
+  externalLink(e: any) {
+    const newLink = `${window.location.href}/${e}`;
+    window.open(newLink);
+  }
   // ===============================================================================
   // Recarga nuevamente el componente
   reloadPage() {
@@ -84,5 +140,8 @@ export class ConcursosComponent implements OnInit, OnDestroy {
   // Desinscribirse de los servicios y promesas
   ngOnDestroy() {
     this.services.unsubscribe();
+    if (this.ctrMail === 1) {
+      this.mailService.unsubscribe();
+    }
   }
 }

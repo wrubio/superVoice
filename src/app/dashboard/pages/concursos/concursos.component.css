@@ -6,6 +6,10 @@
     border-top: 1px solid rgba(214, 214, 214, 0.63);
 }
 
+.sv-card-body {
+    padding: 0.65rem;
+}
+
 audio {
     width: 100%;
 }
@@ -38,6 +42,36 @@ audio {
 
 .db-cnts-banner-img img {
     width: 100%;
+}
+
+
+/* PAGINATION STAYLES */
+
+.sv-pagination /deep/ .ngx-pagination {
+    margin-top: 15px;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    border: 0;
+    border-radius: .25rem;
+    border-top: 1px solid rgba(214, 214, 214, 0.63);
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.sv-pagination /deep/ .ngx-pagination .current {
+    background-color: #3897F6;
+}
+
+.sv-pagination /deep/ .ngx-pagination .disabled {
+    padding: 0.1875rem 0.625rem;
+    color: #8c8c8c;
+    cursor: default;
+}
+
+.sv-pagination /deep/ .ngx-pagination a,
+.ngx-pagination button {
+    color: #3897F6;
 }
 
 

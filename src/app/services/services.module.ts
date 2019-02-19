@@ -6,7 +6,8 @@ import {
     UserService,
     LoginGuardGuard,
     ContestService,
-    VoicesServices
+    VoicesServices,
+    InvitationService
 } from './services.index';
 
 @NgModule({
@@ -18,7 +19,8 @@ import {
         UserService,
         LoginGuardGuard,
         ContestService,
-        VoicesServices
+        VoicesServices,
+        InvitationService
     ],
     declarations: []
 })

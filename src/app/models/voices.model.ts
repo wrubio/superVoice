@@ -6,6 +6,8 @@ export class Voice {
         public nombresLocutor: string,
         public apellidosLocutor: string,
         public correoLocutor: string,
-        public observacionesLocutor: string
+        public observacionesLocutor: string,
+        public conditions: string,
+        public contestId: string
     ) {}
 }

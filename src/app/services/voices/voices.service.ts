@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICES } from '../../config/config';
+import { URL_SERVICES, URL_VOICE } from '../../config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { Voice } from '../../models/voices.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +13,39 @@ import { Router } from '@angular/router';
 export class VoicesServices {
 
   constructor(public http: HttpClient, public router: Router) {
+  }
+
+  uploadVoice(audio: File, contestData: any) {
+      return new Promise((rsl, rjt) => {
+        const formData = new FormData();
+        const xhr = new XMLHttpRequest();
+
+        formData.append('audio', audio, audio.name);
+
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                rsl({dataImg: JSON.parse(xhr.response)});
+            } else {
+              const respError = JSON.parse(xhr.response);
+              // swal('Importante!', this.erorsType[parseInt(respError.error, 10)], 'warning');
+              rjt({dataImg: respError});
+            }
+          }
+        };
+        const queryPath = `contestId=${contestData.contestId}&userId=${contestData.userId}&contestName=${contestData.contestName}`;
+        const urlStorage = `${URL_VOICE}/voice?${queryPath}`;
+        xhr.open('POST', urlStorage, true);
+        xhr.send( formData );
+      });
+  }
+  async createVoice(voice: Voice, audio: File, contestData: any) {
+    const uploadAudioRes: any = await this.uploadVoice(audio, contestData);
+    const audioRespPath = uploadAudioRes.dataImg.path;
+    const newAudioPath: any = `${URL_VOICE}/${audioRespPath.substring(7, audioRespPath.length)}`;
+    voice.rutaArchivoOriginal = newAudioPath;
+    const url = `${URL_SERVICES}/registro`;
+    const resContest = await this.http.post(url, voice).toPromise();
+    return resContest;
   }
 }

@@ -3,7 +3,7 @@
 <div class="text-right">
     <button class="btn btn-db-primary btn-sm mr-2" [routerLink]="['/newContest']"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear concurso</button>
 </div>
-<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse()">
+<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse() | paginate: { itemsPerPage: 1, currentPage: p, totalItems: total }">
     <div class="card card-container">
         <div class="row ml-0 mr-0">
             <div class="col-12">
@@ -43,15 +43,33 @@
                     </div>
                     <div class="col-12 mt-3">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body sv-card-body">
                                 <b><i class="fa fa-file-text" aria-hidden="true"></i> Guión: </b>
                                 <span>{{contest.guion}}</span>
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-body sv-card-body">
+                                <b><i class="fa fa-thumbs-up" aria-hidden="true"></i> Recomendación: </b>
+                                <span>{{contest.recomendaciones}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-body sv-card-body">
+                                <b><i class="fa fa-usd" aria-hidden="true"></i> Valor a pagar: </b>
+                                <span>{{contest.valorPagar | currency:'COP'}}</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-12 mt-3 text-right">
+                        <button class="btn btn-db-primary btn-sm mr-2" (click)="sendMail($event.target.dataset.urlContest)"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores</button>
                         <button class="btn btn-db-primary btn-sm mr-2"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
-                        <button class="btn btn-db-primary btn-sm mr-2"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
+                        <button class="btn btn-db-primary btn-sm mr-2" (click)="externalLink($event.target.dataset.urlContest)" [attr.data-url-contest]="contest.nombreURL"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
                         <button class="btn btn-db-success btn-sm mr-2" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
                         <button class="btn btn-db-danger btn-sm" [attr.data-id-contest]="contest.id" (click)="deleteEvent($event)">
                             <i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar concurso
@@ -62,7 +80,7 @@
         </div>
     </div>
 </div>
-
+<pagination-controls class="sv-pagination" (pageChange)="p = $event"></pagination-controls>
 <!-- Modal Winning Voices -->
 <div class="modal fade" id="banner-winning-voice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -112,6 +130,34 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-db-success btn-sm" data-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Email -->
+<div class="modal fade" id="mail-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form ngNativeValidate #m="ngForm" (ngSubmit)="sendInivtations(m)">
+                <div class="modal-header">
+                    <h5 class="modal-title sv-text-blue"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores: </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label><i class="fa fa-envelope" aria-hidden="true"></i> Ingresar correos</label>
+                        <textarea ngModel name="mails" class="form-control" placeholder="correo1@correo.com, correo2@correo.com, correo3@correo.com..." rows="3"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-db-success btn-sm" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-db-primary btn-sm"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar correos</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

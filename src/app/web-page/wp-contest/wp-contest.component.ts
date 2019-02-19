@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContestService, VoicesServices } from 'src/app/services/services.index';
 import { NgForm } from '@angular/forms';
@@ -9,12 +9,13 @@ import { Voice } from '../../models/voices.model';
   templateUrl: './wp-contest.component.html',
   styleUrls: ['./wp-contest.component.css']
 })
-export class WpContestComponent implements OnInit {
+export class WpContestComponent implements OnInit, OnDestroy {
 
   urlContest: string;
   contest: any;
   uploadAudio: File;
   public loading = true;
+  subsContest: any;
 
   constructor(
     public contestService: ContestService,
@@ -22,7 +23,7 @@ export class WpContestComponent implements OnInit {
     public router: Router,
     public voicesServices: VoicesServices) {
     this.urlContest = this.route.snapshot.paramMap.get('id');
-    this.contestService.getAllContents().subscribe((res: any) => {
+    this.subsContest = this.contestService.getAllContents().subscribe((res: any) => {
       let cntContest = 0;
       res.map((cnts: any) => {
         if (cnts.nombreURL === this.urlContest) {
@@ -46,15 +47,31 @@ export class WpContestComponent implements OnInit {
    */
   newVoices(forma: NgForm) {
     if (forma.invalid) { return; }
+    if (forma.value.conditions !== true) {
+      swal('Importante!', `Debe aceptar las condiciones de uso.`, 'warning');
+      return;
+    }
     const voice = new Voice(
-      forma.value.rutaArchivoOriginal,
-      forma.value.rutaArchivoConvertida,
-      forma.value.estadoRegistroVoces,
+      null,
+      null,
+      'original',
       forma.value.nombresLocutor,
       forma.value.apellidosLocutor,
       forma.value.correoLocutor,
-      forma.value.observacionesLocutor
+      forma.value.observacionesLocutor,
+      forma.value.conditions,
+      this.contest.id
     );
+    const contestInfo = { contestId: this.contest.id, userId: this.contest.administradorId, contestName: this.contest.nombreConcurso };
+    this.voicesServices.createVoice(voice, this.uploadAudio, contestInfo).then((res: any) => {
+      console.log(res);
+      swal('Hola!', `Hemos recibido tu voz y la estamos procesando para que sea
+      publicada en la página del concurso y pueda ser posteriormente revisada por nuestro equipo de trabajo.
+      Tan pronto la voz quede publicada en la página del concurso, te notificaremos por email`, 'success');
+      this.reloadPage();
+    }).catch((err: any) => {
+      console.log(err);
+    });
   }
   /**
    * Captura el archivo a subir
@@ -76,5 +93,18 @@ export class WpContestComponent implements OnInit {
     const scrollTopVal = $event.srcElement.children[0].scrollTop;
     const navBar = document.querySelector('.pg-navbar');
     scrollTopVal >= 650 ? navBar.classList.add('pg-navbar-bg') : navBar.classList.remove('pg-navbar-bg');
+  }
+  /**
+   * Recarga nuevamente el componente
+   */
+  reloadPage() {
+    this.router.navigateByUrl('home', {skipLocationChange: true}).then( () => this.router.navigate([`contest/${this.urlContest}`]));
+  }
+
+  /**
+   * Desinscribirse de los servicios y promesas
+   */
+  ngOnDestroy() {
+    this.subsContest.unsubscribe();
   }
 }

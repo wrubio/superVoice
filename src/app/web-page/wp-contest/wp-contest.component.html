@@ -1,8 +1,21 @@
 <div (window:scroll)="scrollEvent($event)">
     <div class="ParallaxVideo">
         <img [src]="contest.rutaImagen" alt="Banner concurso">
+        <h1 class="d-none d-sm-block d-md-none d-lg-block">SuperVoice</h1>
+        <h2>Bienbenido al concurso {{contest.nombreConcurso}}</h2>
+        <h2>Desde aqui puedes participar de forma fácil y rápida</h2>
         <div class="wp-btn-header">
-
+            <div class="row m-0">
+                <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-right">
+                    <button type="button" class="btn btn-outline-light"><i class="fa fa-volume-up" aria-hidden="true"></i> Ejemplos</button>
+                </div>
+                <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-center">
+                    <button type="button" class="btn btn-outline-light"><i class="fa fa-trophy" aria-hidden="true"></i> Paricipar</button>
+                </div>
+                <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-left">
+                    <button type="button" class="btn btn-outline-light"><i class="fa fa-user-plus" aria-hidden="true"></i> Ver Guión</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="wp-about">
@@ -31,32 +44,32 @@
 
                             <hr>
 
-                            <form action="">
+                            <form ngNativeValidate #f="ngForm" (ngSubmit)="newVoices(f)">
                                 <h4 class="card-title">Formulario de participación.</h4>
                                 <div class="form-group">
                                     <label>Nombres:</label>
-                                    <input type="text" class="form-control" placeholder="nombres completos">
+                                    <input ngModel name="nombresLocutor" type="text" class="form-control" placeholder="nombres completos" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Apellidos:</label>
-                                    <input type="text" class="form-control" placeholder="Apellidos completos">
+                                    <label>Apellidos:</label>
+                                    <input ngModel name="apellidosLocutor" type="text" class="form-control" placeholder="Apellidos completos" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Correo:</label>
-                                    <input type="email" class="form-control" placeholder="tucorreo@correo.com">
+                                    <label>Correo:</label>
+                                    <input ngModel name="correoLocutor" type="email" class="form-control" placeholder="tucorreo@correo.com" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Agrega Tu superVoice:</label>
-                                    <input (change)="audioSelected($event.target.files[0])" type="file" class="form-control-file">
+                                    <input (change)="audioSelected($event.target.files[0])" type="file" class="form-control-file" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Observación sobre mi superVoice:</label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea ngModel name="observacionesLocutor" class="form-control" rows="3"></textarea>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <input ngModel name="conditions" type="checkbox" class="form-check-input" required>
                                             <label class="form-check-label">Acepto las codiciones</label>
                                         </div>
                                     </div>
