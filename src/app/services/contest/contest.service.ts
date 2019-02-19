@@ -62,6 +62,7 @@ export class ContestService {
     const newImgPath = `${URL_STORAGE}/${imgRespPath.substring(7, imgRespPath.length)}`;
     contest.rutaImagen = newImgPath;
     const url = `${URL_SERVICES}/concurso`;
+    console.log(contest);
     const resContest = await this.http.post(url, contest).toPromise();
     return resContest;
   }

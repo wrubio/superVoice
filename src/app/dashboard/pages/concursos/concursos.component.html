@@ -3,7 +3,7 @@
 <div class="text-right">
     <button class="btn btn-db-primary btn-sm mr-2" [routerLink]="['/newContest']"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear concurso</button>
 </div>
-<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse() | paginate: { itemsPerPage: 1, currentPage: p, totalItems: total }">
+<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse() | paginate: { itemsPerPage: 5, currentPage: p, totalItems: total }">
     <div class="card card-container">
         <div class="row ml-0 mr-0">
             <div class="col-12">

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxLoadingModule } from 'ngx-loading';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 // Web Page components
 import { WebPageComponent } from './web-page.component';
@@ -28,7 +29,8 @@ import { WEBP_ROUTES } from './web-page.routes';
     WEBP_ROUTES,
     ReactiveFormsModule,
     FormsModule,
-    NgxLoadingModule
+    NgxLoadingModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: []

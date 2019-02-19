@@ -8,6 +8,8 @@ export class Voice {
         public correoLocutor: string,
         public observacionesLocutor: string,
         public conditions: string,
+        public urlConcurso: string,
+        public mail: number,
         public contestId: string
     ) {}
 }

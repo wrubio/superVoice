@@ -13,9 +13,11 @@ export class WpContestComponent implements OnInit, OnDestroy {
 
   urlContest: string;
   contest: any;
+  contestVoices = [];
   uploadAudio: File;
   public loading = true;
   subsContest: any;
+  subsVoices: any;
 
   constructor(
     public contestService: ContestService,
@@ -35,6 +37,14 @@ export class WpContestComponent implements OnInit, OnDestroy {
         this.router.navigate(['/error404']);
       }
       console.log(this.contest);
+      this.subsVoices = this.voicesServices.getAllVoice().subscribe((resp: any) => {
+        resp.map((voice: any) => {
+          if (this.contest.id === voice.concursoId) {
+            this.contestVoices.push(voice);
+          }
+        });
+        console.log(this.contestVoices);
+      });
     });
   }
 
@@ -60,11 +70,12 @@ export class WpContestComponent implements OnInit, OnDestroy {
       forma.value.correoLocutor,
       forma.value.observacionesLocutor,
       forma.value.conditions,
+      this.contest.nombreURL,
+      0,
       this.contest.id
     );
     const contestInfo = { contestId: this.contest.id, userId: this.contest.administradorId, contestName: this.contest.nombreConcurso };
     this.voicesServices.createVoice(voice, this.uploadAudio, contestInfo).then((res: any) => {
-      console.log(res);
       swal('Hola!', `Hemos recibido tu voz y la estamos procesando para que sea
       publicada en la página del concurso y pueda ser posteriormente revisada por nuestro equipo de trabajo.
       Tan pronto la voz quede publicada en la página del concurso, te notificaremos por email`, 'success');

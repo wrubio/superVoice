@@ -28,7 +28,7 @@ export class VoicesServices {
                 rsl({dataImg: JSON.parse(xhr.response)});
             } else {
               const respError = JSON.parse(xhr.response);
-              // swal('Importante!', this.erorsType[parseInt(respError.error, 10)], 'warning');
+              swal('Importante!', respError.message, 'warning');
               rjt({dataImg: respError});
             }
           }
@@ -47,5 +47,10 @@ export class VoicesServices {
     const url = `${URL_SERVICES}/registro`;
     const resContest = await this.http.post(url, voice).toPromise();
     return resContest;
+  }
+
+  getAllVoice() {
+    const url = `${URL_SERVICES}/registro`;
+    return this.http.get(url);
   }
 }

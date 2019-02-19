@@ -43,6 +43,7 @@ export class NewContestComponent implements OnInit {
       'publicado',
       this.userId
     );
+    console.log(contest);
     this.contestService.createContest(contest, this.uploadImg).then( (res: any) => {
       console.log(res);
       swal('Importante!', `El concurso "${form.value.nameContest}" se creo correctamente`, 'success');
