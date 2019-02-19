@@ -28,5 +28,11 @@ module.exports = (sequelize, type) => {
         observacionesLocutor: {
             type: Sequelize.TEXT
         },
+        url: {
+            type: Sequelize.STRING
+        },
+        mail: {
+            type: Sequelize.INTEGER,
+        }
     });
 }

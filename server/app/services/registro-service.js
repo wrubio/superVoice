@@ -98,6 +98,7 @@ async function updateRegistro(registroId, updatedRegistro) {
         apellidosLocutor: updatedRegistro.apellidosLocutor,
         correoLocutor: updatedRegistro.correoLocutor,
         observacionesLocutor: updatedRegistro.observacionesLocutor,
+        mail: updatedRegistro.mail
     });
 }
 

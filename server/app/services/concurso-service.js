@@ -43,6 +43,7 @@ async function createConcurso(newConcurso, adminId) {
 
     return newConcurso.save()
         .then(result => {
+            console.log('NOMBRE DEL ADMiN: ' + adminId);
             return newConcurso.setAdministrador(adminId).then(res => {
                 return { ok: true, contest: result.dataValues, addAddmin: res };
             }).catch(err => {

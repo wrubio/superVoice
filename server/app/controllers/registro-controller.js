@@ -52,6 +52,8 @@ async function createRegistro(req, res) {
         apellidosLocutor: data.apellidosLocutor,
         correoLocutor: data.correoLocutor,
         observacionesLocutor: data.observacionesLocutor,
+        url: data.urlConcurso,
+        mail: data.mail
     });
 
     newRegistro = await registroService.createRegistro(newRegistro, concursoId);
@@ -79,6 +81,7 @@ async function updateRegistro(req, res) {
         apellidosLocutor: data.apellidosLocutor,
         correoLocutor: data.correoLocutor,
         observacionesLocutor: data.observacionesLocutor,
+        mail: data.mail
     });
 
     const registroId = req.params.id;

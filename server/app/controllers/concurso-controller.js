@@ -42,8 +42,6 @@ async function createConcurso(req, res) {
 
     const adminId = data.adminId;
 
-    // res.status(200).json({ data });
-
     let newConcurso = new Concurso({
         nombreConcurso: data.nombreConcurso,
         fechaInicio: data.fechaInicio,
