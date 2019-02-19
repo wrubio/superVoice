@@ -23,11 +23,11 @@ async function getAllRegistros() {
  */
 async function getRegistroById(registroId) {
 
-    console.log("Registro service: Fetching the registro with id : "+registroId);
+    console.log("Registro service: Fetching the registro with id : " + registroId);
 
     const registro = await Registro.findByPk(registroId);
 
-    if (!registro) throw createUserError('Unknown registro','This registro does not exist');
+    if (!registro) throw createUserError('Unknown registro', 'This registro does not exist');
 
     return registro;
 }
@@ -41,6 +41,14 @@ async function getRegistroById(registroId) {
  */
 async function createRegistro(newRegistro, concursoId) {
 
+    return newRegistro.save().then(result => {
+        return newRegistro.setConcurso(concursoId).then(res => {
+            return { ok: true, audio: result.dataValues, addContes: res };
+        }).catch(err => {
+            return { ok: false, errors: err };
+        })
+    });
+    /*
     console.log('Registro service: creating a new registro de voz by %s %s', newRegistro.nombresLocutor, newRegistro.apellidosLocutor);
     
     const transaction = await sequelize.sequelize.transaction();
@@ -58,6 +66,7 @@ async function createRegistro(newRegistro, concursoId) {
 
     await transaction.commit();
     return newRegistro;
+    */
 }
 
 
@@ -77,7 +86,7 @@ async function updateRegistro(registroId, updatedRegistro) {
 
     const currentRegistro = await Registro.findByPk(registroId);
 
-    if (!currentRegistro) throw createUserError('Unknown registro','This registro does not exist');
+    if (!currentRegistro) throw createUserError('Unknown registro', 'This registro does not exist');
 
     console.log('Registro service: updating registro de voz by %s %s', currentRegistro.nombresLocutor, currentRegistro.apellidosLocutor);
 
@@ -104,7 +113,7 @@ async function deleteRegistro(registroId) {
 
     const currentRegistro = await Registro.findByPk(registroId);
 
-    if (!currentRegistro) throw createUserError('Unknown registro','This registro does not exist');
+    if (!currentRegistro) throw createUserError('Unknown registro', 'This registro does not exist');
 
     console.log('Registro service: deleting registro de voz by %s %s', currentRegistro.nombresLocutor, currentRegistro.apellidosLocutor);
 
@@ -120,7 +129,7 @@ async function deleteRegistro(registroId) {
  */
 async function getAllRegistrosByConcurso(idConcurso) {
 
-    console.log("Fetching all registros of the concurso %s",idConcurso)
+    console.log("Fetching all registros of the concurso %s", idConcurso)
     return Registro.findAll({
         where: {
             concursoId: idConcurso,

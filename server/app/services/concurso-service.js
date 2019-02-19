@@ -41,34 +41,47 @@ async function getConcursoById(concursoId) {
  */
 async function createConcurso(newConcurso, adminId) {
 
-    console.log('Concurso service: creating a new concurso named %s', newConcurso.nombreConcurso);
+    return newConcurso.save()
+        .then(result => {
+            return newConcurso.setAdministrador(adminId).then(res => {
+                return { ok: true, contest: result.dataValues, addAddmin: res };
+            }).catch(err => {
+                return { ok: false, errors: err };
+            })
 
-    const transaction = await sequelize.sequelize.transaction();
-    try {
-        await newConcurso.save({ transaction });
-        await newConcurso.setAdministrador(adminId, { transaction });
-    } catch (err) {
-        if (err.userError) {
-            console.log(err);
-            // throw err;
-            return { ok: false, errors: err };
+        }).catch(err => {
+            return { ok: false, errores: err };
+        })
+        /*
+        console.log('Concurso service: creating a new concurso named %s', newConcurso.nombreConcurso);
+
+        const transaction = await sequelize.sequelize.transaction();
+        try {
+            await newConcurso.save({ transaction });
+            await newConcurso.setAdministrador(adminId, { transaction });
+        } catch (err) {
+            if (err.userError) {
+                // console.log(err);
+                // throw err;
+                return { ok: false, errors: err };
+            }
+
+            await transaction.rollback();
+            console.log('Concurso service: Error while creating concurso %o', err);
+
+            if (err.Errors === sequelize.SequelizeUniqueConstraintError) {
+                // throw createUserError('BadURL', 'an URL must be unique');
+                // console.log('BadURL', 'an URL must be unique');
+                return { ok: false, errors: err };
+            }
+
+            return { ok: false, errors: 'No se pudo crear el concurso' }
+            // throw createServerError('ServerError', 'Error while creating a concurso');
         }
 
-        await transaction.rollback();
-        console.log('Concurso service: Error while creating concurso %o', err);
-
-        if (err.Errors === sequelize.SequelizeUniqueConstraintError) {
-            // throw createUserError('BadURL', 'an URL must be unique');
-            console.log('BadURL', 'an URL must be unique');
-            return { ok: false, errors: err };
-        }
-
-        return { ok: false, errors: 'No se pudo crear el concurso' }
-        // throw createServerError('ServerError', 'Error while creating a concurso');
-    }
-
-    await transaction.commit();
-    return newConcurso;
+        await transaction.commit();
+        return { ok: true, contest: newConcurso };
+        */
 }
 
 
@@ -88,7 +101,10 @@ async function updateConcurso(concursoId, updateConcurso) {
 
     const currentConcurso = await Concurso.findByPk(concursoId);
 
-    if (!currentConcurso) throw createUserError('Unknown Concurso', 'This concurso does not exist');
+    if (!currentConcurso) {
+        return ({ ok: false, errors: 'El concurso no existe' });
+        // throw createUserError('Unknown Concurso', 'This concurso does not exist');
+    }
 
     console.log('Concurso service: updating concurso named %s', currentConcurso.nombreConcurso);
 
@@ -100,7 +116,7 @@ async function updateConcurso(concursoId, updateConcurso) {
         guion: updateConcurso.guion,
         recomendaciones: updateConcurso.recomendaciones,
         rutaImagen: updateConcurso.rutaImagen,
-        nombreUrl: updateConcurso.nombreUrl,
+        nombreURL: updateConcurso.nombreURL,
         estadoPublicacion: updateConcurso.estadoPublicacion
     });
 }
@@ -120,10 +136,16 @@ async function deleteConcurso(concursoId) {
     if (!currentConcurso) throw createUserError('Unknown Concurso', 'This concurso does not exist');
 
     console.log('Concurso service: deleting concurso named%s', currentConcurso.nombreConcurso);
-
+    return currentConcurso.destroy().then(res => {
+        return { ok: true };
+    }).catch(err => {
+        return { ok: false };
+    });
+    /*
     return currentConcurso.update({
         estadoPublicacion: "unactive",
     });
+    */
 }
 
 /**

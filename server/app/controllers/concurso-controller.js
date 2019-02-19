@@ -1,16 +1,5 @@
-const { Administrador } = require('../../db');
 const concursoService = require('../services/concurso-service');
 const { Concurso } = require('../../db');
-
-
-var express = require('express');
-var fileUpload = require('express-fileupload');
-var fs = require('fs');
-
-var app = express();
-
-app.use(fileUpload('createParentPath', false));
-
 
 /**
  * Fetch all the concursos from the database.
@@ -47,52 +36,13 @@ async function getConcursoById(req, res) {
  * @param res Response
  * @return {Promise.<void>} Nothing
  */
-const typeExt = ['jpg', 'jpeg', 'png', 'gif'];
-
 async function createConcurso(req, res) {
 
-    if (!req.files) { res.json({ img: false, query: req.query }) } else { res.json({ img: true, query: req.query }) }
-    /*
-    res.json(req.files.rutaImagen);
-    // Get the file extension
-    var fileUpload = req.files.img;
-    var fileExt = fileUpload.name.split('.').pop();
-
-    // Validate the file extension
-    if (typeExt.indexOf(fileExt.toLowerCase()) < 0) {
-        return res.status(400).json({
-            ok: false,
-            message: 'File not valid',
-            error: { message: `The valid file extension are ${typeExt.join(', ')}` }
-        });
-    }
+    const data = req.body;
 
     const adminId = data.adminId;
-    const isAdmin = await Administrador.findByPk(adminId);
 
-    if (isAdmin === null) {
-        res.json({ ok: false, message: `El usuario con id ${adminId}, no existe!.` })
-    }
-
-    // Set new name to the file
-    const newFileName = `${adminId}-${new Date().getTime()}.${fileExt}`;
-
-    // Save file in the new folder
-    const userPath = `./server/public/uploads/concursos/${adminId}`;
-    const savePath = `./server/public/uploads/concursos/${adminId}/${newFileName}`;
-
-    // Create user folder if this doesn't exist
-    if (!fs.existsSync(userPath)) fs.mkdirSync(userPath);
-
-    const algo = await fileUpload.mv(savePath);
-
-    res.json(algo);
-    
-    saveContestFile(savePath).then(res => {
-        res.json(res)
-    }).catch(err => {
-        res.json(err)
-    });
+    // res.status(200).json({ data });
 
     let newConcurso = new Concurso({
         nombreConcurso: data.nombreConcurso,
@@ -101,14 +51,14 @@ async function createConcurso(req, res) {
         valorPagar: data.valorPagar,
         guion: data.guion,
         recomendaciones: data.recomendaciones,
-        rutaImagen: savePath,
+        rutaImagen: data.rutaImagen,
         nombreURL: data.nombreURL,
         estadoPublicacion: data.estadoPublicacion
     });
-    // newConcurso = await concursoService.createConcurso(newConcurso, adminId);
 
-    // res.json(newConcurso);
-    */
+    newConcurso = await concursoService.createConcurso(newConcurso, adminId);
+
+    res.json(newConcurso);
 }
 
 
@@ -129,9 +79,9 @@ async function updateConcurso(req, res) {
         fechaFin: data.fechaFin,
         valorPagar: data.valorPagar,
         guion: data.guion,
-        recommandaciones: data.recommandaciones,
+        recomendaciones: data.recomendaciones,
         rutaImagen: data.rutaImagen,
-        nombreUrl: data.nombreUrl,
+        nombreURL: data.nombreURL,
         estadoPublicacion: data.estadoPublicacion
     });
 
@@ -139,7 +89,7 @@ async function updateConcurso(req, res) {
 
     newConcurso = await concursoService.updateConcurso(concursoId, newConcurso);
 
-    res.json(newConcurso);
+    res.json({ ok: true, data: newConcurso });
 }
 
 
@@ -173,22 +123,8 @@ async function getAllConcursosByAdmin(req, res) {
     const concursos = await concursoService.getAllConcursosByAdmin(idAdmin);
     res.json(concursos);
 }
-/*
-function saveContestFile(savePath) {
-    return new Promise((resolve, reject) => {
-        fileUpload.mv(savePath, (err) => {
-            if (err) {
-                console.log('ksjhdkahkdjajskdhk');
-                reject({
-                    ok: false,
-                    message: `ups!!! The file ${fileUpload.name} could not be uploaded`
-                });
-            }
-            resolve({ ok: true })
-        })
-    })
-}
-*/
+
+
 module.exports = {
     getAllConcursos,
     getConcursoById,

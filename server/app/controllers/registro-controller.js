@@ -40,7 +40,9 @@ async function createRegistro(req, res) {
 
     const data = req.body;
 
-    const concursoId = data.concursoId;
+    const concursoId = data.contestId;
+
+    console.log(data);
 
     let newRegistro = new Registro({
         rutaArchivoOriginal: data.rutaArchivoOriginal,
@@ -54,7 +56,7 @@ async function createRegistro(req, res) {
 
     newRegistro = await registroService.createRegistro(newRegistro, concursoId);
 
-    res.json(newRegistro);
+    res.json({ ok: true, data: newRegistro });
 }
 
 
