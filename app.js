@@ -7,6 +7,9 @@ var path = require('path');
 // init variables
 var app = express();
 
+// init cron
+require('./cron');
+
 // Public dist
 app.use(express.static(__dirname + '/dist'));
 app.get('/*', (req, res) => res.sendfile(path.join(__dirname)));
@@ -31,11 +34,13 @@ app.use(bodyParser.json());
 // import routes
 var appRoutes = require('./routes/app');
 var appVoice = require('./routes/voice');
+var appInvitation = require('./routes/invitation');
 var appImageUpload = require('./routes/image-upload');
 
 // routes
 app.use('/voice', appVoice);
 app.use('/imageUpload', appImageUpload);
+app.use('/invitation', appInvitation);
 app.use('/', appRoutes);
 
 // Listen requires
