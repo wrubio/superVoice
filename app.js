@@ -9,6 +9,8 @@ var app = express();
 
 // init cron
 require('./cron');
+require('./crons/update-voice').updateVoice;
+require('./crons/send-mail').sendMail;
 
 // Public dist
 app.use(express.static(__dirname + '/dist'));

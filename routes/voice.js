@@ -28,7 +28,7 @@ app.post('/', (req, res) => {
             message: `Las extenciones validas de imagenes son ${typeVoice.join(', ')}`
         })
     }
-
+    console.log(req.query.userId);
     const userId = req.query.userId;
     const contestId = req.query.contestId;
     let contestName = req.query.contestName;
