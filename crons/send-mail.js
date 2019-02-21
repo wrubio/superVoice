@@ -106,7 +106,8 @@ async function configMail(voiceToConvert) {
     configPut(voiceToConvert);
 }
 
-const sendMail = new CronJob('*/120 * * * * *', () => {
+// const sendMail = new CronJob('*/30 * * * * *', () => {
+const startSendMails = function () {
     console.log('############################### start cron send mail #################################');
     getVoices().then(res => {
         const voices = JSON.parse(res);
@@ -130,5 +131,6 @@ const sendMail = new CronJob('*/120 * * * * *', () => {
     }).catch(err => {
         console.log(err);
     })
-}, null, true, 'America/Bogota');
-module.exports = sendMail;
+}
+// }, null, true, 'America/Bogota');
+module.exports = startSendMails;

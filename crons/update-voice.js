@@ -1,6 +1,9 @@
 const CronJob = require('cron').CronJob;
 var requestify = require('requestify');
 const request = require("request");
+const fs = require('fs-extra');
+
+const startSendMails = require('./send-mail');
 
 const urlDB = 'http://localhost:3000';
 const urlWeb = 'http://localhost:4200';
@@ -56,7 +59,14 @@ async function configVoices(voiceToConvert) {
         let newAduioUrl = `${splitOriginalPath[0]}converted/${newNameAudio}`;
         // Path para el PUT de actualizacion del audio
         let path = `${urlDB}/registro/${voice.id}`;
-        if (newAduioUrl) {
+
+
+        let nameContest = splitOriginalPath[0].split('contests/').pop();
+        let urlConvertedVoice = `./dist/uploads/contests/${nameContest}converted/${newNameAudio}`;
+
+        console.log(urlConvertedVoice);
+
+        if (urlConvertedVoice) {
             console.log('EXISTE');
             await putVoices(path, { estadoRegistroVoces: 'Generada', rutaArchivoConvertida: newAduioUrl });
         } else {
@@ -64,34 +74,39 @@ async function configVoices(voiceToConvert) {
         }
     }
     console.log('Done PUT!');
+    startSendMails();
 }
 /**
  * Cron que se ejecuta cada 2 minutos
  */
-const updateVoice = new CronJob('*/120 * * * * *', () => {
-    console.log('############################### start cron update #################################');
-    getVoices().then(res => {
-        const voices = JSON.parse(res);
-        const lenVoices = voices.length;
-        let i = 0;
+// const updateVoice = new CronJob('*/30 * * * * *', () => {
+    const updateVoiceTable = function () {
+        getVoices()
+        .then(res => {
+            console.log('############################### start cron update #################################');
+            const voices = JSON.parse(res);
+            const lenVoices = voices.length;
+            let i = 0;
 
-        let voiceToConvert = [];
-        for (i; i < lenVoices; i++) {
-            if (voices[i].estadoRegistroVoces === 'original') {
-                voiceToConvert.push(voices[i]);
+            let voiceToConvert = [];
+            for (i; i < lenVoices; i++) {
+                if (voices[i].estadoRegistroVoces === 'original') {
+                    voiceToConvert.push(voices[i]);
+                }
             }
-        }
 
-        if (voiceToConvert.length > 0) {
-            console.log('Total sin convertir:' + voiceToConvert.length);
-            configVoices(voiceToConvert);
-        } else {
-            console.log('No hay registros para actualizar');
-        }
+            if (voiceToConvert.length > 0) {
+                console.log('Total sin convertir:' + voiceToConvert.length);
+                configVoices(voiceToConvert);
+            } else {
+                console.log('No hay registros para actualizar');
+            }
 
-    }).catch(err => {
-        console.log(err);
-    })
-}, null, true, 'America/Bogota');
+        }).catch(err => {
+            console.log(err);
+        })
+        // }, null, true, 'America/Bogota');
+}
 
-module.exports = updateVoice;
+
+module.exports = updateVoiceTable;

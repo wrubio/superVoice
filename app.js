@@ -9,6 +9,7 @@ var app = express();
 
 // init cron
 require('./cron');
+// require('./test');
 require('./crons/update-voice').updateVoice;
 require('./crons/send-mail').sendMail;
 

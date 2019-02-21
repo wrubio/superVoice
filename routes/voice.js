@@ -13,10 +13,11 @@ const typeVoice = ['mp3', 'wav', 'ogg'];
 
 app.post('/', (req, res) => {
     // res.status(200).json({ ok: true, data: req.query });
+    // console.log(req.files);
     if (!req.files) {
         res.status(500).json({ ok: true, error: 'Debe seleccionar un archivo de tipo audio' });
     }
-    console.log(req.query);
+    // console.log(req.query);
     // get file ext
     const fileToUpload = req.files.audio;
     const fileExt = fileToUpload.name.split('.').pop();
@@ -28,7 +29,7 @@ app.post('/', (req, res) => {
             message: `Las extenciones validas de imagenes son ${typeVoice.join(', ')}`
         })
     }
-    console.log(req.query.userId);
+    // console.log(req.query.userId);
     const userId = req.query.userId;
     const contestId = req.query.contestId;
     let contestName = req.query.contestName;

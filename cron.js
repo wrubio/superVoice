@@ -15,8 +15,12 @@ const fs = require("fs");
 // init variables
 let app = express();
 
+const tableUpdate = require('./crons/update-voice');
+
 const urlDB = 'http://localhost:3000';
 const urlWeb = 'http://localhost:4200';
+
+
 /**
  * Obtiene los registros de los audios pendientes por convertir
  */
@@ -73,15 +77,17 @@ async function processVoices(voiceToConvert) {
         let convertedFolder = `./dist/uploads${newSplitPathDB[0]}converted`;
         if (!fs.existsSync(convertedFolder)) fs.mkdirSync(convertedFolder);
         await convertAudio(pathAudio, convertedFolder, nameAudio, voice, splitPathDB[0]);
+
     }
     console.log('Done!');
+    tableUpdate();
 }
 /**
  * Cron que se realiza cada 2 min
  */
-new CronJob('*/120 * * * * *', () => {
-    console.log('############################### start cron convert #################################')
+new CronJob('*/60 * * * * *', () => {
     getVoices().then(res => {
+        console.log('############################### start cron convert #################################')
         const voices = JSON.parse(res);
         const lenVoices = voices.length;
         let i = 0;

@@ -18,6 +18,8 @@
         "ffprobe-static": "^3.0.0",
         "fluent-ffmpeg": "^2.1.2",
         "fs-extra": "^7.0.1",
+        "log4js": "^4.0.2",
+        "node-proc": "0.0.1",
         "nodemailer": "^5.1.1",
         "request": "^2.88.0",
         "requestify": "^0.2.5"
