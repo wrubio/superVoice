@@ -1,25 +1,36 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { VoicesServices } from 'src/app/services/services.index';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-voices',
-  templateUrl: './voices.component.html',
-  styleUrls: ['./voices.component.css']
+  selector: 'app-voice-contest',
+  templateUrl: './voice-contest.component.html',
+  styleUrls: ['./voice-contest.component.css']
 })
-export class VoicesComponent implements OnInit, OnDestroy {
+export class VoiceContestComponent implements OnInit, OnDestroy {
 
   contestVoices = [];
   unsubsContesVoices: any;
   audio: any;
+  urlContest: any;
 
-  constructor(public voiceService: VoicesServices) {
+  constructor(
+    public voiceService: VoicesServices,
+    public route: ActivatedRoute,
+    public router: Router) {
+    this.urlContest = this.route.snapshot.paramMap.get('id');
     this.unsubsContesVoices = this.voiceService.getAllVoice().subscribe((resp: any) => {
-      this.contestVoices = resp;
+      // this.contestVoices = resp;
+      resp.map((a: any) => {
+        console.log(a.url, this.urlContest);
+        if (a.url === this.urlContest) {
+          this.contestVoices.push(a);
+        }
+      });
     });
   }
 
   ngOnInit() {
-
   }
 
   /**

@@ -1,4 +1,4 @@
-<h2 class="sv-text-blue"><i class="fa fa-clipboard" aria-hidden="true"></i> Voces De Concursos</h2>
+<h2 class="sv-text-blue"><i class="fa fa-clipboard" aria-hidden="true"></i> Voces De La Url {{urlContest}}</h2>
 <hr>
 <div class="card mt-2" *ngFor="let voice of contestVoices.slice().reverse() | paginate: { itemsPerPage: 50, currentPage: p, totalItems: total }">
     <div class="card-body">

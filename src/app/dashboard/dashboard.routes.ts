@@ -10,6 +10,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NewContestComponent } from './pages/new-contest/new-contest.component';
 import { EditContestComponent } from './pages/edit-contest/edit-contest.component';
 import { LoginGuardGuard } from '../services/services.index';
+import { VoiceContestComponent } from './pages/voice-contest/voice-contest.component';
 
 
 const dashboardRoutes: Routes = [
@@ -23,6 +24,7 @@ const dashboardRoutes: Routes = [
             { path: 'editContest/:id', component: EditContestComponent, pathMatch: 'full'},
             { path: 'voices', component:  VoicesComponent},
             { path: 'profile', component:  ProfileComponent},
+            { path: 'voice/:id', component:  VoiceContestComponent},
             { path: '', redirectTo: '/summary', pathMatch: 'full' }
         ]
     }

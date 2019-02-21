@@ -10,6 +10,7 @@ import { NewContestComponent } from './new-contest/new-contest.component';
 import { DASHBOARD_ROUTES } from '../dashboard.routes';
 import { EditContestComponent } from './edit-contest/edit-contest.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { VoiceContestComponent } from './voice-contest/voice-contest.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     VoicesComponent,
     ProfileComponent,
     NewContestComponent,
-    EditContestComponent
+    EditContestComponent,
+    VoiceContestComponent
   ],
   exports: [
     ConcursosComponent,
