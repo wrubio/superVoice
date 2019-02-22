@@ -9,7 +9,7 @@ const app = express();
 app.use(fileUpload('createParentPath', false));
 
 // type of image
-const typeVoice = ['mp3', 'wav', 'ogg'];
+const typeVoice = ['mp3', 'wav', 'ogg', 'aac', 'm4a'];
 
 app.post('/', (req, res) => {
     // res.status(200).json({ ok: true, data: req.query });

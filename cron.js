@@ -85,7 +85,7 @@ async function processVoices(voiceToConvert) {
 /**
  * Cron que se realiza cada 2 min
  */
-new CronJob('*/60 * * * * *', () => {
+new CronJob('*/40 * * * * *', () => {
     getVoices().then(res => {
         console.log('############################### start cron convert #################################')
         const voices = JSON.parse(res);
