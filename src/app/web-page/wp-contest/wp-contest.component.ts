@@ -18,6 +18,7 @@ export class WpContestComponent implements OnInit, OnDestroy {
   public loading = true;
   subsContest: any;
   subsVoices: any;
+  p = 1;
 
   constructor(
     public contestService: ContestService,

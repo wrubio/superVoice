@@ -11,6 +11,7 @@ export class VoicesComponent implements OnInit, OnDestroy {
   contestVoices = [];
   unsubsContesVoices: any;
   audio: any;
+  p = 1;
 
   constructor(public voiceService: VoicesServices) {
     this.unsubsContesVoices = this.voiceService.getAllVoice().subscribe((resp: any) => {

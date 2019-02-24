@@ -13,6 +13,7 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
   unsubsContesVoices: any;
   audio: any;
   urlContest: any;
+  p = 1;
 
   constructor(
     public voiceService: VoicesServices,
@@ -22,7 +23,7 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
     this.unsubsContesVoices = this.voiceService.getAllVoice().subscribe((resp: any) => {
       // this.contestVoices = resp;
       resp.map((a: any) => {
-        console.log(a.url, this.urlContest);
+        // console.log(a.url, this.urlContest);
         if (a.url === this.urlContest) {
           this.contestVoices.push(a);
         }
@@ -48,7 +49,7 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
         this.audio = voice;
       }
     });
-    console.log(this.audio);
+    // console.log(this.audio);
     const audioUrl = audioStatus === 'convertido' ? this.audio.rutaArchivoConvertida : this.audio.rutaArchivoOriginal;
     const audioExt = audioUrl.split('.').pop();
 

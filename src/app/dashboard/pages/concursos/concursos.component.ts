@@ -3,7 +3,8 @@ import { ContestService } from '../../../services/contest/contest.service';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { InvitationService } from 'src/app/services/services.index';
+import { InvitationService, VoicesServices } from 'src/app/services/services.index';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 declare var jquery: any;
 declare var $: any;
 
@@ -19,11 +20,21 @@ export class ConcursosComponent implements OnInit, OnDestroy {
   services: any;
   mailService: any;
   ctrMail = 0;
+  voiceSub: any;
+  voiceOfContest: any;
+  cContest: any;
+  p = 1;
 
-  constructor(public contestService: ContestService, public router: Router, public invService: InvitationService ) {
+  constructor(
+    public contestService: ContestService,
+    public router: Router, public invService: InvitationService,
+    public voiceService: VoicesServices ) {
     this.services = this.contestService.getAllContents().subscribe((res: any) => {
       this.contests = res;
       console.log(this.contests);
+    });
+    this.voiceSub = this.voiceService.getAllVoice().subscribe((v: any) => {
+      this.voiceOfContest = v;
     });
    }
 
@@ -34,11 +45,14 @@ export class ConcursosComponent implements OnInit, OnDestroy {
    */
   deleteEvent(e: any) {
     const idContest = parseInt(e.target.dataset.idContest, 10);
+    const urlContest = e.target.dataset.url;
+    console.log(urlContest);
     let nameContest: string;
     let idUser: string;
     let oldNameContest: string;
     this.contests.map((conts: any) => {
       if (conts.id === idContest) {
+        this.cContest = conts;
         oldNameContest = conts.nombreConcurso;
         const splitName = conts.nombreConcurso.split(' ');
         const lengthSplitName = splitName.length;
@@ -62,13 +76,23 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     .then((willDelete) => {
       if (willDelete) {
         this.contestService.deleteContest(dataImage).then((res: any) => {
-          console.log(res);
-          this.reloadPage();
+          // console.log(res);
+          const configVoices = async () => {
+            for (const voice of this.voiceOfContest) {
+              if (voice.url === urlContest) {
+                const algo = await this.voiceService.deleteVoice(voice.id);
+                console.log(algo);
+              }
+            }
+          };
+          configVoices().then((del: any) => {
+            this.reloadPage();
+          });
         }).catch((err: any) => {
-          console.log(err);
+          // console.log(err);
         });
       } else {
-        console.log(willDelete);
+        // console.log(willDelete);
       }
     });
   }

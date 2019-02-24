@@ -21,4 +21,7 @@ export class HomeComponent implements OnInit {
     const navBar = document.querySelector('.pg-navbar');
     scrollTopVal >= 650 ? navBar.classList.add('pg-navbar-bg') : navBar.classList.remove('pg-navbar-bg');
   }
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 }

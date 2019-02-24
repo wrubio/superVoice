@@ -53,4 +53,10 @@ export class VoicesServices {
     const url = `${URL_SERVICES}/registro`;
     return this.http.get(url);
   }
+
+  deleteVoice(id: any) {
+    const url = `${URL_SERVICES}/registro/${id}`;
+    console.log(url);
+    return this.http.delete(url).toPromise();
+  }
 }

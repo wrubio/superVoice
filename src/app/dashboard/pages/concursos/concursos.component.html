@@ -3,7 +3,7 @@
 <div class="text-right">
     <button class="btn btn-db-primary btn-sm mr-2" [routerLink]="['/newContest']"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear concurso</button>
 </div>
-<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse() | paginate: { itemsPerPage: 5, currentPage: p, totalItems: total }">
+<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse() | paginate: { itemsPerPage: 5, currentPage: p}">
     <div class="card card-container">
         <div class="row ml-0 mr-0">
             <div class="col-12">
@@ -25,6 +25,7 @@
                                     <span class="db-cnts-end"><b>Termina:</b> {{contest.fechaFin | date: 'MM/dd/yyyy'}}</span>
                                 </small>
                             </div>
+                            <!-- 
                             <div class="col-4">
                                 <small>
                                     <div class="db-winning-voice font-weight-bold" (click)="showModal($event)" data-voice="banner-winning-voice">
@@ -32,6 +33,7 @@
                                     </div>
                                 </small>
                             </div>
+                            -->
                             <div class="col-4">
                                 <small>
                                     <div class="db-inf-contest-banner font-weight-bold" (click)="showModal($event)"  data-voice="banner-modal" [attr.data-id-contest]="contest.id">
@@ -67,13 +69,30 @@
                     </div>
 
                     <div class="col-12 mt-3 text-right">
-                        <button class="btn btn-db-primary btn-sm mr-2" (click)="sendMail($event.target.dataset.urlContest)"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores</button>
-                        <button class="btn btn-db-primary btn-sm mr-2" [routerLink]="['/voice', contest.nombreURL]"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
-                        <button class="btn btn-db-primary btn-sm mr-2" (click)="externalLink($event.target.dataset.urlContest)" [attr.data-url-contest]="contest.nombreURL"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
-                        <button class="btn btn-db-success btn-sm mr-2" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
-                        <button class="btn btn-db-danger btn-sm" [attr.data-id-contest]="contest.id" (click)="deleteEvent($event)">
-                            <i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar concurso
-                        </button>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-2">
+                                    <button class="btn btn-db-primary btn-sm btn-block" (click)="sendMail($event.target.dataset.urlContest)"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-2">
+                                    <button class="btn btn-db-primary btn-sm btn-block" [routerLink]="['/voice', contest.nombreURL]"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-2">
+                                    <button class="btn btn-db-primary btn-sm btn-block" (click)="externalLink($event.target.dataset.urlContest)" [attr.data-url-contest]="contest.nombreURL"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-2">
+                                    <button class="btn btn-db-success btn-sm btn-block" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 mt-2">
+                                <button class="btn btn-db-danger btn-sm btn-block" [attr.data-id-contest]="contest.id" [attr.data-url]="contest.nombreURL" (click)="deleteEvent($event)">
+                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -81,7 +100,10 @@
     </div>
 </div>
 <pagination-controls class="sv-pagination" (pageChange)="p = $event"></pagination-controls>
+
+
 <!-- Modal Winning Voices -->
+<!-- 
 <div class="modal fade" id="banner-winning-voice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -109,7 +131,7 @@
         </div>
     </div>
 </div>
-
+-->
 <!-- Modal Banner -->
 <div class="modal fade" id="banner-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

@@ -9,13 +9,13 @@
         <div class="wp-btn-header">
             <div class="row m-0">
                 <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-right">
-                    <button type="button" class="btn btn-outline-light"><i class="fa fa-volume-up" aria-hidden="true"></i> Ejemplos</button>
+                    <button (click)="scroll(target)" type="button" class="btn btn-outline-light"><i class="fa fa-volume-up" aria-hidden="true"></i> Ejemplos</button>
                 </div>
                 <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-center">
-                    <button type="button" class="btn btn-outline-light"><i class="fa fa-trophy" aria-hidden="true"></i> Crear concurso</button>
+                    <button [routerLink]="['/contest']" type="button" class="btn btn-outline-light"><i class="fa fa-trophy" aria-hidden="true"></i> Crear concurso</button>
                 </div>
                 <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-left">
-                    <button type="button" class="btn btn-outline-light"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrarse</button>
+                    <button [routerLink]="['/register']" type="button" class="btn btn-outline-light"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrarse</button>
                 </div>
             </div>
         </div>
@@ -31,12 +31,11 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
                     <div class="card text-center">
                         <div class="card-header">
-                            Featured
+                            <b>¿Quiénes Somos?</b>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. Fusce metus
-                                risus, malesuada sed venenatis sed, placerat ac mi. <br> <br> Curabitur iaculis tortor sem. Nam sed erat magna. Mauris id lectus nec enim euismod tempus non ac urna</p>
+                            <h5 class="card-title"></h5>
+                            <p class="card-text text-left">Hola superVocies es una aplicación que te permite crear proyectos de locución para que puedas encontrar la mejor voz para tu proyecto. Dentro de esta puedes crear concursos (Proyectos), donde al ser creados esta automáticamente publicará una página web con el nombre del concurso y te permitirá compartir está a través del correo a personas que conozcas y al publico en genera. De esta manera con tu pagina online cualquier persona puede subir su locución para participar en el concurso. </p>
                             <hr>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-bullhorn" aria-hidden="true"></i>
@@ -47,12 +46,12 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
                     <div class="card text-center">
                         <div class="card-header">
-                            Featured
+                            <b>Crear concurso</b>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content. Curabitur iaculis tortor sem. Nam sed erat magna. Mauris id lectus nec enim euismod tempus non ac urna <br> <br> Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. Fusce metus risus, malesuada sed venenatis sed, placerat ac mi.</p>
+                            <h5 class="card-title"></h5>
+                            <p class="card-text text-left">Para empezar, solo debes registrarte, crear un concurso, publicar tu página web y enviar las invitaciones a tus amigos locutores. No esperes más, ingresa al sistema y crea tu cuenta. <br><br>
+                            Recuerda generar un guion y unas recomendaciones para que tu concurso sea entendible al público. Estos campos los puedes llenar al momento de crear el concurso. <br><br><br></p>
                             <hr>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -63,11 +62,12 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
                     <div class="card text-center">
                         <div class="card-header">
-                            Featured
+                            <b>Locutor</b>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. <br> <br>                                Fusce metus risus, malesuada sed venenatis sed, placerat ac mi. Curabitur iaculis tortor sem. Nam sed erat magna. Mauris id lectus nec enim euismod tempus non ac urna</p>
+                            <h5 class="card-title"></h5>
+                            <p class="card-text text-left">Si quieres participar en un concurso, solo debes ingresar a la página del concurso, de esta forma dentro de la página podrás encontrar toda la información que la empresa creadora del concurso puso a disposición para que puedas realizar tu loción de la mejor forma posible.   <br><br>
+                                De igual forma en está encontrarás un formulario que te permite llenar los datos requeridos para que puedas participar. Solo debes tener tu voz lista para subirla en el formulario.</p>
                             <hr>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
@@ -94,8 +94,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h5 class="card-title">Fácil de crear</h5>
+                            <p class="card-text">Con solo el registro ya puedes crear concursos para tu proyecto.</p>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-bullhorn" aria-hidden="true"></i>
                             </div>
@@ -105,8 +105,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h5 class="card-title">Fácil de participar</h5>
+                            <p class="card-text">Solo debes llenar un formulario de 4 registros y subir tu voz.</p>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-bullhorn" aria-hidden="true"></i>
                             </div>
@@ -116,8 +116,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h5 class="card-title">Fácil de ganar</h5>
+                            <p class="card-text">Envía todos tus trabajos si no estas conforme con el que enviaste.</p>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-bullhorn" aria-hidden="true"></i>
                             </div>
@@ -136,32 +136,30 @@
                 <div class="col-sm-2 col-md-12 col-lg-6 col-xl-6 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fa fa-bullhorn" aria-hidden="true"></i> Nombre Locutor</h5>
+                            <h5 class="card-title"><i class="fa fa-bullhorn" aria-hidden="true"></i> Yo participando</h5>
                             <hr>
                             <audio controls>
-                                <source src="horse.ogg" type="audio/ogg">
-                                <source src="horse.mp3" type="audio/mpeg">
+                                <source src="http://localhost:4000/uploads/Answer-02.wav" type="audio/wav">
                                 Your browser does not support the audio element.
                             </audio>
                             <hr>
-                            <h6 class="card-title">Nombre Concurso</h6>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="card-title">superVoces 1</h6>
+                            <p class="card-text">Ejemplo de voces del concurso</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2 col-md-12 col-lg-6 col-xl-6 mb-3">
+                <div class="col-sm-2 col-md-12 col-lg-6 col-xl-6 mb-3" #target>
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fa fa-bullhorn" aria-hidden="true"></i> Nombre Locutor</h5>
+                            <h5 class="card-title"><i class="fa fa-bullhorn" aria-hidden="true"></i> Sí, tu pariticpano</h5>
                             <hr>
                             <audio controls>
-                                <source src="horse.ogg" type="audio/ogg">
-                                <source src="horse.mp3" type="audio/mpeg">
+                                <source src="http://localhost:4000/uploads/Answer-07.wav" type="audio/wav">
                                 Your browser does not support the audio element.
                             </audio>
                             <hr>
-                            <h6 class="card-title">Nombre Concurso</h6>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="card-title">superVoices 2</h6>
+                            <p class="card-text">Ejemplo de voces del concurso.</p>
                         </div>
                     </div>
                 </div>
@@ -182,9 +180,8 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col.xl.4 mb-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. Fusce metus
-                                risus, malesuada sed venenatis sed, placerat ac mi. <br> <br> Curabitur iaculis tortor sem. Nam sed erat magna. Mauris id lectus nec enim euismod tempus non ac urna</p>
+                            <h5 class="card-title">Primero</h5>
+                            <p class="card-text">Si no has recibido una participación para el concurso, debes buscar el concurso al que quieras participar y leer cuidadosamente las condiciones de estas. Esto lo puedes encontrar en las recomendaciones del concurso.</p>
                             <hr>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-bullhorn" aria-hidden="true"></i>
@@ -195,9 +192,10 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col.xl.4 mb-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content. Curabitur iaculis tortor sem. Nam sed erat magna. Mauris id lectus nec enim euismod tempus non ac urna <br> <br> Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. Fusce metus risus, malesuada sed venenatis sed, placerat ac mi.</p>
+                            <h5 class="card-title">Segundo</h5>
+                            <p class="card-text">
+                                Prepara tu locución, analízala con las recomendaciones del concurso y una vez confirmado ingresa a la página del concurso y llena el formulario para que tu voz quede guardada en el registro del concurso.
+                            </p>
                             <hr>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -208,8 +206,10 @@
                 <div class="col-sm-12 col-md-12 col-lg-4 col.xl.4 mb-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis vel urna rutrum rhoncus. Proin sed justo et purus condimentum porttitor. <br> <br>                                Fusce metus risus, malesuada sed venenatis sed, placerat ac mi. Curabitur iaculis tortor sem. Nam sed erat magna. Mauris id lectus nec enim euismod tempus non ac urna</p>
+                            <h5 class="card-title">Tercero</h5>
+                            <p class="card-text">
+                                    Ahora solo debes esperar a que finalice el concurso y comuniquen la superVoice ganadora. Recuerda siempre estar revisando la página del concurso para que puedas comparar tu locución con los demás participantes.
+                            </p>
                             <hr>
                             <div class="info-icon text-danger">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
