@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router  } from '@angular/router';
 import { Contest } from '../../../models/contest.model';
 import { ContestService } from 'src/app/services/services.index';
+import { ok } from 'assert';
 
 @Component({
   selector: 'app-new-contest',
@@ -43,11 +44,16 @@ export class NewContestComponent implements OnInit {
       'publicado',
       this.userId
     );
-    console.log(contest);
     this.contestService.createContest(contest, this.uploadImg).then( (res: any) => {
       console.log(res);
-      swal('Importante!', `El concurso "${form.value.nameContest}" se creo correctamente`, 'success');
-      this.router.navigate(['/contest']);
+      if (res.ok === false) {
+        if (res.errores.errors[0].type === 'unique violation') {
+          swal('Importante!', `El concurso con nombre "${form.value.nameContest}" ya existe, por favor use otro diferente`, 'warning');
+        }
+      } else {
+        swal('Importante!', `El concurso "${form.value.nameContest}" se creo correctamente`, 'success');
+        this.router.navigate(['/contest']);
+      }
     }).catch((err: any) => {
       console.log(err);
     });
