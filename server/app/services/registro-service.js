@@ -118,9 +118,16 @@ async function deleteRegistro(registroId) {
 
     console.log('Registro service: deleting registro de voz by %s %s', currentRegistro.nombresLocutor, currentRegistro.apellidosLocutor);
 
+    return currentRegistro.destroy().then(res => {
+        return { ok: true };
+    }).catch(err => {
+        return { ok: false };
+    });
+    /*
     return currentRegistro.update({
         estadoRegistroVoces: "unactive",
     });
+    */
 }
 
 /**
