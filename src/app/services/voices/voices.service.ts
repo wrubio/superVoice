@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICES, URL_VOICE } from '../../config/config';
+import { URL_SERVICES, URL_STORAGE } from '../../config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
@@ -34,7 +34,7 @@ export class VoicesServices {
           }
         };
         const queryPath = `contestId=${contestData.contestId}&userId=${contestData.userId}&contestName=${contestData.contestName}`;
-        const urlStorage = `${URL_VOICE}/voice?${queryPath}`;
+        const urlStorage = `${URL_STORAGE}/voice?${queryPath}`;
         xhr.open('POST', urlStorage, true);
         xhr.send( formData );
       });
@@ -42,7 +42,7 @@ export class VoicesServices {
   async createVoice(voice: Voice, audio: File, contestData: any) {
     const uploadAudioRes: any = await this.uploadVoice(audio, contestData);
     const audioRespPath = uploadAudioRes.dataImg.path;
-    const newAudioPath: any = `${URL_VOICE}/${audioRespPath.substring(7, audioRespPath.length)}`;
+    const newAudioPath: any = `${URL_STORAGE}/${audioRespPath.substring(7, audioRespPath.length)}`;
     voice.rutaArchivoOriginal = newAudioPath;
     const url = `${URL_SERVICES}/registro`;
     const resContest = await this.http.post(url, voice).toPromise();

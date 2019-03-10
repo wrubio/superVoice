@@ -24,18 +24,21 @@ export class ConcursosComponent implements OnInit, OnDestroy {
   voiceOfContest: any;
   cContest: any;
   p = 1;
+  currentId: any;
 
   constructor(
     public contestService: ContestService,
     public router: Router, public invService: InvitationService,
     public voiceService: VoicesServices ) {
-    this.services = this.contestService.getAllContents().subscribe((res: any) => {
-      this.contests = res;
-      console.log(this.contests);
-    });
-    this.voiceSub = this.voiceService.getAllVoice().subscribe((v: any) => {
-      this.voiceOfContest = v;
-    });
+      this.currentId = parseInt(localStorage.getItem('id'), 10);
+      this.services = this.contestService.getAllContents().subscribe((res: any) => {
+        this.contests = res.filter((contest: any) => contest.administradorId === this.currentId);
+        // this.contests = res;
+        console.log(this.contests);
+      });
+      this.voiceSub = this.voiceService.getAllVoice().subscribe((v: any) => {
+        this.voiceOfContest = v;
+      });
    }
 
   ngOnInit() {}

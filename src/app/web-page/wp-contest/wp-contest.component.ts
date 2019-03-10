@@ -19,6 +19,7 @@ export class WpContestComponent implements OnInit, OnDestroy {
   subsContest: any;
   subsVoices: any;
   p = 1;
+  showLoader = false;
 
   constructor(
     public contestService: ContestService,
@@ -62,6 +63,7 @@ export class WpContestComponent implements OnInit, OnDestroy {
       swal('Importante!', `Debe aceptar las condiciones de uso.`, 'warning');
       return;
     }
+    this.showLoader = true;
     const voice = new Voice(
       null,
       null,
@@ -80,6 +82,7 @@ export class WpContestComponent implements OnInit, OnDestroy {
       swal('Hola!', `Hemos recibido tu voz y la estamos procesando para que sea
       publicada en la página del concurso y pueda ser posteriormente revisada por nuestro equipo de trabajo.
       Tan pronto la voz quede publicada en la página del concurso, te notificaremos por email`, 'success');
+      this.showLoader = false;
       this.reloadPage();
     }).catch((err: any) => {
       console.log(err);

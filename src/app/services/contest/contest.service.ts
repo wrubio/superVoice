@@ -58,6 +58,7 @@ export class ContestService {
   async createContest(contest: Contest, imgFile: File) {
 
     const resUploadImage: any = await this.uploadContestImage(contest, imgFile, false, null);
+    console.log(resUploadImage);
     const imgRespPath = resUploadImage.dataImg.path;
     const newImgPath = `${URL_STORAGE}/${imgRespPath.substring(7, imgRespPath.length)}`;
     contest.rutaImagen = newImgPath;
