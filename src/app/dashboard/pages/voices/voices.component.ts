@@ -10,17 +10,27 @@ export class VoicesComponent implements OnInit, OnDestroy {
 
   contestVoices = [];
   unsubsContesVoices: any;
+  currentId: any;
   audio: any;
   p = 1;
 
   constructor(public voiceService: VoicesServices) {
+    this.currentId = parseInt(localStorage.getItem('id'), 10);
     this.unsubsContesVoices = this.voiceService.getAllVoice().subscribe((resp: any) => {
-      this.contestVoices = resp;
+      resp.map((voice: any) => {
+        const urlVoice = voice.rutaArchivoOriginal;
+        const sp1UrlVoice = urlVoice.split('contests/');
+        const sp2UrlVoice = sp1UrlVoice[1].split('/');
+        console.log(parseInt(sp2UrlVoice[0], 10), this.currentId);
+        if (parseInt(sp2UrlVoice[0], 10) === this.currentId) {
+          this.contestVoices.push(voice);
+        }
+      });
     });
   }
 
   ngOnInit() {
-
+    console.log(this.contestVoices);
   }
 
   /**
