@@ -1,0 +1,24 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "Servidor Backend Node",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "wilmer rubio rojas",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "log4js": "^4.0.2",
+        "node-proc": "0.0.1",
+        "nodemailer": "^5.1.1",
+        "request": "^2.88.0",
+        "requestify": "^0.2.5"
+    },
+    "devDependencies": {
+        "nodemon": "^1.18.9"
+    }
+}
