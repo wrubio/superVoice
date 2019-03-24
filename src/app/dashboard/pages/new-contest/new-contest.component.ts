@@ -28,6 +28,7 @@ export class NewContestComponent implements OnInit {
    */
   newContest(form: NgForm) {
     if (form.invalid) { return; }
+    // Validacion del nombre de la url con espacios
     if (form.value.urlContest.indexOf(' ') >= 0) {
       swal('Importante!', `El nombre de la url no debe tener espacios o caracteres especiales`, 'warning');
       return;
@@ -44,6 +45,16 @@ export class NewContestComponent implements OnInit {
       'publicado',
       this.userId
     );
+    
+    const startDate = new Date(form.value.startDateContest);
+    const endDate = new Date(form.value.endDateContest);
+
+    // Validacion de la fechas de inicio y finalizacion
+    if (endDate.getTime() < startDate.getTime()) {
+      swal('Importante!', `La fecha final no debe estar antes que la inicial`, 'warning');
+      return;
+    }
+    // Servicio de creacion de concursos
     this.contestService.createContest(contest, this.uploadImg).then( (res: any) => {
       console.log(res);
       if (res.ok === false) {
