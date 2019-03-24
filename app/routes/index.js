@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 //Dispatch the child routes
-// router.use('/administrador', require('./administrador'));
+router.use('/administrador', require('./admin'));
 // router.use('/concurso', require('./concurso'));
 // router.use('/registro', require('./registro'));
 // router.use('/login', require('./login'));
