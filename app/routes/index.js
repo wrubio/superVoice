@@ -4,7 +4,7 @@ const router = require('express').Router();
 router.use('/administrador', require('./admin'));
 // router.use('/concurso', require('./concurso'));
 // router.use('/registro', require('./registro'));
-// router.use('/login', require('./login'));
+router.use('/login', require('./login'));
 
 
 // 404 Not found

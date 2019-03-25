@@ -4,6 +4,11 @@ const adminController = require('../controllers/adminController');
 
 // router.get('/', administradorController.getAllAdministradors);
 // router.get('/:id(\\d+)', administradorController.getAdministradorById);
+
+/**
+ * Ruta para crear nuevos usuarios administradores de la plataforma
+ * de superVoice
+ */
 router.post('/', (req, res) => {
     adminController.createAdmin(req).then((result) => {
         res.status(201).json(result);

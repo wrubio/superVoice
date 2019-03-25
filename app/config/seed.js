@@ -1,0 +1,1 @@
+module.exports.SEED = "%proyect1-db%@Admin$";
