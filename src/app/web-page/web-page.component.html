@@ -1,0 +1,28 @@
+<header *ngIf="!hideShared">
+    <app-navbar></app-navbar>
+</header>
+<div id="main-container">
+    <router-outlet></router-outlet>
+</div>
+<footer *ngIf="!hideShared" style="padding: 25px;">
+    <div class="contianer">
+        <div class="row text-white">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 text-md-left text-lg-left text-xl-left text-sm-center">
+                <p style="font-size: 26px;">superVoce inc</p>
+                <a href="" style="text-decoration: none; color: #FFFFFF;">¿Quiénes somos?</a><br>
+                <a href="" style="text-decoration: none; color: #FFFFFF;">¿Cómo funciona?</a><br>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center">
+                <span class="text-center">superVoces</span> <br>
+                <span class="text-center">Diseñado por UAMC SAS</span> <br>
+                <span class="text-center">Bogotá, Colombia</span> <br>
+                <span class="text-center">2019</span>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 text-md-right text-lg-right text-xl-right text-sm-center">
+                <span><i class="fa fa-facebook-square" aria-hidden="true"></i> facebook-superVocies</span><br>
+                <span><i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn-superVocies</span><br>
+                <span><i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter-superVocies</span><br>
+            </div>
+        </div>
+    </div>
+</footer>

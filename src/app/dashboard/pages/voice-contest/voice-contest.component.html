@@ -1,0 +1,37 @@
+<h2 class="sv-text-blue"><i class="fa fa-clipboard" aria-hidden="true"></i> Voces De La Url {{urlContest}}</h2>
+<hr>
+<div class="card mt-2" *ngFor="let voice of contestVoices.slice().reverse() | paginate: { itemsPerPage: 50, currentPage: p }">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12 col-md-7 col-lg-7 col-xl-8">
+                <h5 class="card-title"><i class="fa fa-bullhorn" aria-hidden="true"></i> {{voice.nombresLocutor}} {{voice.apellidosLocutor}}</h5>
+            </div>
+            <div class="col-sm-12 col-md-5 col-lg-5 col-xl-4 text-right">
+                <small><b>fecha de creación:</b> {{voice.createdAt | date:'dd/MM/yyyy'}}</small><br>
+                <small><b>Correo:</b> {{voice.correoLocutor}}</small>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                <audio controls style="width: 100%">
+                  <source [src]="voice.rutaArchivoConvertida" type="audio/mpeg">
+                  Your browser does not support the audio element.
+              </audio>
+                <small><b>Estado:</b> {{voice.estadoRegistroVoces}}</small>
+            </div>
+            <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 pt-6 text-right" style="padding-top: 14px;">
+                <button *ngIf="voice.rutaArchivoConvertida" class="btn btn-db-primary btn-sm" [attr.data-id]="voice.id" [attr.data-o]="'convertido'" (click)="downloadFile($event)">
+                    <i class="fa fa-download" aria-hidden="true"></i> Archivo convertido
+                </button>
+                <button *ngIf="voice.rutaArchivoOriginal" class="btn btn-db-primary btn-sm ml-2" [attr.data-id]="voice.id" [attr.data-o]="'original'" (click)="downloadFile($event)">
+                    <i class="fa fa-download" aria-hidden="true"></i> Archivo Original
+                </button>
+                <!-- <button class="btn btn-db-danger btn-sm ml-2">Eliminar</button> -->
+            </div>
+        </div>
+        <hr>
+        <p class="card-text">{{voice.observacionesLocutor}}</p>
+    </div>
+</div>
+<pagination-controls class="sv-pagination" (pageChange)="p = $event"></pagination-controls>

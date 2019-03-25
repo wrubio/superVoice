@@ -1,0 +1,22 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+
+/* MAIN CONTAINER STYLES */
+
+#main-container {
+    overflow: hidden;
+}
+
+
+/* FOOTER STYLES */
+
+footer {
+    height: auto;
+    background-color: #41494C;
+}

@@ -1,0 +1,185 @@
+<h2 class="sv-text-blue"><i class="fa fa-clipboard" aria-hidden="true"></i> Concursos</h2>
+<hr>
+<div class="text-right">
+    <button class="btn btn-db-primary btn-sm mr-2" [routerLink]="['/newContest']"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear concurso</button>
+</div>
+<div class="contest-list-container mt-3" *ngFor="let contest of contests.slice().reverse() | paginate: { itemsPerPage: 5, currentPage: p}">
+    <div class="card card-container">
+        <div class="row ml-0 mr-0">
+            <div class="col-12">
+                <div class="db-inf-contest-left-color"></div>
+                <div class="row">
+                    <div class="col-8">
+                        <h4>{{contest.nombreConcurso}}</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                        Total-voces: <span class="db-voices-total">120</span>
+                    </div>
+                    <hr>
+                    <div class="col-12 mt-2">
+                        <div class="row">
+                            <div class="col-4">
+                                <small>
+                                    <span class="db-cnts-start"><b>Empieza:</b> {{contest.fechaInicio | date: 'MM/dd/yyyy'}} </span>
+                                    <br>
+                                    <span class="db-cnts-end"><b>Termina:</b> {{contest.fechaFin | date: 'MM/dd/yyyy'}}</span>
+                                </small>
+                            </div>
+                            <!-- 
+                            <div class="col-4">
+                                <small>
+                                    <div class="db-winning-voice font-weight-bold" (click)="showModal($event)" data-voice="banner-winning-voice">
+                                        Voz ganadora: Nombre Locutor
+                                    </div>
+                                </small>
+                            </div>
+                            -->
+                            <div class="col-4">
+                                <small>
+                                    <div class="db-inf-contest-banner font-weight-bold" (click)="showModal($event)"  data-voice="banner-modal" [attr.data-id-contest]="contest.id">
+                                        Ver banner del concurso
+                                    </div>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-body sv-card-body">
+                                <b><i class="fa fa-file-text" aria-hidden="true"></i> Guión: </b>
+                                <span>{{contest.guion}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-body sv-card-body">
+                                <b><i class="fa fa-thumbs-up" aria-hidden="true"></i> Recomendación: </b>
+                                <span>{{contest.recomendaciones}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-body sv-card-body">
+                                <b><i class="fa fa-usd" aria-hidden="true"></i> Valor a pagar: </b>
+                                <span>{{contest.valorPagar | currency:'COP'}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-3 text-right">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-2">
+                                    <button class="btn btn-db-primary btn-sm btn-block" (click)="sendMail($event.target.dataset.urlContest)"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-2">
+                                    <button class="btn btn-db-primary btn-sm btn-block" [routerLink]="['/voice', contest.nombreURL]"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-2">
+                                    <button class="btn btn-db-primary btn-sm btn-block" (click)="externalLink($event.target.dataset.urlContest)" [attr.data-url-contest]="contest.nombreURL"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-2">
+                                    <button class="btn btn-db-success btn-sm btn-block" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 mt-2">
+                                <button class="btn btn-db-danger btn-sm btn-block" [attr.data-id-contest]="contest.id" [attr.data-url]="contest.nombreURL" (click)="deleteEvent($event)">
+                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<pagination-controls class="sv-pagination" (pageChange)="p = $event"></pagination-controls>
+
+
+<!-- Modal Winning Voices -->
+<!-- 
+<div class="modal fade" id="banner-winning-voice" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title sv-text-red">Nombre del locutor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <audio controls>
+                    <source src="horse.ogg" type="audio/ogg">
+                    <source src="horse.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <hr>
+                <small>
+                    <div class="db-cnts-start"><b>Feecha de subida:</b> 01-02-2019 </div>
+                    <div class="db-cnts-start"><b>correo:</b> Locutor@correo.com</div>
+                </small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-db-success btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<!-- Modal Banner -->
+<div class="modal fade" id="banner-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title sv-text-blue">Banner del concurso: </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div class="db-cnts-banner-img">
+                        <img [src]="imgContest" alt="Imagen del concurso">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-db-success btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Email -->
+<div class="modal fade" id="mail-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form ngNativeValidate #m="ngForm" (ngSubmit)="sendInivtations(m)">
+                <div class="modal-header">
+                    <h5 class="modal-title sv-text-blue"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores: </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label><i class="fa fa-envelope" aria-hidden="true"></i> Ingresar correos</label>
+                        <textarea ngModel name="mails" class="form-control" placeholder="correo1@correo.com, correo2@correo.com, correo3@correo.com..." rows="3"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-db-success btn-sm" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-db-primary btn-sm"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar correos</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

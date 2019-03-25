@@ -1,0 +1,141 @@
+<div (window:scroll)="scrollEvent($event)">
+    <div class="ParallaxVideo">
+        <img [src]="contest.rutaImagen" alt="Banner concurso">
+        <h1 class="d-none d-sm-block d-md-none d-lg-block">SuperVoice</h1>
+        <h2>Bienvenido al concurso {{contest.nombreConcurso}}</h2>
+        <h2>Desde aqui puedes participar de forma fácil y rápida</h2>
+        <div class="wp-btn-header">
+            <div class="row m-0">
+                <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-right">
+                    <button type="button" class="btn btn-outline-light"><i class="fa fa-volume-up" aria-hidden="true"></i> Ejemplos</button>
+                </div>
+                <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-center">
+                    <button type="button" class="btn btn-outline-light"><i class="fa fa-trophy" aria-hidden="true"></i> Paricipar</button>
+                </div>
+                <div class="d-none d-sm-block col-sm-4 col-md-4 col-xl-4 hidden-xs-down text-left">
+                    <button type="button" class="btn btn-outline-light"><i class="fa fa-user-plus" aria-hidden="true"></i> Ver Guión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wp-about">
+        <div class="wp-p-abs">
+            <h1>SuperVoice</h1>
+        </div>
+        <div class="wp-about-content">
+            <h2>Acerca de {{contest.nombreConcurso}}</h2>
+            <div class="row mt-60">
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">¿Cómo participar?</h4>
+                            <p class="card-text">
+                                Para participar, deberás subir un archivo de audio con tu voz grabada, redactando el guíon que puedes encontrar en esta página. recuerda llenar el formulario que te dejamos en esta sección, este no solo te permitirá subir tu audio, si no también te permitirá
+                                expresar la experiencia vivida con nosotros y la forma de contactarte en un futuro. <br> <br> Recuerda leer el guion correctamente y seguir las recomendaciones del concurso.
+                            </p>
+                            <hr>
+
+                            <div class="wave-container">
+                                <div class="dont-wait"><b><h5 class="text-center mt-4">No espere más!</h5></b></div>
+                                <div class="text-center mt-0 wave-separator"></div>
+                                <img src="./assets/img/logo.png" alt="Logo SuperVoice" width="160px">
+                                <div class="lets-listening"><b><h5 class="text-center">Y dejanos escuchar tu superVoice</h5></b></div>
+                            </div>
+
+                            <hr>
+
+                            <form ngNativeValidate #f="ngForm" (ngSubmit)="newVoices(f)">
+                                <h4 class="card-title">Formulario de participación.</h4>
+                                <div class="form-group">
+                                    <label>Nombres:</label>
+                                    <input ngModel name="nombresLocutor" type="text" class="form-control" placeholder="nombres completos" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellidos:</label>
+                                    <input ngModel name="apellidosLocutor" type="text" class="form-control" placeholder="Apellidos completos" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Correo:</label>
+                                    <input ngModel name="correoLocutor" type="email" class="form-control" placeholder="tucorreo@correo.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Agrega Tu superVoice:</label>
+                                    <input (change)="audioSelected($event.target.files[0])" type="file" class="form-control-file" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Observación sobre mi superVoice:</label>
+                                    <textarea ngModel name="observacionesLocutor" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group form-check">
+                                            <input ngModel name="conditions" type="checkbox" class="form-check-input" required>
+                                            <label class="form-check-label">Acepto las codiciones</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-db-primary btn-block">Enviar superVoice</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-12 col-lg-7 col-xl-7 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="guion">
+                                <h4 class="card-title">Guión del concurso.</h4>
+                                <hr>
+                                <p>{{contest.guion}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="recomendations">
+                                <h4 class="card-title">Recomendaciones del concurso.</h4>
+                                <hr>
+                                <p>{{contest.recomendaciones}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div *ngFor="let voice of contestVoices.slice().reverse() | paginate: { itemsPerPage: 20, currentPage: p }" style="margin: 0; padding: 0">
+                        <div class="card" *ngIf="voice.estadoRegistroVoces === 'Generada'">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-7 col-lg-7 col-xl-8">
+                                        <h5 class="card-title"><i class="fa fa-bullhorn" aria-hidden="true"></i> {{voice.nombresLocutor}}</h5>
+                                    </div>
+                                    <div class="col-sm-12 col-md-5 col-lg-5 col-xl-4 text-right"><small>fecha de creación: {{voice.createdAt | date:'dd/MM/yyyy'}}</small></div>
+                                </div>
+                                <hr>
+                                <audio controls style="width: 100%">
+                                    <source [src]="voice.rutaArchivoConvertida" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                <hr>
+                                <p class="card-text">{{voice.observacionesLocutor}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <pagination-controls class="sv-pagination" (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="voice-loader" *ngIf="showLoader">
+    <div class="spinner-border text-light mb-2" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <h5>Uploading your superVoice</h5>
+</div>

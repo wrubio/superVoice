@@ -1,0 +1,108 @@
+<h2 class="sv-text-blue"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear Concursos</h2>
+<hr>
+
+<form ngNativeValidate #f="ngForm" (ngSubmit)="newContest(f)">
+
+    <div class="card card-container mb-3">
+        <div class="card-body">
+            <div class="form-group">
+                <label><b>Nombre del concurso:</b></label>
+                <input ngModel name="nameContest" type="text" class="form-control form-control-sm" placeholder="" required>
+            </div>
+            <div class="red-border-down-card"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-6-xl">
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="card db-cnts-banner-img">
+                        <!-- <img src="" alt="Imagen de ejemplo con tamaño solicitado"> -->
+                    </div>
+                    <div class="form-group">
+                        <label>Example file input</label>
+                        <input (change)="imgSelected($event.target.files[0])" type="file" class="form-control-file" required>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-6-xl">
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label><b>Url Del concurso:</b></label>
+                        <input ngModel name="urlContest" type="text" class="form-control form-control-sm" placeholder="" required>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label><b>Premio del concuros:</b></label>
+                        <input ngModel name="awardContest" type="number" class="form-control form-control-sm" placeholder="" required>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-6-xl">
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="start-end-date">
+                        <div class="input-group input-group-sm mb-3 float-left mr-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><b>Empieza:</b></span>
+                            </div>
+                            <input ngModel name="startDateContest" type="date" datetime="MM-dd-yyyy" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="input-group input-group-sm mb-3 float-left mr-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><b>Termina:</b></span>
+                        </div>
+                        <input ngModel name="endDateContest" type="date" datetime="MM-dd-yyyy" class="form-control" required>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-6 col-6-xl">
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label><b>Guión del concuros</b></label>
+                        <textarea ngModel name="guionContest" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+            <div class="card card-container mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label><b>Recomendaciones</b></label>
+                        <textarea ngModel name="recomendContest" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="red-border-down-card"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right mt-4">
+        <button class="btn btn-db-danger btn-sm mr-4" [routerLink]="['/contest']"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+        <button class="btn btn-db-primary btn-sm" type="submit"><i class="fa fa-plus-square" aria-hidden="true"></i> Crear Concuros</button>
+    </div>
+</form>

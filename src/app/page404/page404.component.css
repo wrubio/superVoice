@@ -1,0 +1,26 @@
+.login-container {
+    height: 100vh;
+    background-image: linear-gradient(to right bottom, #75b9fc, #67b1fb, #58a8f9, #48a0f8, #3797f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.6rem;
+}
+.wp-login-text-container {
+    margin-bottom: 45px;
+}
+
+.wp-login-text-container h1 {
+    color: rgba(224, 237, 247, 0.11);
+    font-size: 4rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.wp-login-text h2 {
+    width: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 700;
+}

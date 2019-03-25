@@ -1,0 +1,45 @@
+.card-container {
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    border: 0;
+}
+
+.db-cnts-banner-img {
+    height: 110px;
+    overflow: hidden;
+    background-image: url("../../../../assets/img/dashboard/contest/contest-banner-default.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.db-cnts-banner-img img {
+    width: 100%;
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .db-cnts-banner-img {
+        height: 200px;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .db-cnts-banner-img {
+        height: 200px;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .db-cnts-banner-img {
+        height: 200px;
+    }
+}

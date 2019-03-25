@@ -1,0 +1,70 @@
+.pg-navbar {
+    background-color: rgba(0, 0, 0, 0.0);
+    -webkit-transition: background-color 1s ease-out;
+    -moz-transition: background-color 1s ease-out;
+    transition: background-color 0.3s ease-out;
+    position: relative;
+    z-index: 11;
+    /*background: url(../../../../assets/img/navbar/bg1.fw.png) repeat;*/
+}
+
+.pg-navbar a {
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.pg-navbar .btn-sm {
+    padding: 0 .85rem;
+}
+
+.pg-navbar-bg {
+    background-color: rgb(56, 151, 246) !important;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    .pg-navbar {
+        background-color: #3897f6;
+    }
+    .pg-navbar .navbar-toggler {
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+    }
+    .pg-navbar ul li a {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .pg-navbar {
+        background-color: #3897f6;
+    }
+    .pg-navbar .navbar-toggler {
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+    }
+    .pg-navbar ul li a {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .pg-navbar {
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .pg-navbar {
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+}

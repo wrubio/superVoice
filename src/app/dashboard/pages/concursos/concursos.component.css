@@ -1,0 +1,102 @@
+.card-container {
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    border: 0;
+    border-top: 1px solid rgba(214, 214, 214, 0.63);
+}
+
+.sv-card-body {
+    padding: 0.65rem;
+}
+
+audio {
+    width: 100%;
+}
+
+.contest-list-container .col-12:nth-child(1) {
+    padding: 25px;
+    position: relative;
+}
+
+.db-winning-voice {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.db-inf-contest-banner {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+/* banner image styles */
+
+.db-cnts-banner-img {
+    height: 130px;
+    overflow: hidden;
+    background-image: url("../../../../assets/img/dashboard/contest/contest-banner-default.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.db-cnts-banner-img img {
+    width: 100%;
+}
+
+
+/* PAGINATION STAYLES */
+
+.sv-pagination /deep/ .ngx-pagination {
+    margin-top: 15px;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    box-shadow: 1px 1px 2px 0px rgba(152, 152, 152, 0.75);
+    border: 0;
+    border-radius: .25rem;
+    border-top: 1px solid rgba(214, 214, 214, 0.63);
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+.sv-pagination /deep/ .ngx-pagination .current {
+    background-color: #3897F6;
+}
+
+.sv-pagination /deep/ .ngx-pagination .disabled {
+    padding: 0.1875rem 0.625rem;
+    color: #8c8c8c;
+    cursor: default;
+}
+
+.sv-pagination /deep/ .ngx-pagination a,
+.ngx-pagination button {
+    color: #3897F6;
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .db-cnts-banner-img {
+        height: 161px;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    .db-cnts-banner-img {
+        height: 161px;
+    }
+}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+    .db-cnts-banner-img {
+        height: 161px;
+    }
+}
