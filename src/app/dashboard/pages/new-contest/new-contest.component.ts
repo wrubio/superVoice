@@ -45,7 +45,7 @@ export class NewContestComponent implements OnInit {
       'publicado',
       this.userId
     );
-    
+
     const startDate = new Date(form.value.startDateContest);
     const endDate = new Date(form.value.endDateContest);
 

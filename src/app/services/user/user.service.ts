@@ -37,7 +37,7 @@ export class UserService {
           swal('Importante: ', 'Las credenciales ingresadas no son correctas', 'warning');
           return { ok: resp.ok };
         }
-        const userId = resp.user.id;
+        const userId = resp.user._id;
         this.token = resp.token;
         localStorage.setItem('id', userId);
         localStorage.setItem('token', resp.token);

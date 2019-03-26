@@ -30,11 +30,12 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     public contestService: ContestService,
     public router: Router, public invService: InvitationService,
     public voiceService: VoicesServices ) {
-      this.currentId = parseInt(localStorage.getItem('id'), 10);
+      this.currentId = localStorage.getItem('id');
       this.services = this.contestService.getAllContents().subscribe((res: any) => {
+        res.map((result: any) => console.log(result.administradorId, this.currentId));
         this.contests = res.filter((contest: any) => contest.administradorId === this.currentId);
         // this.contests = res;
-        console.log(this.contests);
+        console.log(res);
       });
       this.voiceSub = this.voiceService.getAllVoice().subscribe((v: any) => {
         this.voiceOfContest = v;
