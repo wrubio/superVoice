@@ -5,7 +5,7 @@ const Admin = require('../models/admin');
 
 function getAdmin(email, password) {
     return new Promise((resolve, reject) => {
-        Admin.findOne({ email: email }, (err, foundAdmin) => {
+        Admin.findOne({ correo: email }, (err, foundAdmin) => {
 
             if (err) reject({
                 ok: false,
@@ -19,13 +19,13 @@ function getAdmin(email, password) {
                 errors: 'Usuario no existe!'
             })
 
-            if (!bcrypt.compareSync(password, foundAdmin.password)) reject({
+            if (!bcrypt.compareSync(password, foundAdmin.contrasena)) reject({
                 ok: false,
                 status: 203,
                 message: "Credenciales incorrectas"
             })
 
-            foundAdmin.password = ';)';
+            foundAdmin.contrasena = ';)';
 
             const token = jwt.sign({ user: foundAdmin }, SEED, { expiresIn: 14400 });
 

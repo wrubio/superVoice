@@ -6,12 +6,12 @@ function createAdmin(req) {
     return new Promise((resolve, reject) => {
         const admin = req.body;
         const newAdmin = new Admin({
-            names: admin.nombres,
-            lastnames: admin.apellidos,
-            email: admin.correo,
-            password: bcrypt.hashSync(admin.contrasena, 10),
-            status: admin.estado,
-            company: admin.nombreEmpresa,
+            nombres: admin.nombres,
+            apellidos: admin.apellidos,
+            correo: admin.correo,
+            contrasena: bcrypt.hashSync(admin.contrasena, 10),
+            estado: admin.estado,
+            nombreEmpresa: admin.nombreEmpresa,
         });
         adminService.newAdmin(newAdmin).then((result) => {
             resolve(result);

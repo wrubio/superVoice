@@ -5,8 +5,8 @@ function newAdmin(admin) {
                 ok: false,
                 errors: err
             })
-            resolve({ ok: true })
-        })
+            resolve({ ok: true });
+        });
     });
 }
 

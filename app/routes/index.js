@@ -2,9 +2,10 @@ const router = require('express').Router();
 
 //Dispatch the child routes
 router.use('/administrador', require('./admin'));
-// router.use('/concurso', require('./concurso'));
-// router.use('/registro', require('./registro'));
+router.use('/concurso', require('./contest'));
+// router.use('/registro', require('./contest'));
 router.use('/login', require('./login'));
+router.use('/imageUpload', require('./s3img'));
 
 
 // 404 Not found
