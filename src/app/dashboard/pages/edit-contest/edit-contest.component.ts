@@ -23,6 +23,7 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
 
   constructor(public contestService: ContestService, private route: ActivatedRoute, public router: Router) {
     this.idContest = this.route.snapshot.paramMap.get('id');
+    console.log(this.idContest);
     this.contestService.getContestByUserId(this.idContest).subscribe((res: any) => {
       this.contest =  res;
       const dateStart = new Date(res.fechaInicio);

@@ -36,7 +36,7 @@
                             -->
                             <div class="col-4">
                                 <small>
-                                    <div class="db-inf-contest-banner font-weight-bold" (click)="showModal($event)"  data-voice="banner-modal" [attr.data-id-contest]="contest.id">
+                                    <div class="db-inf-contest-banner font-weight-bold" (click)="showModal($event)"  data-voice="banner-modal" [attr.data-id-contest]="contest._id">
                                         Ver banner del concurso
                                     </div>
                                 </small>
@@ -71,28 +71,28 @@
                     <div class="col-12 mt-3 text-right">
                         <div class="row">
                             <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-2">
-                                    <button class="btn btn-db-primary btn-sm btn-block" (click)="sendMail($event.target.dataset.urlContest)"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores</button>
+                                <button class="btn btn-db-primary btn-sm btn-block" (click)="sendMail($event.target.dataset.urlContest)"><i class="fa fa-envelope" aria-hidden="true"></i> Invitar a locutores</button>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-2">
-                                    <button class="btn btn-db-primary btn-sm btn-block" [routerLink]="['/voice', contest.nombreURL]"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
+                                <button class="btn btn-db-primary btn-sm btn-block" [routerLink]="['/voice', contest.nombreURL]"><i class="fa fa-bullhorn" aria-hidden="true"></i> Ver Voces del concurso</button>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-3 col-xl-3 mt-2">
-                                    <button class="btn btn-db-primary btn-sm btn-block" (click)="externalLink($event.target.dataset.urlContest)" [attr.data-url-contest]="contest.nombreURL"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
+                                <button class="btn btn-db-primary btn-sm btn-block" (click)="externalLink($event.target.dataset.urlContest)" [attr.data-url-contest]="contest.nombreURL"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Ver página del concurso</button>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2 mt-2">
-                                    <button class="btn btn-db-success btn-sm btn-block" [routerLink]="['/editContest', contest.id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
+                                <button class="btn btn-db-success btn-sm btn-block" [routerLink]="['/editContest', contest._id]"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar concurso</button>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 mt-2">
-                                <button class="btn btn-db-danger btn-sm btn-block" [attr.data-id-contest]="contest.id" [attr.data-url]="contest.nombreURL" (click)="deleteEvent($event)">
+                                <button class="btn btn-db-danger btn-sm btn-block" [attr.data-id-contest]="contest._id" [attr.data-url]="contest.nombreURL" (click)="deleteEvent($event)">
                                     <i class="fa fa-pencil-square" aria-hidden="true"></i> Eliminar
                                 </button>
                             </div>
                         </div>
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
                     </div>
                 </div>
             </div>

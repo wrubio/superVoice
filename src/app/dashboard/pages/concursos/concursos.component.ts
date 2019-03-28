@@ -106,7 +106,7 @@ export class ConcursosComponent implements OnInit, OnDestroy {
    */
   showModal(e: any) {
     const modalId = e.target.dataset.voice;
-    const idContest = parseInt(e.target.dataset.idContest, 10);
+    const idContest = e.target.dataset.idContest;
     this.contests.map((cts: any) => {
       if (cts.id === idContest) {
         this.imgContest = cts.rutaImagen;

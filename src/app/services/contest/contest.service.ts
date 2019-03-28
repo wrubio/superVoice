@@ -35,7 +35,7 @@ export class ContestService {
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
+          if (xhr.status === 201) {
             resl({dataImg: JSON.parse(xhr.response)});
           } else {
             const respError = JSON.parse(xhr.response);
@@ -45,7 +45,7 @@ export class ContestService {
         }
       };
       const queryPath = `id=${contest.adminId}&contest=${contest.nombreConcurso}&update=${update}&oldName=${oldNameContest}`;
-      const urlStorage = `${URL_STORAGE}/imageUpload?${queryPath}`;
+      const urlStorage = `${URL_SERVICES}/imageUpload?${queryPath}`; // `${URL_STORAGE}/imageUpload?${queryPath}`;
       xhr.open('POST', urlStorage, true);
       xhr.send( formData );
     });
@@ -56,12 +56,10 @@ export class ContestService {
    * @param imgFile Archivo tipo file a subir
    */
   async createContest(contest: Contest, imgFile: File) {
-
     const resUploadImage: any = await this.uploadContestImage(contest, imgFile, false, null);
-    console.log(resUploadImage);
-    const imgRespPath = resUploadImage.dataImg.path;
-    const newImgPath = `${URL_STORAGE}/${imgRespPath.substring(7, imgRespPath.length)}`;
-    contest.rutaImagen = newImgPath;
+    const imgRespPath = resUploadImage.dataImg.Location;
+    // const newImgPath = `${URL_STORAGE}/${imgRespPath.substring(7, imgRespPath.length)}`;
+    contest.rutaImagen = imgRespPath; // newImgPath;
     const url = `${URL_SERVICES}/concurso`;
     const resContest = await this.http.post(url, contest).toPromise();
     return resContest;

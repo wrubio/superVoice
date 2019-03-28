@@ -17,7 +17,7 @@ export class NewContestComponent implements OnInit {
   img64;
   constructor(public contestService: ContestService, public router: Router) {
     const user = JSON.parse(localStorage.getItem('user'));
-    this.userId = user.id;
+    this.userId = user._id;
   }
 
   ngOnInit() {
