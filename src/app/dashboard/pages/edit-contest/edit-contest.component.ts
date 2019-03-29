@@ -23,8 +23,8 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
 
   constructor(public contestService: ContestService, private route: ActivatedRoute, public router: Router) {
     this.idContest = this.route.snapshot.paramMap.get('id');
-    console.log(this.idContest);
     this.contestService.getContestByUserId(this.idContest).subscribe((res: any) => {
+      console.log(res);
       this.contest =  res;
       const dateStart = new Date(res.fechaInicio);
       const dateEnd = new Date(res.fechaFin);
@@ -65,11 +65,25 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
       'publicado',
       this.contest.administradorId
     );
+
+    const startDate = new Date(this.forma.value.startDateContest);
+    const endDate = new Date(this.forma.value.endDateContest);
+
+    // Validacion de la fechas de inicio y finalizacion
+    if (endDate.getTime() < startDate.getTime()) {
+      swal('Importante!', `La fecha final no debe estar antes que la inicial`, 'warning');
+      return;
+    }
+
     this.contestService.updateCotest(contest, this.uploadImg, this.idContest, this.contest.nombreConcurso).then( (res: any) => {
       swal('Importante!', `El concurso "${this.forma.value.nameContest}" se actualizó correctamente`, 'success');
       this.router.navigate(['/contest']);
     }).catch((err: any) => {
-      swal('Ups!', `El concurso "${this.forma.value.nameContest}" no se pudo actualizar`, 'warning');
+      if (err.error.errors.nombreURL.message === 'the nombreURL must be unique') {
+        swal('Importante!', `El concurso con nombre "${this.forma.value.urlContest}" ya existe, por favor use otro diferente`, 'warning');
+      } else {
+        swal('Ups!', `El concurso "${this.forma.value.nameContest}" no se pudo actualizar`, 'warning');
+      }
     });
   }
   /**

@@ -56,17 +56,12 @@ export class NewContestComponent implements OnInit {
     }
     // Servicio de creacion de concursos
     this.contestService.createContest(contest, this.uploadImg).then( (res: any) => {
-      console.log(res);
-      if (res.ok === false) {
-        if (res.errores.errors[0].type === 'unique violation') {
-          swal('Importante!', `El concurso con nombre "${form.value.nameContest}" ya existe, por favor use otro diferente`, 'warning');
-        }
-      } else {
-        swal('Importante!', `El concurso "${form.value.nameContest}" se creo correctamente`, 'success');
-        this.router.navigate(['/contest']);
-      }
+      swal('Importante!', `El concurso "${form.value.nameContest}" se creo correctamente`, 'success');
+      this.router.navigate(['/contest']);
     }).catch((err: any) => {
-      console.log(err);
+      if (err.error.errors.nombreURL.message === 'the nombreURL must be unique') {
+        swal('Importante!', `El concurso con nombre "${form.value.urlContest}" ya existe, por favor use otro diferente`, 'warning');
+      }
     });
   }
   /**

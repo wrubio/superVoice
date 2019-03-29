@@ -32,10 +32,7 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     public voiceService: VoicesServices ) {
       this.currentId = localStorage.getItem('id');
       this.services = this.contestService.getAllContents().subscribe((res: any) => {
-        res.map((result: any) => console.log(result.administradorId, this.currentId));
         this.contests = res.filter((contest: any) => contest.administradorId === this.currentId);
-        // this.contests = res;
-        console.log(res);
       });
       this.voiceSub = this.voiceService.getAllVoice().subscribe((v: any) => {
         this.voiceOfContest = v;
@@ -93,10 +90,10 @@ export class ConcursosComponent implements OnInit, OnDestroy {
             this.reloadPage();
           });
         }).catch((err: any) => {
-          // console.log(err);
+          console.log(err);
         });
       } else {
-        // console.log(willDelete);
+        console.log(willDelete);
       }
     });
   }
@@ -108,7 +105,7 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     const modalId = e.target.dataset.voice;
     const idContest = e.target.dataset.idContest;
     this.contests.map((cts: any) => {
-      if (cts.id === idContest) {
+      if (cts._id === idContest) {
         this.imgContest = cts.rutaImagen;
       }
     });

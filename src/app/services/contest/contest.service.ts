@@ -25,7 +25,7 @@ export class ContestService {
    * @param contest Modelo Contest
    * @param imgFile archivo a subir
    */
-  uploadContestImage(contest: Contest, imgFile: File, update: boolean, oldNameContest: string) {
+  uploadContestImage(contest: any, imgFile: File, update: boolean, oldNameContest: string) {
 
     return new Promise((resl, rejt) => {
       const formData = new FormData();
@@ -44,7 +44,7 @@ export class ContestService {
           }
         }
       };
-      const queryPath = `id=${contest.adminId}&contest=${contest.nombreConcurso}&update=${update}&oldName=${oldNameContest}`;
+      const queryPath = `id=${contest.administradorId}&contest=${contest._id}&update=${update}&oldName=${oldNameContest}`;
       const urlStorage = `${URL_SERVICES}/imageUpload?${queryPath}`; // `${URL_STORAGE}/imageUpload?${queryPath}`;
       xhr.open('POST', urlStorage, true);
       xhr.send( formData );
@@ -56,13 +56,10 @@ export class ContestService {
    * @param imgFile Archivo tipo file a subir
    */
   async createContest(contest: Contest, imgFile: File) {
-    const resUploadImage: any = await this.uploadContestImage(contest, imgFile, false, null);
-    const imgRespPath = resUploadImage.dataImg.Location;
-    // const newImgPath = `${URL_STORAGE}/${imgRespPath.substring(7, imgRespPath.length)}`;
-    contest.rutaImagen = imgRespPath; // newImgPath;
     const url = `${URL_SERVICES}/concurso`;
-    const resContest = await this.http.post(url, contest).toPromise();
-    return resContest;
+    const resContest: any = await this.http.post(url, contest).toPromise();
+    const resUploadImage: any = await this.uploadContestImage(resContest.contest, imgFile, false, null);
+    return resUploadImage;
   }
   /**
    * Actualizar concurso
@@ -80,10 +77,6 @@ export class ContestService {
       const resContest = await this.http.put(url, contest).toPromise();
       return resContest;
     } else {
-      const queryPath = `id=${contest.adminId}&contest=${contest.nombreConcurso}&update=true&oldName=${oldNameContest}`;
-      const urlStorage = `${URL_STORAGE}/imageUpload?${queryPath}`;
-      const changeFolder: any = await this.http.post(urlStorage, {data: 'empty'}).toPromise();
-      contest.rutaImagen = `${URL_STORAGE}/${changeFolder.newPath}`;
       const url = `${URL_SERVICES}/concurso/${contestId}`;
       const resContest = await this.http.put(url, contest).toPromise();
       console.log(resContest);
