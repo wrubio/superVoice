@@ -1,11 +1,24 @@
 const contestService = require('../services/contestService');
 const Contest = require('../models/contest');
 
-function getContest(req) {
+function getContests(req) {
     return new Promise((resolve, reject) => {
-        Contest.find({}).exec((err, contests) => {
-            if (err) reject({ ok: false, status: 500, errors: err });
-            resolve(contests);
+        contestService.allContests().then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            reject(err);
+        })
+    })
+}
+
+function getContestById(req) {
+    return new Promise((resolve, reject) => {
+        const _id = req.params.id;
+        console.log(_id);
+        contestService.contestByID(_id).then((result) => {
+            resolve(result);
+        }).catch((err) => {
+            reject(err);
         });
     })
 }
@@ -33,7 +46,18 @@ function createContest(req) {
     });
 }
 
+function editContest(req) {
+    return new Promise((resolve, reject) => {
+        const _id = req.params.id;
+        const data = req.body;
+        contestService.updateContest(_id, data).then((result) => {
+            resolve(result);
+        }).catch((err) => reject(err));
+    });
+}
 module.exports = {
+    getContests,
+    getContestById,
     createContest,
-    getContest
+    editContest
 };

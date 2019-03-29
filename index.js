@@ -4,8 +4,33 @@ const bodyParser = require('body-parser');
 const routes = require('./app/routes');
 const mongoose = require('mongoose');
 
+/*
+const redis = require("redis");
+const session = require('express-session');
+const redisStore = require('connect-redis')(session);
+const client = redis.createClient(6379, 'http://cacheredisserver.abboen.ng.0001.use1.cache.amazonaws.com');
+
+client.on('connect', function() {
+    console.log('Redis client connected');
+});
+
+client.on('error', function(err) {
+    console.log('Something went wrong ' + err);
+});
+*/
+
 // init variables
 const app = express();
+
+/*
+// Middleware 
+app.use(session({
+    secret: 'redisSuperVoice2019$',
+    store: new redisStore({ host: 'localhost', port: 6379, client: client, ttl: 260 }),
+    saveUninitialized: false,
+    resave: false
+}));
+*/
 
 // Enable Cors
 app.use(function(req, res, next) {

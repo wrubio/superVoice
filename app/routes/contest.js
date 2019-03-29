@@ -2,14 +2,20 @@ const router = require('express').Router();
 const contestController = require('../controllers/contestController');
 
 router.get('/', (req, res) => {
-    contestController.getContest().then((result) => {
+    contestController.getContests().then((result) => {
         res.status(200).json(result);
     }).catch((err) => {
         res.status(err.status).json(err.errors);
     });
 });
 
-// router.get('/:id(\\d+)', concursoController.getConcursoById);
+router.get('/:id', (req, res) => {
+    contestController.getContestById(req).then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        res.status(err.status).json(err.errors);
+    })
+});
 
 
 router.post('/', (req, res) => {
@@ -19,7 +25,15 @@ router.post('/', (req, res) => {
         res.status(err.status).json(err.errors);
     });
 });
-// router.put('/:id(\\d+)', concursoController.updateConcurso);
+
+router.put('/:id', (req, res) => {
+    contestController.editContest(req).then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        res.status(err.status).json(err.errors);
+    });
+});
+
 // router.delete('/:id(\\d+)', concursoController.deleteConcurso);
 
 // router.get('/admin/:id(\\d+)', concursoController.getAllConcursosByAdmin);
