@@ -15,11 +15,11 @@
         <div class="row">
             <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
                 <audio controls style="width: 100%" *ngIf="voice.rutaArchivoConvertida">
-                  <source [src]="voice.rutaArchivoConvertida" type="audio/mpeg">
+                  <source [src]="voice.rutaArchivoConvertida" type="audio/mp3">
                   Your browser does not support the audio element.
                 </audio>
                 <audio controls style="width: 100%" *ngIf="!voice.rutaArchivoConvertida">
-                    <source [src]="voice.rutaArchivoOriginal" type="audio/mpeg">
+                    <source [src]="voice.rutaArchivoOriginal" [type]="voice.rutaArchivoOriginal | audioFormat">
                     Your browser does not support the audio element.
                 </audio>
                 <small><b>Estado:</b> {{voice.estadoRegistroVoces}}</small>

@@ -14,6 +14,9 @@ import { DashboarComponent } from './dashboar.component';
 import { DASHBOARD_ROUTES } from './dashboard.routes';
 import { WEBP_ROUTES } from '../web-page/web-page.routes';
 
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
 @NgModule({
   declarations: [
     DashboarComponent
@@ -23,7 +26,8 @@ import { WEBP_ROUTES } from '../web-page/web-page.routes';
     PagesModule,
     SharedModule,
     DASHBOARD_ROUTES,
-    WEBP_ROUTES
+    WEBP_ROUTES,
+    PipesModule
   ],
   providers: [],
   bootstrap: []

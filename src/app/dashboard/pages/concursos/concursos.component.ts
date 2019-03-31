@@ -34,12 +34,16 @@ export class ConcursosComponent implements OnInit, OnDestroy {
       this.services = this.contestService.getAllContents().subscribe((res: any) => {
         this.contests = res.filter((contest: any) => contest.administradorId === this.currentId);
       });
+      /*
       this.voiceSub = this.voiceService.getAllVoice().subscribe((v: any) => {
         this.voiceOfContest = v;
       });
+      */
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.imgContest = './assets/img/logo.png';
+  }
   /**
    * Borrar concurso
    * @param e <$event>

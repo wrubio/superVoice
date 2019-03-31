@@ -42,9 +42,9 @@ export class VoicesServices {
 
   /**
    * Crear una voz de un concurso
-   * @param {object} voice
-   * @param audio
-   * @param contestData
+   * @param { Object }, voice
+   * @param { File }, audio
+   * @param { String }, contestData
    */
   async createVoice(voice: Voice, audio: File, contestData: any) {
     const uploadAudioRes: any = await this.uploadVoice(audio, contestData, voice);
