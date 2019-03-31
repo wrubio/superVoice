@@ -9,22 +9,8 @@ const typeImg = ['jpg', 'jpeg', 'png', 'gif'];
  */
 function loadImg(req) {
     return new Promise((resolve, reject) => {
-
-        if (!req.files) {
-            /*
-            if (req.query.update) {
-                // const newContestName = createName(req.query.contest);
-                // const oldContestName = createName(req.query.oldName);
-                const _id = req.query.id;
-                s3ImgService.copyDeleteFolder(_id, newContestName, oldContestName).then((result) => {
-                    resolve(reult);
-                }).catch((err) => {
-                    reject(err);
-                });
-            }
-            */
-            reject({ ok: false, status: 400, message: 'Img data vacia' });
-        }
+        console.log(req.files);
+        if (!req.files) reject({ ok: false, status: 400, message: 'Img data vacia' });
 
         // get file ext
         const fileToUpload = req.files.img;
@@ -38,9 +24,6 @@ function loadImg(req) {
         const userID = req.query.id;
         const contestID = req.query.contest;
         const update = req.query.update;
-        const oldContestName = req.query.oldName;
-
-        // Agrupa en nombre del concurso en una sola palabra
 
         // Set new name to the file
         const newFileName = `${userID}-${new Date().getTime()}.${fileExt}`;
@@ -51,11 +34,22 @@ function loadImg(req) {
             ACL: 'public-read'
         };
 
+        console.log(userID, update, contestID);
+
+        if (update === 'true') {
+            s3ImgService.updateImage(params, userID, contestID).then((result) => {
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        }
+
         s3ImgService.uploadImg(params, contestID).then((result) => {
             resolve(result);
         }).catch((err) => {
             reject(err);
         });
+
     });
 }
 

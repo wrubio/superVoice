@@ -34,7 +34,13 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// router.delete('/:id(\\d+)', concursoController.deleteConcurso);
+router.delete('/:id', (req, res) => {
+    contestController.deleteContest(req).then((result) => {
+        res.status(200).json(result);
+    }).catch((err) => {
+        res.status(err.status).json(err.errors);
+    });
+});
 
 // router.get('/admin/:id(\\d+)', concursoController.getAllConcursosByAdmin);
 
