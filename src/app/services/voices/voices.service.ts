@@ -33,23 +33,22 @@ export class VoicesServices {
             }
           }
         };
-        const queryPath = `contestId=${contestData.contestId}&userId=${contestData.userId}&voice=${voice}`;
+        const queryPath = `contestId=${contestData.contestId}&userId=${contestData.userId}&voice=${JSON.stringify(voice)}`;
         const urlStorage = `${URL_SERVICES}/registro?${queryPath}`;
         xhr.open('POST', urlStorage, true);
         xhr.send( formData );
       });
   }
+
+  /**
+   * Crear una voz de un concurso
+   * @param {object} voice
+   * @param audio
+   * @param contestData
+   */
   async createVoice(voice: Voice, audio: File, contestData: any) {
     const uploadAudioRes: any = await this.uploadVoice(audio, contestData, voice);
-    console.log(uploadAudioRes);
-    /*
-    const audioRespPath = uploadAudioRes.dataImg.path;
-    const newAudioPath: any = `${URL_STORAGE}/${audioRespPath.substring(7, audioRespPath.length)}`;
-    voice.rutaArchivoOriginal = newAudioPath;
-    const url = `${URL_SERVICES}/registro`;
-    const resContest = await this.http.post(url, voice).toPromise();
-    return resContest;
-    */
+    return uploadAudioRes;
   }
 
   getAllVoice() {

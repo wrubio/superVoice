@@ -21,9 +21,7 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
     public router: Router) {
     this.urlContest = this.route.snapshot.paramMap.get('id');
     this.unsubsContesVoices = this.voiceService.getAllVoice().subscribe((resp: any) => {
-      // this.contestVoices = resp;
-      resp.map((a: any) => {
-        // console.log(a.url, this.urlContest);
+      resp.voices.map((a: any) => {
         if (a.url === this.urlContest) {
           this.contestVoices.push(a);
         }

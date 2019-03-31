@@ -41,7 +41,7 @@ export class WpContestComponent implements OnInit, OnDestroy {
       console.log(this.contest);
       this.subsVoices = this.voicesServices.getAllVoice().subscribe((resp: any) => {
         resp.map((voice: any) => {
-          if (this.contest.id === voice.concursoId) {
+          if (this.contest._id === voice._id) {
             this.contestVoices.push(voice);
           }
         });
@@ -75,9 +75,9 @@ export class WpContestComponent implements OnInit, OnDestroy {
       forma.value.conditions,
       this.contest.nombreURL,
       0,
-      this.contest.id
+      this.contest._id
     );
-    const contestInfo = { contestId: this.contest.id, userId: this.contest.administradorId, contestName: this.contest.nombreConcurso };
+    const contestInfo = { contestId: this.contest._id, userId: this.contest.administradorId, contestName: this.contest.nombreConcurso };
     this.voicesServices.createVoice(voice, this.uploadAudio, contestInfo).then((res: any) => {
       swal('Hola!', `Hemos recibido tu voz y la estamos procesando para que sea
       publicada en la página del concurso y pueda ser posteriormente revisada por nuestro equipo de trabajo.
