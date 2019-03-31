@@ -25,7 +25,7 @@ export class ContestService {
    * @param contest Modelo Contest
    * @param imgFile archivo a subir
    */
-  uploadContestImage(contest: any, imgFile: File, update: boolean, oldNameContest: string) {
+  uploadContestImage(contest: any, imgFile: File, update: boolean, contestId: string) {
 
     return new Promise((resl, rejt) => {
       const formData = new FormData();
@@ -44,7 +44,15 @@ export class ContestService {
           }
         }
       };
-      const queryPath = `id=${contest.administradorId}&contest=${contest._id}&update=${update}&oldName=${oldNameContest}`;
+
+      let queryPath: any;
+
+      if (update) {
+        queryPath = `id=${contest.adminId}&contest=${contestId}&update=${update}`;
+      } else {
+        queryPath = `id=${contest.administradorId}&contest=${contest._id}&update=${update}`;
+      }
+
       const urlStorage = `${URL_SERVICES}/imageUpload?${queryPath}`; // `${URL_STORAGE}/imageUpload?${queryPath}`;
       xhr.open('POST', urlStorage, true);
       xhr.send( formData );
@@ -67,11 +75,10 @@ export class ContestService {
    * @param imgFile <File> Archivo a actualizar
    * @param contestId <string> ID del concurso
    */
-  async updateCotest(contest: Contest, imgFile: File, contestId: string, oldNameContest: string) {
+  async updateCotest(contest: Contest, imgFile: File, contestId: string) {
     if (imgFile) {
-      const resUploadImage: any = await this.uploadContestImage(contest, imgFile, true, oldNameContest);
-      const imgRespPath = resUploadImage.dataImg.path;
-      const newImgPath = `${URL_STORAGE}/${imgRespPath.substring(7, imgRespPath.length)}`;
+      const resUploadImage: any = await this.uploadContestImage(contest, imgFile, true, contestId);
+      const newImgPath = resUploadImage.dataImg.data;
       contest.rutaImagen = newImgPath;
       const url = `${URL_SERVICES}/concurso/${contestId}`;
       const resContest = await this.http.put(url, contest).toPromise();
@@ -79,7 +86,6 @@ export class ContestService {
     } else {
       const url = `${URL_SERVICES}/concurso/${contestId}`;
       const resContest = await this.http.put(url, contest).toPromise();
-      console.log(resContest);
       return resContest;
     }
   }
@@ -88,8 +94,6 @@ export class ContestService {
    * @param imageData <string> Nombre de imagen a borrar
    */
   async deleteContest(imageData: any) {
-    const urlDeleteImage = `${URL_STORAGE}/imageUpload?id=${imageData.id}&name=${imageData.nameConstest}&userId=${imageData.userId}`;
-    await this.http.delete(urlDeleteImage).toPromise();
     const url = `${URL_SERVICES}/concurso/${imageData.id}`;
     return await this.http.delete(url).toPromise();
     // return deleteImage;

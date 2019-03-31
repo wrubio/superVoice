@@ -75,7 +75,7 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
       return;
     }
 
-    this.contestService.updateCotest(contest, this.uploadImg, this.idContest, this.contest.nombreConcurso).then( (res: any) => {
+    this.contestService.updateCotest(contest, this.uploadImg, this.idContest).then( (res: any) => {
       swal('Importante!', `El concurso "${this.forma.value.nameContest}" se actualizó correctamente`, 'success');
       this.router.navigate(['/contest']);
     }).catch((err: any) => {

@@ -45,9 +45,8 @@ export class ConcursosComponent implements OnInit, OnDestroy {
    * @param e <$event>
    */
   deleteEvent(e: any) {
-    const idContest = parseInt(e.target.dataset.idContest, 10);
+    const idContest = e.target.dataset.idContest;
     const urlContest = e.target.dataset.url;
-    console.log(urlContest);
     let nameContest: string;
     let idUser: string;
     let oldNameContest: string;
@@ -69,7 +68,7 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     const dataImage = {id: idContest, nameConstest: nameContest, userId: idUser};
     swal({
       title: '¿Borrar el concurso?',
-      text: `Una vez borrado, el concurso "${oldNameContest}" ya no estará disponible!`,
+      text: `Una vez borrado, el concurso "${urlContest}" ya no estará disponible!`,
       icon: 'warning',
       buttons: ['Cancelar', 'Borrar concurso'],
       dangerMode: true
@@ -77,7 +76,9 @@ export class ConcursosComponent implements OnInit, OnDestroy {
     .then((willDelete) => {
       if (willDelete) {
         this.contestService.deleteContest(dataImage).then((res: any) => {
-          // console.log(res);
+          console.log(res);
+          this.reloadPage();
+          /*
           const configVoices = async () => {
             for (const voice of this.voiceOfContest) {
               if (voice.url === urlContest) {
@@ -89,6 +90,7 @@ export class ConcursosComponent implements OnInit, OnDestroy {
           configVoices().then((del: any) => {
             this.reloadPage();
           });
+          */
         }).catch((err: any) => {
           console.log(err);
         });

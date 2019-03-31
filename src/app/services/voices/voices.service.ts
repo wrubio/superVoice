@@ -15,7 +15,7 @@ export class VoicesServices {
   constructor(public http: HttpClient, public router: Router) {
   }
 
-  uploadVoice(audio: File, contestData: any) {
+  uploadVoice(audio: File, contestData: any, voice: Voice) {
       return new Promise((rsl, rjt) => {
         const formData = new FormData();
         const xhr = new XMLHttpRequest();
@@ -33,20 +33,23 @@ export class VoicesServices {
             }
           }
         };
-        const queryPath = `contestId=${contestData.contestId}&userId=${contestData.userId}&contestName=${contestData.contestName}`;
-        const urlStorage = `${URL_STORAGE}/voice?${queryPath}`;
+        const queryPath = `contestId=${contestData.contestId}&userId=${contestData.userId}&voice=${voice}`;
+        const urlStorage = `${URL_SERVICES}/registro?${queryPath}`;
         xhr.open('POST', urlStorage, true);
         xhr.send( formData );
       });
   }
   async createVoice(voice: Voice, audio: File, contestData: any) {
-    const uploadAudioRes: any = await this.uploadVoice(audio, contestData);
+    const uploadAudioRes: any = await this.uploadVoice(audio, contestData, voice);
+    console.log(uploadAudioRes);
+    /*
     const audioRespPath = uploadAudioRes.dataImg.path;
     const newAudioPath: any = `${URL_STORAGE}/${audioRespPath.substring(7, audioRespPath.length)}`;
     voice.rutaArchivoOriginal = newAudioPath;
     const url = `${URL_SERVICES}/registro`;
     const resContest = await this.http.post(url, voice).toPromise();
     return resContest;
+    */
   }
 
   getAllVoice() {
