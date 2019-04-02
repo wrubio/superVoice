@@ -76,6 +76,7 @@ export class ContestService {
    * @param contestId <string> ID del concurso
    */
   async updateCotest(contest: Contest, imgFile: File, contestId: string) {
+    console.log(imgFile);
     if (imgFile) {
       const resUploadImage: any = await this.uploadContestImage(contest, imgFile, true, contestId);
       const newImgPath = resUploadImage.dataImg.data;

@@ -24,7 +24,6 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
   constructor(public contestService: ContestService, private route: ActivatedRoute, public router: Router) {
     this.idContest = this.route.snapshot.paramMap.get('id');
     this.contestService.getContestByUserId(this.idContest).subscribe((res: any) => {
-      console.log(res);
       this.contest =  res;
       const dateStart = new Date(res.fechaInicio);
       const dateEnd = new Date(res.fechaFin);
@@ -90,13 +89,26 @@ export class EditContestComponent implements OnInit, AfterViewChecked {
    * Captura el archivo a subir
    * @param fileToUpload <File> Archivo a subir
    */
-  imgSelected(fileToUpload: File) {
+  imgSelected(fileToUpload: File, input: any) {
     if (!fileToUpload) {
       this.uploadImg = null;
       return;
     }
     this.uploadImg = fileToUpload;
+    const nameFile = this.uploadImg.name;
+    const fileExt = nameFile.split('.').pop();
+    // type of image
+    const typeImg = ['jpg', 'jpeg', 'png', 'gif'];
+    if (typeImg.indexOf(fileExt.toLowerCase()) < 0) {
+      swal('Importante!', `Solo se permitien formatos de imagenes ${typeImg.join(', ')}`, 'warning');
+      this.uploadImg = null;
+      input.value = '';
+      return;
+    }
   }
+  /**
+   * Asigna los valores guardados del concurso
+   */
   initialValues() {
     this.forma = new FormGroup({
       nameContest: new FormControl(this.contest.nombreConcurso),

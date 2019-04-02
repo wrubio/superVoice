@@ -4,6 +4,7 @@ import { Router  } from '@angular/router';
 import { Contest } from '../../../models/contest.model';
 import { ContestService } from 'src/app/services/services.index';
 import { ok } from 'assert';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-new-contest',
@@ -68,11 +69,20 @@ export class NewContestComponent implements OnInit {
    * Captura el archivo a subir
    * @param fileToUpload <File> Archivo a subir
    */
-  imgSelected(fileToUpload: File) {
+  imgSelected(fileToUpload: File, input: any) {
     if (!fileToUpload) {
       this.uploadImg = null;
       return;
     }
     this.uploadImg = fileToUpload;
+    const nameFile = this.uploadImg.name;
+    const fileExt = nameFile.split('.').pop();
+    // type of image
+    const typeImg = ['jpg', 'jpeg', 'png', 'gif'];
+    if (typeImg.indexOf(fileExt.toLowerCase()) < 0) {
+      swal('Importante!', `Solo se permitien formatos de imagenes ${typeImg.join(', ')}`, 'warning');
+      input.value = '';
+      return;
+    }
   }
 }

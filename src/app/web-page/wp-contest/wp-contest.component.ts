@@ -12,7 +12,19 @@ import { Voice } from '../../models/voices.model';
 export class WpContestComponent implements OnInit, OnDestroy {
 
   urlContest: string;
-  contest: any;
+  contest = {
+    administradorId: '',
+    estadoPublicacion: '',
+    fechaFin: '',
+    fechaInicio: '',
+    guion: '',
+    nombreConcurso: '',
+    nombreURL: '',
+    recomendaciones: '',
+    rutaImagen: '',
+    valorPagar: '',
+    _id: '',
+  };
   contestVoices = [];
   uploadAudio: File;
   public loading = true;
@@ -38,14 +50,12 @@ export class WpContestComponent implements OnInit, OnDestroy {
       if (cntContest === 0) {
         this.router.navigate(['/error404']);
       }
-      console.log(this.contest);
       this.subsVoices = this.voicesServices.getAllVoice().subscribe((resp: any) => {
-        resp.map((voice: any) => {
+        resp.voices.map((voice: any) => {
           if (this.contest._id === voice._id) {
             this.contestVoices.push(voice);
           }
         });
-        console.log(this.contestVoices);
       });
     });
   }
@@ -92,12 +102,21 @@ export class WpContestComponent implements OnInit, OnDestroy {
    * Captura el archivo a subir
    * @param fileToUpload <File> Archivo a subir
    */
-  audioSelected(fileToUpload: File) {
+  audioSelected(fileToUpload: File, input: any) {
     if (!fileToUpload) {
       this.uploadAudio = null;
       return;
     }
-    console.log(fileToUpload);
+    const nameFile = fileToUpload.name;
+    const fileExt = nameFile.split('.').pop();
+    // type of image
+    const typeVoice = ['mp3', 'wav', 'ogg', 'aac', 'm4a'];
+    if (typeVoice.indexOf(fileExt.toLowerCase()) < 0) {
+      swal('Importante!', `Solo se permitien formatos de imagenes ${typeVoice.join(', ')}`, 'warning');
+      this.uploadAudio = null;
+      input.value = '';
+      return;
+    }
     this.uploadAudio = fileToUpload;
   }
   /**
