@@ -56,7 +56,6 @@ function updateImage(params, userID, contestID) {
                     if (err) reject({ ok: false, status: 500, errors: err });
                     s3.upload(params, (err, data) => {
                         if (err) reject({ ok: false, status: 500, errors: err });
-                        console.log(data);
 
                         Contest.findById(contestID, (err, contestFound) => {
                             if (err) reject({ ok: false, status: 500, errors: err });

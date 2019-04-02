@@ -1,5 +1,5 @@
 const Contest = require('../models/contest');
-
+const Voice = require('../models/voice');
 var async = require('async');
 const AWS = require('aws-sdk');
 
@@ -74,19 +74,41 @@ async function destroyContest(contestID, contest) {
         promiseAll.push(promiseFile);
     });
 
-    return Promise.all(promiseAll).then(async(result) => {
-        console.log('ok');
-        const resultDeleteContest = await Contest.findByIdAndDelete(contestID, (err, deletedContest) => {
-            if (err) return { ok: false, status: 500, errors: err };
-            return { ok: true, contest: deletedContest };
-        });
-        console.log(resultDeleteContest);
-        return resultDeleteContest;
+    const resultDeleteFilesAudio = await Promise.all(promiseAll).then((result) => {
+        return result;
     }).catch((err) => {
-        console.log('not ok');
-        return { ok: false, status: 500, errors: err };
+        return err;
     });
 
+    const resultDeleteContest = await Contest.findByIdAndDelete(contestID).then((result) => {
+        return 'ok';
+    }).catch((err) => {
+        return err;
+    });
+
+    const voicesDatabase = await Voice.find({ "contestId": contestID }).then((result) => {
+        return result;
+    }).catch((err) => {
+        return err;
+    });
+
+    var audioPromiseAll = [];
+
+    voicesDatabase.forEach((audio) => {
+        let audioId = audio._id;
+        let promiseAudio = Voice.findByIdAndDelete(audioId);
+        audioPromiseAll.push(promiseAudio);
+    });
+
+    console.log(audioPromiseAll);
+
+    const deleteAudioDatabase = await Promise.all(audioPromiseAll);
+
+    console.log('ok', deleteAudioDatabase);
+
+    const processDelete = { fileAudios: resultDeleteFilesAudio, contest: resultDeleteContest, fileDatabase: deleteAudioDatabase };
+
+    return processDelete;
 }
 
 module.exports = {

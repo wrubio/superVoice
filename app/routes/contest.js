@@ -38,7 +38,7 @@ router.delete('/:id', (req, res) => {
     contestController.deleteContest(req).then((result) => {
         res.status(200).json(result);
     }).catch((err) => {
-        res.status(err.status).json(err.errors);
+        res.status(500).json(err);
     });
 });
 

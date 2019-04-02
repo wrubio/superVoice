@@ -9,7 +9,7 @@ const typeImg = ['jpg', 'jpeg', 'png', 'gif'];
  */
 function loadImg(req) {
     return new Promise((resolve, reject) => {
-        console.log(req.files);
+
         if (!req.files) reject({ ok: false, status: 400, message: 'Img data vacia' });
 
         // get file ext
@@ -33,8 +33,6 @@ function loadImg(req) {
             Body: fileToUpload.data,
             ACL: 'public-read'
         };
-
-        console.log(userID, update, contestID);
 
         if (update === 'true') {
             s3ImgService.updateImage(params, userID, contestID).then((result) => {

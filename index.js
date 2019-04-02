@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const redis = require("redis");
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
-const client = redis.createClient(6379, 'http://cacheredisserver.abboen.ng.0001.use1.cache.amazonaws.com');
+const client = redis.createClient(6379, 'http://');
 
 client.on('connect', function() {
     console.log('Redis client connected');

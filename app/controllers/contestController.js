@@ -74,15 +74,16 @@ function editContest(req) {
 function deleteContest(req) {
     return new Promise((resolve, reject) => {
         const _id = req.params.id;
-        console.log(_id);
         Contest.findById(_id, (err, contestFound) => {
 
             if (err) reject({ ok: false, status: 500, errors: err });
             if (!contestFound) reject({ ok: false, status: 400, errors: err });
 
             contestService.destroyContest(_id, contestFound).then((result) => {
+                console.log(result);
                 resolve(result);
             }).catch((err) => {
+                console.log(err)
                 reject(err);
             });
 
