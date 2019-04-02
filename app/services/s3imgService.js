@@ -21,7 +21,8 @@ function uploadImg(params, contestID) {
                 if (err) reject({ ok: false, status: 500, errors: err });
                 if (!contestFound) reject({ ok: false, status: 400, errors: err });
 
-                contestFound.rutaImagen = data.Location;
+                const imgLocation = data.Location.split('svoice.s3.amazonaws.com/').pop();
+                contestFound.rutaImagen = `https://d3n3owg4bn2vbl.cloudfront.net/${imgLocation}`;
 
                 contestFound.save((err, savedContest) => {
                     if (err) reject({ ok: false, status: 500, errors: err });
@@ -61,7 +62,8 @@ function updateImage(params, userID, contestID) {
                             if (err) reject({ ok: false, status: 500, errors: err });
                             if (!contestFound) reject({ ok: false, status: 400, errors: err });
 
-                            contestFound.rutaImagen = data.Location;
+                            const imgLocation = data.Location.split('svoice.s3.amazonaws.com/').pop();
+                            contestFound.rutaImagen = `https://d3n3owg4bn2vbl.cloudfront.net/${imgLocation}`;
 
                             contestFound.save((err, savedContest) => {
                                 if (err) reject({ ok: false, status: 500, errors: err });

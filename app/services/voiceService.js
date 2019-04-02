@@ -27,8 +27,10 @@ function uploadVoice(params, dataVoice, userID) {
 
             if (err) reject({ ok: false, status: 500, errors: err });
 
+            const voiceLocation = data.Location.split('svoice.s3.amazonaws.com/').pop();
+
             const voice = new Voice({
-                rutaArchivoOriginal: data.Location,
+                rutaArchivoOriginal: `https://d3n3owg4bn2vbl.cloudfront.net/${voiceLocation}`,
                 rutaArchivoConvertida: dataVoice.rutaArchivoConvertida,
                 estadoRegistroVoces: dataVoice.estadoRegistroVoces,
                 nombresLocutor: dataVoice.nombresLocutor,

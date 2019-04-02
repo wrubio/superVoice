@@ -3,22 +3,24 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./app/routes');
 const mongoose = require('mongoose');
-
 /*
+const AWS = require('aws-sdk');
+// Load your AWS credentials and try to instantiate the object.
+AWS.config.loadFromPath(__dirname + '/app/services/config.json');
+
 const redis = require("redis");
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
-const client = redis.createClient(6379, 'http://');
+const client = redis.createClient(6379, 'http://cacheredisserver.abboen.ng.0001.use1.cache.amazonaws.com', {no_ready_check: true});
 
 client.on('connect', function() {
     console.log('Redis client connected');
 });
 
 client.on('error', function(err) {
-    console.log('Something went wrong ' + err);
+    console.log('Something wrong ' + err);
 });
 */
-
 // init variables
 const app = express();
 
