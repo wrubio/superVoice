@@ -5,9 +5,6 @@ var bodyParser = require('body-parser');
 // init variables
 var app = express();
 
-// Public dist
-app.use(express.static(__dirname + '/dist'));
-
 // Enable Cors
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -23,16 +20,6 @@ app.use(function(req, res, next) {
  */
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// import routes
-var appVoice = require('./routes/voices');
-var appRoutes = require('./routes/app');
-var appImageUpload = require('./routes/imageUpload');
-
-// routes
-app.use('/voice', appVoice);
-app.use('/imageUpload', appImageUpload);
-app.use('/', appRoutes);
 
 // Listen requires
 app.listen(3002, () => {
