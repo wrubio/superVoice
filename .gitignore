@@ -62,3 +62,5 @@ typings/
 
 # aws config
 config/
+/app/works/config.json
+/app/works/config2.json
