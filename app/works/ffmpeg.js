@@ -1,4 +1,4 @@
-const Voice = require('../models/voice');
+const mail = require('./sendMail');
 const ffmpegStatic = require('ffmpeg-static');
 const ffprobeStatic = require('ffprobe-static');
 const ffmpeg = require('fluent-ffmpeg');
@@ -38,7 +38,18 @@ function ffmpegVoice(voice) {
 
                     s3.upload(params, function(err, data) {
                         if (err) reject({ ok: false, message: 'upload' });
-                        resolve({ ok: true });
+
+                        fs.unlinkSync(savedVoice);
+
+                        const voiceLocation = data.Location.split('svoice.s3.amazonaws.com/').pop();
+                        voice.rutaArchivoConvertida = `https://d3n3owg4bn2vbl.cloudfront.net/${voiceLocation}`;
+
+                        mail.sendMail(voice).then((result) => {
+                            resolve(result);
+                        }).catch((err) => {
+                            reject(err);
+                        });
+
                     });
                 });
 
