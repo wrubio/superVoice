@@ -45,8 +45,22 @@ function uploadVoice(params, dataVoice, userID) {
 
             voice.save((err, savedVoice) => {
                 if (err) reject({ ok: false, status: 500, errors: err });
-                resolve({ ok: true, voice: voice });
-            })
+
+                const sqs = new AWS.SQS();
+                const sqsMsg = savedVoice;
+                const sqsUrl = 'https://sqs.us-east-1.amazonaws.com/662846764246/superVoice';
+                const sqsParams = {
+                    MessageBody: JSON.stringify(sqsMsg),
+                    QueueUrl: sqsUrl
+                };
+
+                sqs.sendMessage(sqsParams, (err, data) => {
+                    if (err) reject({ ok: false, status: 500, errors: err });
+                    console.log(data);
+                    resolve({ ok: true, voice: voice });
+                });
+
+            });
         });
     });
 }
