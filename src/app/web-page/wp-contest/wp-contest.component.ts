@@ -51,8 +51,10 @@ export class WpContestComponent implements OnInit, OnDestroy {
         this.router.navigate(['/error404']);
       }
       this.subsVoices = this.voicesServices.getAllVoice().subscribe((resp: any) => {
+        console.log(resp);
         resp.voices.map((voice: any) => {
-          if (this.contest._id === voice._id) {
+          console.log(this.contest._id, voice._id);
+          if (this.contest._id === voice.contestId) {
             this.contestVoices.push(voice);
           }
         });

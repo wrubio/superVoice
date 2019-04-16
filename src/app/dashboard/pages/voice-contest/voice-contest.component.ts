@@ -40,7 +40,7 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
   }
 
   downloadFile(e: any) {
-    const audioId =  parseInt(e.target.dataset.id, 10);
+    const audioId =  e.target.dataset.id;
     const audioStatus = e.target.dataset.o;
     this.contestVoices.map((voice: any) => {
       if (voice.id === audioId) {
