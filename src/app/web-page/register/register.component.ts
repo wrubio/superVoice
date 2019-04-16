@@ -59,10 +59,6 @@ export class RegisterComponent implements OnInit {
       if (res.ok === true ) {
         this.router.navigate(['/login']);
       }
-    }, (error) => {
-      if (error.error.errors.message === 'Admin validation failed: email: the email must be unique') {
-        swal('Importante!', `El usuario con el corro ${this.forma.value.correo} ya existe, por favor ingrese otro.`, 'warning');
-      }
     });
   }
 }

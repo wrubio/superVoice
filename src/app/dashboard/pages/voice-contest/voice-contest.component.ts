@@ -21,9 +21,8 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
     public router: Router) {
     this.urlContest = this.route.snapshot.paramMap.get('id');
     this.unsubsContesVoices = this.voiceService.getAllVoice().subscribe((resp: any) => {
-      // this.contestVoices = resp;
+      console.log(resp);
       resp.map((a: any) => {
-        // console.log(a.url, this.urlContest);
         if (a.url === this.urlContest) {
           this.contestVoices.push(a);
         }
@@ -42,7 +41,7 @@ export class VoiceContestComponent implements OnInit, OnDestroy {
   }
 
   downloadFile(e: any) {
-    const audioId =  parseInt(e.target.dataset.id, 10);
+    const audioId =  e.target.dataset.id;
     const audioStatus = e.target.dataset.o;
     this.contestVoices.map((voice: any) => {
       if (voice.id === audioId) {

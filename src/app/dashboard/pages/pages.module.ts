@@ -12,6 +12,9 @@ import { EditContestComponent } from './edit-contest/edit-contest.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { VoiceContestComponent } from './voice-contest/voice-contest.component';
 
+// Pipes
+import { PipesModule } from 'src/app/pipes/pipes.module';
+
 @NgModule({
   declarations: [
     ConcursosComponent,
@@ -34,7 +37,8 @@ import { VoiceContestComponent } from './voice-contest/voice-contest.component';
     DASHBOARD_ROUTES,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    PipesModule
   ],
   providers: [],
   bootstrap: []
