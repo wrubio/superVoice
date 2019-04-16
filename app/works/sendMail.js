@@ -4,7 +4,7 @@ const AWS2 = require('aws-sdk');
 // Load your AWS credentials and try to instantiate the object.
 AWS2.config.loadFromPath(__dirname + '/config2.json');
 
-const urlWeb = 'http://ec2-52-207-219-12.compute-1.amazonaws.com:4005';
+const urlWeb = 'http://ec2-3-84-141-254.compute-1.amazonaws.com:4005';
 
 function sendMail(data) {
     return new Promise((resolve, reject) => {
