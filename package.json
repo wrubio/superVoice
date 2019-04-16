@@ -1,31 +1,31 @@
 {
-    "name": "backend",
+    "name": "proyecto1",
     "version": "1.0.0",
-    "description": "Servidor Backend Node",
-    "main": "index.js",
+    "description": "proyecto 1 de la clase de desarrollo de soluciones cloud",
+    "main": "./server/index.js",
     "scripts": {
-        "start": "nodemon app.js",
+        "start": "nodemon ./server/index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "wilmer rubio rojas",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13.git"
+    },
+    "author": "",
     "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13/issues"
+    },
+    "homepage": "https://github.com/ISIS4426-Desarrollo-Soluciones-Cloud/Grupo13#readme",
     "dependencies": {
-        "aws-sdk": "^2.416.0",
-        "body-parser": "^1.18.3",
-        "cron": "^1.6.0",
+        "bcrypt": "3.0.4",
+        "connect-busboy": "0.0.2",
         "express": "^4.16.4",
         "express-fileupload": "^1.1.1-alpha.2",
-        "ffmpeg-static": "^2.4.0",
-        "ffprobe-static": "^3.0.0",
-        "fluent-ffmpeg": "^2.1.2",
-        "fs-extra": "^7.0.1",
-        "log4js": "^4.0.2",
-        "mongoose": "^5.4.5",
-        "node-proc": "0.0.1",
-        "request": "^2.88.0",
-        "requestify": "^0.2.5"
-    },
-    "devDependencies": {
-        "nodemon": "^1.18.9"
+        "jsonwebtoken": "^8.4.0",
+        "mysql2": "^1.6.5",
+        "nodemon": "^1.18.10",
+        "sequelize": "^4.42.0",
+        "tedious": "^5.0.3"
     }
 }

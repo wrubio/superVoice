@@ -1,0 +1,1 @@
+module.exports.SEED = '$proyecto01_@Seed2019%-end';
