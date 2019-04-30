@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = 'mongodb+srv://model-c:WJjXpccO4VZRHxbj@modeld-pyohw.mongodb.net/superVoice';
+const uri = '';
 
 mongoose.connection.openUri(uri, (err, res) => {
     if (err) throw err;
