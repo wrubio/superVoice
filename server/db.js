@@ -4,8 +4,8 @@ const concursoModel = require('./app/models/concurso');
 const registroModel = require('./app/models/registro');
 
 
-const sequelize = new Sequelize('Test', 'sa', 'Uniandes2019.', {
-  host: 'sqlexpress.cffdfc4dajw5.us-east-1.rds.amazonaws.com', // '13.92.245.47',
+const sequelize = new Sequelize('', '', '', {
+  host: '',
   dialect: 'mssql',
   operatorsAliases: false,
 
